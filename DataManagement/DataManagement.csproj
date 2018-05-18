@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{30A59313-6B7F-434D-A791-C49848350282}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataManagement</RootNamespace>
+    <AssemblyName>DataManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataBases\Address.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Chocolate.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Customer.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\CustomStyle.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Ingredients.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\ModelMain.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelMain.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\ModelMain.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\ModelMain.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelMain.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Order.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\OrderContent.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\OrderContent_has_Chocolate.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\OrderContent_has_Package.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\OrderStatus.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Package.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Rating.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Shape.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\sysdiagrams.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Wrapping.cs">
+      <DependentUpon>ModelMain.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataHandlerMain.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="DataBases\ModelMain.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelMain.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataBases\ModelMain.edmx.diagram">
+      <DependentUpon>ModelMain.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedDataTypes\SharedDataTypes.csproj">
+      <Project>{FA03A1B3-B0FD-45DA-A08A-76ED7D25DB97}</Project>
+      <Name>SharedDataTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataBases\ModelMain.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelMain.edmx</DependentUpon>
+      <LastGenOutput>ModelMain.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataBases\ModelMain.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelMain.edmx</DependentUpon>
+      <LastGenOutput>ModelMain.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
