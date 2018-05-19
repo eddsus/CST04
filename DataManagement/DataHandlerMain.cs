@@ -22,7 +22,7 @@ namespace DataManagement
                 Price = i.Price,
                 Type = i.Type,
                 UnitType = i.UnitType,
-                Available = i.Availability
+                //Available = i.Availability
             }).ToList();
         }
 
