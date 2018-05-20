@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Messaging
 {
-    public class MessageQueue<T>
+    public class SyncMessageQueue<T>
     {
         private string mqName;
         MessageQueue mq;
 
-        public MessageQueue(string mqName)
+        public SyncMessageQueue(string mqName)
         {
             this.mqName = @".\private$\" + mqName;
             if (!MessageQueue.Exists(this.mqName))
