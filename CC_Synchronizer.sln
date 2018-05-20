@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataLayer", "DataLayer", "{556545EC-C7A0-4793-96DD-368287DC9142}"
 EndProject
@@ -30,6 +30,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSD", "AppSD\AppSD.csproj", "{63A0AD37-F609-41C0-88B0-E8FFE026A31C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServiceHost", "AppServiceHost\AppServiceHost.csproj", "{7A20E7F4-B7EB-4A21-9DE3-947B4B8F3668}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging", "Messaging\Messaging.csproj", "{FD067F89-0066-4B8E-A5CD-4D94415E6BDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,10 @@ Global
 		{7A20E7F4-B7EB-4A21-9DE3-947B4B8F3668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A20E7F4-B7EB-4A21-9DE3-947B4B8F3668}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A20E7F4-B7EB-4A21-9DE3-947B4B8F3668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD067F89-0066-4B8E-A5CD-4D94415E6BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD067F89-0066-4B8E-A5CD-4D94415E6BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD067F89-0066-4B8E-A5CD-4D94415E6BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD067F89-0066-4B8E-A5CD-4D94415E6BDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{30A59313-6B7F-434D-A791-C49848350282} = {556545EC-C7A0-4793-96DD-368287DC9142}
 		{63A0AD37-F609-41C0-88B0-E8FFE026A31C} = {B4530BA5-3EFB-48F6-B764-822EED7DA11D}
 		{7A20E7F4-B7EB-4A21-9DE3-947B4B8F3668} = {B4530BA5-3EFB-48F6-B764-822EED7DA11D}
+		{FD067F89-0066-4B8E-A5CD-4D94415E6BDD} = {B4530BA5-3EFB-48F6-B764-822EED7DA11D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {255AC289-5077-4B4E-8104-8EEFAFFF981B}
