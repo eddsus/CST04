@@ -2,7 +2,7 @@
 
 namespace SharedDataTypes
 {
-    public class Adress
+    public class Address
     {
         public Guid AdressId { get; set; }
         public string StreetName { get; set; }

@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="MainChocolateCustomizerModel.CustomStyle" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="MainChocolateCustomizerModel.Ingredients" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="MainChocolateCustomizerModel.Order" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainChocolateCustomizerModel.OrderContent" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainChocolateCustomizerModel.OrderContent" Width="1.5" PointX="4.5" PointY="14.875" IsExpanded="true" />
         <EntityTypeShape EntityType="MainChocolateCustomizerModel.OrderContent_has_Chocolate" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="MainChocolateCustomizerModel.OrderContent_has_Package" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="MainChocolateCustomizerModel.OrderStatus" Width="1.5" PointX="1.5" PointY="24.125" IsExpanded="true" />
