@@ -14,7 +14,7 @@ namespace AppServiceHost
         {
             ServiceHost host = new ServiceHost(typeof(AppServiceService));
             host.Open();
-            Console.WriteLine("Syncronizer AppService up'n running");
+            Console.WriteLine("Synchronizer AppService up'n running");
             Console.ReadLine();
         }
     }

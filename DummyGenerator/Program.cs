@@ -37,6 +37,23 @@ namespace DummyGenerator
             //}
             #endregion
 
+            #region Add a wrapping to the DB
+            Wrapping wrap = new Wrapping()
+            {
+                WrappingId = Guid.NewGuid(),
+                Name = "wrap no. 1",
+                Price = 5,
+                Image = new Uri("https://images-na.ssl-images-amazon.com/images/I/514pV%2B-9UIL.jpg")
+            };
+
+            bool success = mainDh.InserWrapping(wrap);
+
+            if (success)
+            {
+                var result = mainDh.QueryWrappings();
+            }
+            #endregion
+
             mq.Send("Test message");
 
             Console.ReadLine();
