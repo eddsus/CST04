@@ -1,5 +1,6 @@
 ﻿
 using DataManagement;
+using Messaging;
 using SharedDataTypes;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,9 @@ namespace DummyGenerator
         static void Main(string[] args)
         {
             DataHandlerMain mainDh = new DataHandlerMain();
+            SyncMessageQueue<string> mq = new SyncMessageQueue<string>("testChannel");
 
+            #region Add Ingredient to DB
             //Ingredient almonds = new Ingredient()
             //{
             //    IngredientId = Guid.NewGuid(),
@@ -32,6 +35,10 @@ namespace DummyGenerator
             //{
             //    var result = mainDh.QueryAllIngredients();
             //}
+            #endregion
+
+            mq.Send("Test message");
+
             Console.ReadLine();
         }
     }

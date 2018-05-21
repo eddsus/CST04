@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DummyGenerator</RootNamespace>
     <AssemblyName>DummyGenerator</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -67,6 +68,10 @@
     <ProjectReference Include="..\DataManager\DataManager%28archiv%29.csproj">
       <Project>{89a3e98e-112f-4cec-b9eb-8730bbaa3cb7}</Project>
       <Name>DataManager%28archiv%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Messaging\Messaging.csproj">
+      <Project>{fd067f89-0066-4b8e-a5cd-4d94415e6bdd}</Project>
+      <Name>Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\SharedDataTypes\SharedDataTypes.csproj">
       <Project>{FA03A1B3-B0FD-45DA-A08A-76ED7D25DB97}</Project>
