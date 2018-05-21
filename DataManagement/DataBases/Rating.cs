@@ -20,7 +20,7 @@ namespace DataManagement.DataBases
         public System.Guid Package_ID { get; set; }
         public System.Guid Chocolate_ID { get; set; }
         public string Comment { get; set; }
-        public byte Published { get; set; }
+        public bool Published { get; set; }
         public System.Guid Customer_ID { get; set; }
     
         public virtual Chocolate Chocolate { get; set; }

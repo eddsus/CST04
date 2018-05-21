@@ -26,7 +26,7 @@ namespace DataManagement.DataBases
         public string Name { get; set; }
         public string Descripton { get; set; }
         public string Wrapping { get; set; }
-        public byte Availability { get; set; }
+        public bool Availability { get; set; }
         public System.Guid Customer_ID { get; set; }
         public string Image { get; set; }
     

@@ -93,7 +93,7 @@ namespace DataManager
             return mainDb.Shape.Select(p => new SharedDataTypes.Shape() {
                 ShapeId=p.ID_Shape,
                 Name=p.Name,
-                Image=p.Image
+                //Image=p.Image
             }).ToList();
         }
 
