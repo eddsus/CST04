@@ -22,10 +22,11 @@
           <Property Name="ID_Chocolate" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="1024" Nullable="false" />
-          <Property Name="Available" Type="tinyint" Nullable="false" />
+          <Property Name="Available" Type="bit" Nullable="false" />
           <Property Name="Shape_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CustomStyle_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Creator_Customer_ID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Chocolate_has_Ingridients">
           <Key>
@@ -74,7 +75,7 @@
             <PropertyRef Name="ID_Ingredients" />
           </Key>
           <Property Name="ID_Ingredients" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UnitType" Type="varchar" MaxLength="50" Nullable="false" />
@@ -132,7 +133,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Descripton" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Wrapping" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Availability" Type="tinyint" Nullable="false" />
+          <Property Name="Availability" Type="bit" Nullable="false" />
           <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -154,7 +155,7 @@
           <Property Name="Package_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Chocolate_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Published" Type="tinyint" Nullable="false" />
+          <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Shape">
@@ -184,6 +185,18 @@
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="Image" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Chocolate_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID_Customer" />
+            </Principal>
+            <Dependent Role="Chocolate">
+              <PropertyRef Name="Creator_Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Chocolate_CustomStyle">
           <End Role="CustomStyle" Type="Self.CustomStyle" Multiplicity="1" />
           <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="*" />
@@ -444,6 +457,10 @@
           <EntitySet Name="Shape" EntityType="Self.Shape" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wrapping" EntityType="Self.Wrapping" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Chocolate_Customer" Association="Self.FK_Chocolate_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
+          </AssociationSet>
           <AssociationSet Name="FK_Chocolate_CustomStyle" Association="Self.FK_Chocolate_CustomStyle">
             <End Role="CustomStyle" EntitySet="CustomStyle" />
             <End Role="Chocolate" EntitySet="Chocolate" />
@@ -548,10 +565,12 @@
           <Property Name="ID_Chocolate" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Available" Type="Byte" Nullable="false" />
+          <Property Name="Available" Type="Boolean" Nullable="false" />
           <Property Name="Shape_ID" Type="Guid" Nullable="false" />
           <Property Name="CustomStyle_ID" Type="Guid" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Creator_Customer_ID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Chocolate_Customer" FromRole="Chocolate" ToRole="Customer" />
           <NavigationProperty Name="CustomStyle" Relationship="Self.FK_Chocolate_CustomStyle" FromRole="Chocolate" ToRole="CustomStyle" />
           <NavigationProperty Name="Shape" Relationship="Self.FK_Chocolate_Shape" FromRole="Chocolate" ToRole="Shape" />
           <NavigationProperty Name="OrderContent_has_Chocolate" Relationship="Self.FK_OrderContent_has_Chocolate_Chocolate" FromRole="Chocolate" ToRole="OrderContent_has_Chocolate" />
@@ -568,6 +587,7 @@
           <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Customer" FromRole="Customer" ToRole="Chocolate" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
           <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Customer" FromRole="Customer" ToRole="Rating" />
           <NavigationProperty Name="Address" Relationship="Self.Customer_has_Address" FromRole="Customer" ToRole="Address" />
@@ -586,7 +606,7 @@
             <PropertyRef Name="ID_Ingredients" />
           </Key>
           <Property Name="ID_Ingredients" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UnitType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -656,7 +676,7 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descripton" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Wrapping" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Availability" Type="Byte" Nullable="false" />
+          <Property Name="Availability" Type="Boolean" Nullable="false" />
           <Property Name="Customer_ID" Type="Guid" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="OrderContent_has_Package" Relationship="Self.FK_OrderContent_has_Package_Package" FromRole="Package" ToRole="OrderContent_has_Package" />
@@ -673,7 +693,7 @@
           <Property Name="Package_ID" Type="Guid" Nullable="false" />
           <Property Name="Chocolate_ID" Type="Guid" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Published" Type="Byte" Nullable="false" />
+          <Property Name="Published" Type="Boolean" Nullable="false" />
           <Property Name="Customer_ID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_Rating_Chocolate" FromRole="Rating" ToRole="Chocolate" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Rating_Customer" FromRole="Rating" ToRole="Customer" />
@@ -709,6 +729,18 @@
           <NavigationProperty Name="Chocolate" Relationship="Self.Chocolate_has_Wrapping" FromRole="Wrapping" ToRole="Chocolate" />
           <NavigationProperty Name="Package" Relationship="Self.Package_has_Wrapping" FromRole="Wrapping" ToRole="Package" />
         </EntityType>
+        <Association Name="FK_Chocolate_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID_Customer" />
+            </Principal>
+            <Dependent Role="Chocolate">
+              <PropertyRef Name="Creator_Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Chocolate_CustomStyle">
           <End Role="CustomStyle" Type="Self.CustomStyle" Multiplicity="1" />
           <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="*" />
@@ -885,6 +917,10 @@
           <EntitySet Name="Shape" EntityType="Self.Shape" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Wrapping" EntityType="Self.Wrapping" />
+          <AssociationSet Name="FK_Chocolate_Customer" Association="Self.FK_Chocolate_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
+          </AssociationSet>
           <AssociationSet Name="FK_Chocolate_CustomStyle" Association="Self.FK_Chocolate_CustomStyle">
             <End Role="CustomStyle" EntitySet="CustomStyle" />
             <End Role="Chocolate" EntitySet="Chocolate" />
@@ -977,6 +1013,7 @@
                 <ScalarProperty Name="Shape_ID" ColumnName="Shape_ID" />
                 <ScalarProperty Name="CustomStyle_ID" ColumnName="CustomStyle_ID" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Creator_Customer_ID" ColumnName="Creator_Customer_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

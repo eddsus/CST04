@@ -17,6 +17,7 @@ namespace DataManagement.DataBases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
+            this.Chocolate = new HashSet<Chocolate>();
             this.Order = new HashSet<Order>();
             this.Rating = new HashSet<Rating>();
             this.Address = new HashSet<Address>();
@@ -28,6 +29,8 @@ namespace DataManagement.DataBases
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Chocolate> Chocolate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

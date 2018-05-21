@@ -52,76 +52,76 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataBases\Address.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Chocolate.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Customer.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\CustomStyle.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Ingredients.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBases\ModelMain.Context.cs">
+    <Compile Include="DataBases\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMain.Context.tt</DependentUpon>
+      <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBases\ModelMain.cs">
+    <Compile Include="DataBases\Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBases\ModelMain.Designer.cs">
+    <Compile Include="DataBases\Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelMain.edmx</DependentUpon>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Order.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\OrderContent.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\OrderContent_has_Chocolate.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\OrderContent_has_Package.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\OrderStatus.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Package.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Rating.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Shape.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\sysdiagrams.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Wrapping.cs">
-      <DependentUpon>ModelMain.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataHandlerMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="DataBases\ModelMain.edmx">
+    <EntityDeploy Include="DataBases\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelMain.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataBases\ModelMain.edmx.diagram">
-      <DependentUpon>ModelMain.edmx</DependentUpon>
+    <None Include="DataBases\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -134,16 +134,17 @@
       <Name>SharedDataTypes</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="DataBases\ModelMain.Context.tt">
+    <Content Include="DataBases\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelMain.edmx</DependentUpon>
-      <LastGenOutput>ModelMain.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataBases\ModelMain.tt">
+    <Content Include="DataBases\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelMain.edmx</DependentUpon>
-      <LastGenOutput>ModelMain.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
