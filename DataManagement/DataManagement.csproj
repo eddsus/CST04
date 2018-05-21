@@ -105,9 +105,6 @@
     <Compile Include="DataBases\Shape.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBases\sysdiagrams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataBases\Wrapping.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

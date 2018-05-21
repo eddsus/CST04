@@ -43,19 +43,13 @@ namespace DummyGenerator
                 WrappingId = Guid.NewGuid(),
                 Name = "wrap no. 1",
                 Price = 5,
-                Image = new Uri("https://images-na.ssl-images-amazon.com/images/I/514pV%2B-9UIL.jpg")
+                Image = new Uri("https://images-na.ssl-images-amazon.com/images/I/51XG6jlBOIL._SY355_.jpg")
             };
 
             bool success = mainDh.InserWrapping(wrap);
-
-            if (success)
-            {
-                var result = mainDh.QueryWrappings();
-            }
             #endregion
 
             mq.Send("Test message");
-
             Console.ReadLine();
         }
     }

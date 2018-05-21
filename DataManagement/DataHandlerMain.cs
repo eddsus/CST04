@@ -111,13 +111,23 @@ namespace DataManagement
 
         public List<SharedDataTypes.Wrapping> QueryWrappings()
         {
-            return mainDb.Wrapping.Select(p => new SharedDataTypes.Wrapping()
+            int i = 0;
+            var wrappings = mainDb.Wrapping.Select(p => new SharedDataTypes.Wrapping()
             {
                 WrappingId = p.ID_Wrapping,
                 Name = p.Name,
                 Price = p.Price,
-                Image = new Uri(p.Image)
+                //Image = new Uri(p.Image)
             }).ToList();
+
+            var images = mainDb.Wrapping.Select(p => p.Image).ToList();
+
+            foreach (var item in wrappings)
+            {
+                item.Image = new Uri(images[i]);
+                i++;
+            }
+            return wrappings;
         }
 
         public bool InserWrapping(SharedDataTypes.Wrapping wrapping)

@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Package" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Rating" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Shape" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Wrapping" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_CustomStyle" ManuallyRouted="false" />
