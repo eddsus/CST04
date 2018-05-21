@@ -58,12 +58,12 @@ namespace DataManagement
                     LastName = p.Customer.LastName,
                     Address = new SharedDataTypes.Address()
                     {
-                        //kann die Attributen von Address nicht zugreifen
-                        AdressId = Guid.NewGuid(),
-                        City = "asdf",
-                        HouseNumber = 01,
-                        StreetName = "ghjk",
-                        Zip = 02
+                        //kann die Attributen von Address nicht zugreifen --> so geht's du musst eine Adresse auswählen er könnte viele haben
+                        AdressId = p.Customer.Address.First().ID_Address,
+                        City = p.Customer.Address.First().City,
+                        HouseNumber = p.Customer.Address.First().HouseNumber,
+                        StreetName = p.Customer.Address.First().StreetName,
+                        Zip = p.Customer.Address.First().ZIP
                     },
                     Mail = p.Customer.Mail,
                     PhoneNumber = p.Customer.PhoneNumber,
@@ -73,7 +73,7 @@ namespace DataManagement
                     Decription = p.OrderStatus.StatusDescription
                 },
                 Note = p.Note,
-                Content = new List<SharedDataTypes.OrderContent>(p.OrderContent.Count)
+                Content = new List<SharedDataTypes.OrderContent>(p.OrderContent.Count) //ich bin gespannt ob das so mit count funktoniert :)
             }).ToList();
 
             //mainDb.Address.Select(p => new SharedDataTypes.Address() {
