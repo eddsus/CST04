@@ -46,7 +46,19 @@ namespace DummyGenerator
                 Image = new Uri("https://images-na.ssl-images-amazon.com/images/I/51XG6jlBOIL._SY355_.jpg")
             };
 
-            bool success = mainDh.InserWrapping(wrap);
+            mainDh.InserWrapping(wrap);
+            #endregion
+
+
+            #region Add a shape to the DB
+            Shape shape = new Shape()
+            {
+                ShapeId=Guid.NewGuid(),
+                Name="Shape no. 1",
+                Image= new Uri("https://image.freepik.com/free-icon/heart-shape-silhouette_318-41967.jpg")
+            };
+
+            mainDh.InsertShape(shape);
             #endregion
 
             mq.Send("Test message");

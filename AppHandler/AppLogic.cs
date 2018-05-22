@@ -1,4 +1,4 @@
-﻿ using DataManagement;
+﻿using DataManagement;
 using SharedDataTypes;
 using System;
 using System.Collections.Generic;
@@ -12,11 +12,24 @@ namespace AppHandler
     {
         DataHandlerMain mainDh = new DataHandlerMain();
         //add other dbHandlers here
-
-        public List<Ingredient> QueryAllIngredients()
+        public List<Order> QueryOrders()
         {
-            return mainDh.QueryAllIngredients();
+            return mainDh.QueryOrders();
         }
+
+        public List<Ingredient> QueryIngredients()
+        {
+            return mainDh.QueryIngredients();
+        }
+        public List<Shape> QueryShapes()
+        {
+            return mainDh.QueryShapes();
+        }
+        public List<Wrapping> QueryWrappings()
+        {
+            return mainDh.QueryWrappings();
+        }
+
 
     }
 }

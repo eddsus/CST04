@@ -16,6 +16,18 @@ namespace AppSD
         bool IsAlive();
 
         [OperationContract]
-        List<Ingredient> QueryAllIngredients();
+        List<Order> QueryOrders();
+
+        [OperationContract]
+        List<Ingredient> QueryIngredients();
+
+        [OperationContract]
+        List<Shape> QueryShapes();
+
+        [OperationContract]
+        List<Wrapping> QueryWrappings();
+
+
+
     }
 }

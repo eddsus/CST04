@@ -17,9 +17,24 @@ namespace AppSD
             return true;
         }
 
-        public List<Ingredient> QueryAllIngredients()
+        public List<Ingredient> QueryIngredients()
         {
-            return new AppLogic().QueryAllIngredients();
+            return new AppLogic().QueryIngredients();
+        }
+
+        public List<Order> QueryOrders()
+        {
+            return new AppLogic().QueryOrders();
+        }
+
+        public List<Shape> QueryShapes()
+        {
+            return new AppLogic().QueryShapes();
+        }
+
+        public List<Wrapping> QueryWrappings()
+        {
+            return new AppLogic().QueryWrappings();
         }
     }
 }

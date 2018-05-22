@@ -12,7 +12,7 @@ namespace DataManagement
     {
         ChocolateCustomizerEntities mainDb = new ChocolateCustomizerEntities();
 
-        public List<Ingredient> QueryAllIngredients()
+        public List<Ingredient> QueryIngredients()
         {
             return mainDb.Ingredients.Select(i => new Ingredient()
             {
@@ -58,7 +58,7 @@ namespace DataManagement
                     LastName = p.Customer.LastName,
                     Address = new SharedDataTypes.Address()
                     {
-                        //kann die Attributen von Address nicht zugreifen --> so geht's du musst eine Adresse auswählen er könnte viele haben
+                        //kann die Attributen von Address nicht zugreifen --> so geht's du musst eine Adresse auswählen er könnte viele haben --> ach soooooo
                         AdressId = p.Customer.Address.First().ID_Address,
                         City = p.Customer.Address.First().City,
                         HouseNumber = p.Customer.Address.First().HouseNumber,
@@ -89,12 +89,24 @@ namespace DataManagement
 
         public List<SharedDataTypes.Shape> QueryShapes()
         {
-            return mainDb.Shape.Select(p => new SharedDataTypes.Shape()
+            int i = 0;
+            var shapes = mainDb.Shape.Select(p => new SharedDataTypes.Shape()
             {
                 ShapeId = p.ID_Shape,
                 Name = p.Name,
-                Image = new Uri(p.Image)
+                //Image = new Uri(p.Image)
             }).ToList();
+
+            //not sure if the best workaround
+            var images = mainDb.Shape.Select(p => p.Image).ToList();
+
+            foreach (var item in shapes)
+            {
+                item.Image = new Uri(images[i]);
+                i++;
+            }
+
+            return shapes;
         }
 
         public bool InsertShape(SharedDataTypes.Shape shape)
@@ -119,7 +131,7 @@ namespace DataManagement
                 Price = p.Price,
                 //Image = new Uri(p.Image)
             }).ToList();
-
+            //not sure if the best workaround
             var images = mainDb.Wrapping.Select(p => p.Image).ToList();
 
             foreach (var item in wrappings)
@@ -141,5 +153,7 @@ namespace DataManagement
             });
             return mainDb.SaveChanges() == 1;
         }
+
+
     }
 }

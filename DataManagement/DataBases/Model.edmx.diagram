@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d469518e70764ce9a38003f39478a459" Name="Diagram1">
+      <Diagram DiagramId="d469518e70764ce9a38003f39478a459" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Address" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Chocolate" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Customer" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderStatus" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Package" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Rating" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Shape" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Shape" Width="1.625" PointX="2.875" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ChocolateCustomizerModel.Wrapping" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_CustomStyle" ManuallyRouted="false" />

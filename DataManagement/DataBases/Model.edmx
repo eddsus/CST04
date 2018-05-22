@@ -164,7 +164,7 @@
           </Key>
           <Property Name="ID_Shape" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="Image" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Wrapping">
           <Key>
@@ -699,7 +699,7 @@
           </Key>
           <Property Name="ID_Shape" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Image" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Shape" FromRole="Shape" ToRole="Chocolate" />
         </EntityType>
         <EntityType Name="Wrapping">
