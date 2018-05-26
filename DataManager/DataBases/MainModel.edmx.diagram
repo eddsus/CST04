@@ -35,6 +35,8 @@
         <AssociationConnector Association="MainChocolateCustomizerModel.Chocolate_has_Wrapping" ManuallyRouted="false" />
         <AssociationConnector Association="MainChocolateCustomizerModel.Customer_has_Address" ManuallyRouted="false" />
         <AssociationConnector Association="MainChocolateCustomizerModel.Package_has_Wrapping" ManuallyRouted="false" />
+        <AssociationConnector Association="MainChocolateCustomizerModel.FK_Chocolate_Customer" />
+        <AssociationConnector Association="MainChocolateCustomizerModel.FK_OrderContent_Order1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

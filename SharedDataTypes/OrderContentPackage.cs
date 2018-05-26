@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharedDataTypes
 {
-    class OrderContentPackage: OrderContent
+    public class OrderContentPackage: OrderContent
     {
         public Package Package { get; set; }
     }

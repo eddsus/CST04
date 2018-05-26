@@ -65,10 +65,6 @@
       <Project>{30A59313-6B7F-434D-A791-C49848350282}</Project>
       <Name>DataManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataManager\DataManager%28archiv%29.csproj">
-      <Project>{89a3e98e-112f-4cec-b9eb-8730bbaa3cb7}</Project>
-      <Name>DataManager%28archiv%29</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Messaging\Messaging.csproj">
       <Project>{fd067f89-0066-4b8e-a5cd-4d94415e6bdd}</Project>
       <Name>Messaging</Name>

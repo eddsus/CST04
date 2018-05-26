@@ -31,6 +31,7 @@ namespace DataManagement.DataBases
         public System.Guid CustomStyle_ID { get; set; }
         public string Image { get; set; }
         public System.Guid Creator_Customer_ID { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual CustomStyle CustomStyle { get; set; }

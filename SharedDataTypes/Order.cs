@@ -8,7 +8,7 @@ namespace SharedDataTypes
 {
     public class Order
     {
-        public Guid OrderId { get; set; }
+        public string OrderId { get; set; }
         public DateTime DateOfOrder { get; set; }
         public DateTime DateOfDelivery { get; set; }
         public OrderStatus Status { get; set; }

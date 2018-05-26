@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.ServiceModel.Web;
 
 namespace AppSD
 {
@@ -13,12 +14,23 @@ namespace AppSD
     public interface IAppServiceService
     {
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "REST_Tester/{id}-{name}")]
+        string REST_Tester(string id, string name);
+
+        [OperationContract]
         bool IsAlive();
 
         [OperationContract]
         List<Order> QueryOrders();
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "GetIngredients")]
         List<Ingredient> QueryIngredients();
 
         [OperationContract]

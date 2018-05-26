@@ -27,6 +27,7 @@ namespace DataManagement.DataBases
         public string UnitType { get; set; }
         public bool Availability { get; set; }
         public string Description { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chocolate> Chocolate { get; set; }

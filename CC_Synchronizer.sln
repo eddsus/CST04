@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeMapModel", "CodeMapModel", "{BA1736B5-F710-4428-97C7-73B2D9CF944D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManager(archiv)", "DataManager\DataManager(archiv).csproj", "{89A3E98E-112F-4CEC-B9EB-8730BBAA3CB7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendHandler", "BackendHandler\BackendHandler.csproj", "{75D08CA0-28E9-4EB8-A604-D078F94F4C0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontendHandler", "FrontendHandler\FrontendHandler.csproj", "{856BCD3D-71D4-4E20-9C41-8847D696366A}"
@@ -33,16 +31,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppServiceHost", "AppServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messaging", "Messaging\Messaging.csproj", "{FD067F89-0066-4B8E-A5CD-4D94415E6BDD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{CC98571B-AE62-4C64-954A-D483422587F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{DF1E43EB-2BB6-44A8-896F-606D5A564C59}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Public\Pictures\Sample Pictures\test-Image.jpg = ..\..\..\..\Public\Pictures\Sample Pictures\test-Image.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89A3E98E-112F-4CEC-B9EB-8730BBAA3CB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89A3E98E-112F-4CEC-B9EB-8730BBAA3CB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89A3E98E-112F-4CEC-B9EB-8730BBAA3CB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89A3E98E-112F-4CEC-B9EB-8730BBAA3CB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{75D08CA0-28E9-4EB8-A604-D078F94F4C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{75D08CA0-28E9-4EB8-A604-D078F94F4C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75D08CA0-28E9-4EB8-A604-D078F94F4C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -84,7 +85,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{89A3E98E-112F-4CEC-B9EB-8730BBAA3CB7} = {556545EC-C7A0-4793-96DD-368287DC9142}
 		{75D08CA0-28E9-4EB8-A604-D078F94F4C0C} = {BB947047-C1C6-404E-AD26-452C26D57501}
 		{856BCD3D-71D4-4E20-9C41-8847D696366A} = {BB947047-C1C6-404E-AD26-452C26D57501}
 		{5A5A7CBA-B579-43CC-84F4-455A6B1F601E} = {BB947047-C1C6-404E-AD26-452C26D57501}
@@ -94,6 +94,7 @@ Global
 		{63A0AD37-F609-41C0-88B0-E8FFE026A31C} = {B4530BA5-3EFB-48F6-B764-822EED7DA11D}
 		{7A20E7F4-B7EB-4A21-9DE3-947B4B8F3668} = {B4530BA5-3EFB-48F6-B764-822EED7DA11D}
 		{FD067F89-0066-4B8E-A5CD-4D94415E6BDD} = {B4530BA5-3EFB-48F6-B764-822EED7DA11D}
+		{DF1E43EB-2BB6-44A8-896F-606D5A564C59} = {CC98571B-AE62-4C64-954A-D483422587F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {255AC289-5077-4B4E-8104-8EEFAFFF981B}

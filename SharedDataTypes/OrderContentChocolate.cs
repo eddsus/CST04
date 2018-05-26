@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharedDataTypes
 {
-    class OrderContentChocolate : OrderContent
+    public class OrderContentChocolate : OrderContent
     {
         public Chocolate Chocolate { get; set; }
     }

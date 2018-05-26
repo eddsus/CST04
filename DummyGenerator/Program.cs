@@ -46,7 +46,7 @@ namespace DummyGenerator
                 Image = new Uri("https://images-na.ssl-images-amazon.com/images/I/51XG6jlBOIL._SY355_.jpg")
             };
 
-            mainDh.InserWrapping(wrap);
+            mainDh.InsertWrapping(wrap);
             #endregion
 
 

@@ -29,6 +29,7 @@ namespace DataManagement.DataBases
         public bool Availability { get; set; }
         public System.Guid Customer_ID { get; set; }
         public string Image { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderContent_has_Package> OrderContent_has_Package { get; set; }

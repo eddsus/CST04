@@ -20,7 +20,7 @@ namespace DataManagement.DataBases
             this.OrderContent = new HashSet<OrderContent>();
         }
     
-        public System.Guid ID_Order { get; set; }
+        public string ID_Order { get; set; }
         public System.DateTime DateOfOrder { get; set; }
         public System.DateTime DateOfDelivery { get; set; }
         public System.Guid Status_ID { get; set; }

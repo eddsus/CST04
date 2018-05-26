@@ -36,5 +36,10 @@ namespace AppSD
         {
             return new AppLogic().QueryWrappings();
         }
+
+        public string REST_Tester(string id, string name)
+        {
+            return id + " Name: "+ name + " Motherfucker!";
+        }
     }
 }

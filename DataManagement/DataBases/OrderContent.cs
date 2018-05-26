@@ -22,7 +22,7 @@ namespace DataManagement.DataBases
         }
     
         public System.Guid ID_OrderContent { get; set; }
-        public System.Guid Oder_ID { get; set; }
+        public string Order_ID { get; set; }
     
         public virtual Order Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

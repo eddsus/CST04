@@ -5,13 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataManagement.SharedTypeConverter;
 
 namespace DataManagement
 {
     public class DataHandlerMain
     {
+        //use SharedTypeConverter for converting from DataBaseClasses to SharedDataTypes,
+        //it is static so you don't need to initialize it for usage
+        SharedConverter converter = new SharedConverter();
+
         ChocolateCustomizerEntities mainDb = new ChocolateCustomizerEntities();
 
+        #region GiveMeAll Queries
         public List<Ingredient> QueryIngredients()
         {
             return mainDb.Ingredients.Select(i => new Ingredient()
@@ -26,66 +32,21 @@ namespace DataManagement
             }).ToList();
         }
 
-        public bool InsertIngredient(Ingredient newIngredient)
-        {
-
-            mainDb.Ingredients.Add(new Ingredients()
-            {
-                ID_Ingredients = newIngredient.IngredientId,
-                Name = newIngredient.Name,
-                Description = newIngredient.Description,
-                Price = newIngredient.Price,
-                Availability = newIngredient.Available,
-                Type = newIngredient.Type,
-                UnitType = newIngredient.UnitType
-            });
-            return mainDb.SaveChanges() > 0;
-        }
 
 
         public List<SharedDataTypes.Order> QueryOrders()
         {
+            List<DataBases.Order> tempDbOrders = new List<DataBases.Order>();
+            List<SharedDataTypes.Order> tempSharedOrders = new List<SharedDataTypes.Order>();
 
-            var orders = mainDb.Order.Select(p => new SharedDataTypes.Order()
+            tempDbOrders = mainDb.Order.Select(p => p).ToList();
+
+            foreach (var item in tempDbOrders)
             {
-                OrderId = p.ID_Order,
-                DateOfOrder = p.DateOfOrder,
-                DateOfDelivery = p.DateOfDelivery,
-                Customer = new SharedDataTypes.Customer()
-                {
-                    CustomerId = p.Customer.ID_Customer,
-                    FirstName = p.Customer.FirstName,
-                    LastName = p.Customer.LastName,
-                    Address = new SharedDataTypes.Address()
-                    {
-                        //kann die Attributen von Address nicht zugreifen --> so geht's du musst eine Adresse auswählen er könnte viele haben --> ach soooooo
-                        AdressId = p.Customer.Address.First().ID_Address,
-                        City = p.Customer.Address.First().City,
-                        HouseNumber = p.Customer.Address.First().HouseNumber,
-                        StreetName = p.Customer.Address.First().StreetName,
-                        Zip = p.Customer.Address.First().ZIP
-                    },
-                    Mail = p.Customer.Mail,
-                    PhoneNumber = p.Customer.PhoneNumber,
-                },
-                Status = new SharedDataTypes.OrderStatus()
-                {
-                    Decription = p.OrderStatus.StatusDescription
-                },
-                Note = p.Note,
-                Content = new List<SharedDataTypes.OrderContent>(p.OrderContent.Count) //ich bin gespannt ob das so mit count funktoniert :)
-            }).ToList();
-
-            //mainDb.Address.Select(p => new SharedDataTypes.Address() {
-            //    AdressId=p.ID_Address,
-            //    City=p.City,
-            //    HouseNumber=p.HouseNumber,
-            //    StreetName=p.StreetName,
-            //    Zip=p.ZIP,
-            //}).ToList();
-            return orders;
+                converter.ConvertToSharedOrder(item);
+            }
+            return tempSharedOrders;
         }
-
 
         public List<SharedDataTypes.Shape> QueryShapes()
         {
@@ -123,26 +84,23 @@ namespace DataManagement
 
         public List<SharedDataTypes.Wrapping> QueryWrappings()
         {
-            int i = 0;
             var wrappings = mainDb.Wrapping.Select(p => new SharedDataTypes.Wrapping()
             {
                 WrappingId = p.ID_Wrapping,
                 Name = p.Name,
                 Price = p.Price,
-                //Image = new Uri(p.Image)
+                ImgPath = p.Image 
             }).ToList();
-            //not sure if the best workaround
-            var images = mainDb.Wrapping.Select(p => p.Image).ToList();
 
+            //set Uri in Image
             foreach (var item in wrappings)
             {
-                item.Image = new Uri(images[i]);
-                i++;
+                item.Image = new Uri(item.ImgPath);
             }
             return wrappings;
         }
 
-        public bool InserWrapping(SharedDataTypes.Wrapping wrapping)
+        public bool InsertWrapping(SharedDataTypes.Wrapping wrapping)
         {
             mainDb.Wrapping.Add(new DataBases.Wrapping()
             {
@@ -153,7 +111,23 @@ namespace DataManagement
             });
             return mainDb.SaveChanges() == 1;
         }
+        #endregion
 
+        public bool InsertIngredient(Ingredient newIngredient)
+        {
+
+            mainDb.Ingredients.Add(new Ingredients()
+            {
+                ID_Ingredients = newIngredient.IngredientId,
+                Name = newIngredient.Name,
+                Description = newIngredient.Description,
+                Price = newIngredient.Price,
+                Availability = newIngredient.Available,
+                Type = newIngredient.Type,
+                UnitType = newIngredient.UnitType
+            });
+            return mainDb.SaveChanges() > 0;
+        }
 
     }
 }
