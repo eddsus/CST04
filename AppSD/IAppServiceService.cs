@@ -21,6 +21,10 @@ namespace AppSD
         string REST_Tester(string id, string name);
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "IsAlive")]
         bool IsAlive();
 
         [OperationContract]
@@ -30,7 +34,7 @@ namespace AppSD
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped,
-            UriTemplate = "GetIngredients")]
+            UriTemplate = "QueryIngredients")]
         List<Ingredient> QueryIngredients();
 
         [OperationContract]
