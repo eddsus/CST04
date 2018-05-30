@@ -23,7 +23,7 @@ namespace AppSD
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Wrapped,
+            BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "IsAlive")]
         bool IsAlive();
 
@@ -33,7 +33,7 @@ namespace AppSD
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Wrapped,
+            BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "QueryIngredients")]
         List<Ingredient> QueryIngredients();
 
