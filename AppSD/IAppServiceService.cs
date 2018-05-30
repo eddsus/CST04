@@ -28,6 +28,10 @@ namespace AppSD
         bool IsAlive();
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "QueryOrders")]
         List<Order> QueryOrders();
 
         [OperationContract]
@@ -38,9 +42,17 @@ namespace AppSD
         List<Ingredient> QueryIngredients();
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "QueryShapes")]
         List<Shape> QueryShapes();
 
         [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "QueryWrappings")]
         List<Wrapping> QueryWrappings();
 
 

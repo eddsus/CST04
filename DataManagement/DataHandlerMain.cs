@@ -43,7 +43,7 @@ namespace DataManagement
 
             foreach (var item in tempDbOrders)
             {
-                converter.ConvertToSharedOrder(item);
+                tempSharedOrders.Add(converter.ConvertToSharedOrder(item));
             }
             return tempSharedOrders;
         }

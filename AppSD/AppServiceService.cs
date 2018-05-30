@@ -12,6 +12,11 @@ namespace AppSD
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "AppServiceService" in both code and config file together.
     public class AppServiceService : IAppServiceService
     {
+        public string REST_Tester(string id, string name)
+        {
+            return id + " Name: "+ name + " Motherfucker!";
+        }
+
         public bool IsAlive()
         {
             return true;
@@ -37,9 +42,5 @@ namespace AppSD
             return new AppLogic().QueryWrappings();
         }
 
-        public string REST_Tester(string id, string name)
-        {
-            return id + " Name: "+ name + " Motherfucker!";
-        }
     }
 }
