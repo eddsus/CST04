@@ -20,7 +20,7 @@ namespace DataManagement
         #region GiveMeAll Queries
         public List<Ingredient> QueryIngredients()
         {
-            return mainDb.Ingredients.Select(i => new Ingredient()
+            var temp = mainDb.Ingredients.Select(i => new Ingredient()
             {
                 IngredientId = i.ID_Ingredients,
                 Description = i.Description,
@@ -28,8 +28,10 @@ namespace DataManagement
                 Price = i.Price,
                 Type = i.Type,
                 UnitType = i.UnitType,
-                Available = i.Availability
+                Available = i.Availability,
+                DatedModified = i.ModifyDate
             }).ToList();
+            return temp;
         }
 
 
