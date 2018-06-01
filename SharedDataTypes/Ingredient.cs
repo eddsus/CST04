@@ -12,5 +12,6 @@ namespace SharedDataTypes
         public string UnitType { get; set; }
         public bool Available { get; set; }
         public string Description { get; set; }
+        public DateTime DatedModified { get; set; }
     }
 }

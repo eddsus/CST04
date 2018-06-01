@@ -48,7 +48,6 @@
     <Compile Include="Customer.cs" />
     <Compile Include="CustomStyle.cs" />
     <Compile Include="Ingredient.cs" />
-    <Compile Include="IsAlive.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderContent.cs" />
     <Compile Include="OrderContentChocolate.cs" />
