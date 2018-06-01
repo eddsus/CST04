@@ -126,7 +126,8 @@ namespace DataManagement
                 Price = newIngredient.Price,
                 Availability = newIngredient.Available,
                 Type = newIngredient.Type,
-                UnitType = newIngredient.UnitType
+                UnitType = newIngredient.UnitType,
+                ModifyDate = newIngredient.DatedModified
             });
             return mainDb.SaveChanges() > 0;
         }
