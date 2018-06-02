@@ -14,5 +14,8 @@ namespace SharedDataTypes
         public Uri Image { get; set; }
         public List<Chocolate> Chocolates { get; set; }
         public List<Rating> Ratings { get; set; }
+        public DateTime? Modified { get; set; }
+
+
     }
 }

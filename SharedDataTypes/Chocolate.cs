@@ -15,5 +15,7 @@ namespace SharedDataTypes
         public Wrapping Wrapping { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public List<Rating> Ratings { get; set; }
+        public DateTime? Modified { get; set; }
+
     }
 }

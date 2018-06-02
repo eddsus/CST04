@@ -21,13 +21,13 @@ namespace DummyGenerator
             Ingredient almonds = new Ingredient()
             {
                 IngredientId = Guid.NewGuid(),
-                Name = "Banana King 4",
+                Name = "5 Banana King 4",
                 Description = "The inglorious Banana is back again and again",
                 Available = true,
                 Price = 0.30,
                 Type = "Filling",
                 UnitType = "g",
-                DatedModified = DateTime.Now
+                Modified = DateTime.Now
             };
 
             bool success = mainDh.InsertIngredient(almonds);

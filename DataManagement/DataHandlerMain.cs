@@ -29,7 +29,7 @@ namespace DataManagement
                 Type = i.Type,
                 UnitType = i.UnitType,
                 Available = i.Availability,
-                DatedModified = i.ModifyDate
+                Modified = i.ModifyDate
             }).ToList();
             return temp;
         }
@@ -127,7 +127,7 @@ namespace DataManagement
                 Availability = newIngredient.Available,
                 Type = newIngredient.Type,
                 UnitType = newIngredient.UnitType,
-                ModifyDate = newIngredient.DatedModified
+                ModifyDate = newIngredient.Modified
             });
             return mainDb.SaveChanges() > 0;
         }
