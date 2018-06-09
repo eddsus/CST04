@@ -13,10 +13,11 @@ namespace AppSD
     [ServiceContract]
     public interface IAppServiceService
     {
+        #region HEAD
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Wrapped,
+            BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "REST_Tester/{id}-{name}")]
         string REST_Tester(string id, string name);
 
@@ -26,7 +27,9 @@ namespace AppSD
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "IsAlive")]
         bool IsAlive();
+        #endregion
 
+        #region QUERIES
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
@@ -54,7 +57,16 @@ namespace AppSD
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "QueryWrappings")]
         List<Wrapping> QueryWrappings();
+        #endregion
 
+        #region UPDATE METHODS
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "UpdateIngredient"),]
+        bool UpdateIngredient(Ingredient item);
+        #endregion
 
 
     }

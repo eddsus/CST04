@@ -35,7 +35,6 @@ namespace DataManagement
         }
 
 
-
         public List<SharedDataTypes.Order> QueryOrders()
         {
             List<DataBases.Order> tempDbOrders = new List<DataBases.Order>();
@@ -72,17 +71,6 @@ namespace DataManagement
             return shapes;
         }
 
-        public bool InsertShape(SharedDataTypes.Shape shape)
-        {
-            mainDb.Shape.Add(new DataBases.Shape()
-            {
-                ID_Shape = shape.ShapeId,
-                Name = shape.Name,
-                Image = shape.Image.ToString()
-            });
-
-            return mainDb.SaveChanges() == 1;
-        }
 
         public List<SharedDataTypes.Wrapping> QueryWrappings()
         {
@@ -101,6 +89,21 @@ namespace DataManagement
             }
             return wrappings;
         }
+        #endregion
+
+
+        #region INSERT METHODS
+        public bool InsertShape(SharedDataTypes.Shape shape)
+        {
+            mainDb.Shape.Add(new DataBases.Shape()
+            {
+                ID_Shape = shape.ShapeId,
+                Name = shape.Name,
+                Image = shape.Image.ToString()
+            });
+
+            return mainDb.SaveChanges() == 1;
+        }
 
         public bool InsertWrapping(SharedDataTypes.Wrapping wrapping)
         {
@@ -113,7 +116,6 @@ namespace DataManagement
             });
             return mainDb.SaveChanges() == 1;
         }
-        #endregion
 
         public bool InsertIngredient(Ingredient newIngredient)
         {
@@ -131,6 +133,21 @@ namespace DataManagement
             });
             return mainDb.SaveChanges() > 0;
         }
+        #endregion
 
+        #region UPDATE METHODS
+        public bool UpdateIngredient(Ingredient item)
+        {
+            var temp = mainDb.Ingredients.Where(i => i.ID_Ingredients == item.IngredientId).Select(j => j).First();
+            temp.Name = item.Name;
+            temp.Description = item.Description;
+            temp.Price = item.Price;
+            temp.Availability = item.Available;
+            temp.Type = item.Type;
+            temp.UnitType = item.UnitType;
+            temp.ModifyDate = DateTime.Now;
+            return mainDb.SaveChanges() > 0;
+        }
+        #endregion
     }
 }

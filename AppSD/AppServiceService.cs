@@ -22,6 +22,7 @@ namespace AppSD
             return true;
         }
 
+        #region QUERIES
         public List<Ingredient> QueryIngredients()
         {
             return new AppLogic().QueryIngredients();
@@ -41,6 +42,14 @@ namespace AppSD
         {
             return new AppLogic().QueryWrappings();
         }
+        #endregion
+
+        #region UPDATE METHODS
+        public bool UpdateIngredient(Ingredient item)
+        {
+            return new AppLogic().UpdateIngredient(item);
+        }
+        #endregion
 
     }
 }

@@ -30,6 +30,10 @@ namespace AppHandler
             return mainDh.QueryWrappings();
         }
 
-
+        public bool UpdateIngredient(Ingredient item)
+        {
+            //::TODO:: Also update Frontend database
+            return mainDh.UpdateIngredient(item);
+        }
     }
 }
