@@ -5,6 +5,22 @@ namespace SharedDataTypes
 {
     public class Order
     {
+        private Order p;
+
+        public Order(Order p)
+        {
+            if (p != null)
+            {
+                OrderId = p.OrderId;
+                DateOfOrder = p.DateOfOrder;
+                DateOfDelivery = p.DateOfDelivery;
+                Status = p.Status;
+                Customer = p.Customer;
+                Note = p.Note;
+                Content = p.Content;
+            }
+        }
+
         public string OrderId { get; set; }
         public DateTime DateOfOrder { get; set; }
         public DateTime DateOfDelivery { get; set; }
