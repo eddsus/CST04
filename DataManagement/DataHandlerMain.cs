@@ -27,7 +27,7 @@ namespace DataManagement
             List<SharedDataTypes.Order> tempSharedOrders = new List<SharedDataTypes.Order>();
 
             tempDbOrders = mainDb.Order.Select(p => p).ToList();
-
+           
             foreach (var item in tempDbOrders)
             {
                // tempSharedOrders.Add(converter.ConvertToSharedOrder(item));

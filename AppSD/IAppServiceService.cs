@@ -66,7 +66,7 @@ namespace AppSD
         List<string> QueryOrderStates();
 
         [OperationContract]
-        [WebInvoke(Method = "GET",
+        [WebInvoke(Method = "POST",
          ResponseFormat = WebMessageFormat.Json,
            BodyStyle = WebMessageBodyStyle.Bare,
            UriTemplate = "QueryIngredientsByChocolateId")]

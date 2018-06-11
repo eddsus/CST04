@@ -68,7 +68,7 @@ namespace DataManagement.SharedTypeConverter
         {
             return new Ingredient
             {
-                IngredientId = Guid.Parse(DBIngredient.ToString()),
+                IngredientId = DBIngredient.ID_Ingredients,
                 Name = DBIngredient.Name,
                 Description = DBIngredient.Description,
                 Available = DBIngredient.Availability,
