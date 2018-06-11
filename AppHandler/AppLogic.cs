@@ -21,6 +21,12 @@ namespace AppHandler
         {
             return mainDh.QueryIngredients();
         }
+
+        public List<Ingredient> QueryIngredientsByChocolateId(Guid id)
+        {
+            return mainDh.QueryIngredientsByChocolateId(id);
+        }
+
         public List<Shape> QueryShapes()
         {
             return mainDh.QueryShapes();
