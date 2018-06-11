@@ -30,10 +30,20 @@ namespace DataManagement
 
             foreach (var item in tempDbOrders)
             {
-                tempSharedOrders.Add(converter.ConvertToSharedOrder(item));
+               // tempSharedOrders.Add(converter.ConvertToSharedOrder(item));
             }
             return tempSharedOrders;
         }
+
+        //public List<Ingredient> QueryChocolatesWithIngredients()
+        //{
+        //    List<SharedDataTypes.Chocolate> sharedChocolates = new List<SharedDataTypes.Chocolate>();
+        //    foreach (var item in mainDb.Chocolate.Select(p=>p).ToList())
+        //    {
+        //        sharedChocolates.Add(converter.ConvertToSharedChocolate(item));
+        //    }
+
+        //}
 
         public List<Ingredient> QueryIngredientsByChocolateId(Guid Id)
         {

@@ -49,6 +49,16 @@ namespace AppSD
         {
             return new AppLogic().UpdateIngredient(item);
         }
+
+        public List<string> QueryOrderStates()
+        {
+           return new AppLogic().QueryOrderStates();
+        }
+
+        public List<Ingredient> QueryIngredientsByChocolateId(Guid id)
+        {
+            return new AppLogic().QueryIngredientsByChocolateId(id);
+        }
         #endregion
 
     }

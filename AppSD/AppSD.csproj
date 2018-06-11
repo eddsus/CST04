@@ -52,9 +52,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppHandler\AppHandler.csproj">
+    <ProjectReference Include="..\AppHandler\DBHandler.csproj">
       <Project>{5a5a7cba-b579-43cc-84f4-455a6b1f601e}</Project>
-      <Name>AppHandler</Name>
+      <Name>DBHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\SharedDataTypes\SharedDataTypes.csproj">
       <Project>{FA03A1B3-B0FD-45DA-A08A-76ED7D25DB97}</Project>

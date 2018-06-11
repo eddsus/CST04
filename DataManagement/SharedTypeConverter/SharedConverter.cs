@@ -11,19 +11,19 @@ namespace DataManagement.SharedTypeConverter
     public class SharedConverter
     {
 
-        public SharedDataTypes.Order ConvertToSharedOrder(DataBases.Order p)
-        {
-            return new SharedDataTypes.Order()
-            {
-                OrderId = p.ID_Order,
-                DateOfOrder = p.DateOfOrder,
-                DateOfDelivery = p.DateOfDelivery,
-                Customer = ConvertToSharedCustomer(p.Customer),
-                Status = ConvertToSharedOrderStatus(p.OrderStatus),
-                Note = p.Note,
-                Content = new List<SharedDataTypes.OrderContent>()
-            };
-        }
+        //public SharedDataTypes.Order ConvertToSharedOrder(DataBases.Order p)
+        //{
+        //    return new SharedDataTypes.Order()
+        //    {
+        //        OrderId = p.ID_Order,
+        //        DateOfOrder = p.DateOfOrder,
+        //        DateOfDelivery = p.DateOfDelivery,
+        //        Customer = ConvertToSharedCustomer(p.Customer),
+        //        Status = ConvertToSharedOrderStatus(p.OrderStatus),
+        //        Note = p.Note,
+        //        Content = new List<SharedDataTypes.OrderContent>()
+        //    };
+        //}
 
         public SharedDataTypes.Chocolate ConvertToSharedChocolate(DataBases.Chocolate choco)
         {
