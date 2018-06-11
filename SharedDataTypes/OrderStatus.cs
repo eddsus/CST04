@@ -1,7 +1,10 @@
-﻿namespace SharedDataTypes
+﻿using System;
+
+namespace SharedDataTypes
 {
     public class OrderStatus
     {
+        public Guid OrderStatusId { get; set; }
         public string Decription { get; set; }
     }
 }
