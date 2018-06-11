@@ -23,33 +23,47 @@ namespace DataManagement
 
         public List<SharedDataTypes.Order> QueryOrders()
         {
-            List<DataBases.Order> tempDbOrders = new List<DataBases.Order>();
             List<SharedDataTypes.Order> tempSharedOrders = new List<SharedDataTypes.Order>();
 
-            tempDbOrders = mainDb.Order.Select(p => p).ToList();
-
-            foreach (var item in tempDbOrders)
+            foreach (var item in mainDb.Orders.Select(p => p).ToList())
             {
-               // tempSharedOrders.Add(converter.ConvertToSharedOrder(item));
+                tempSharedOrders.Add(converter.ConvertToSharedOrder(item));
+            }
+
+            foreach (var tempOrder in tempSharedOrders)
+            {
+
+
+                foreach (var item in mainDb.OrderContents.Where(p=>p.Order_ID.Equals(tempOrder.OrderId)).Select(p=>p).ToList())
+                {
+                    //tempOrder.Content.Add(converter.ConvertToShared);
+                }
             }
             return tempSharedOrders;
         }
 
-        //public List<Ingredient> QueryChocolatesWithIngredients()
-        //{
-        //    List<SharedDataTypes.Chocolate> sharedChocolates = new List<SharedDataTypes.Chocolate>();
-        //    foreach (var item in mainDb.Chocolate.Select(p=>p).ToList())
-        //    {
-        //        sharedChocolates.Add(converter.ConvertToSharedChocolate(item));
-        //    }
-
-        //}
-
-        public List<Ingredient> QueryIngredientsByChocolateId(Guid Id)
+        public List<SharedDataTypes.Chocolate> QueryChocolatesWithIngredients()
         {
-            List<Ingredient> sharedIngredients = new List<Ingredient>();
+            List<SharedDataTypes.Chocolate> sharedChocolates = new List<SharedDataTypes.Chocolate>();
 
-            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolate.Count(x => x.ID_Chocolate.Equals(Id)) > 0).ToList())
+            foreach (var choco in mainDb.Chocolates.Select(p => p).ToList())
+            {
+                sharedChocolates.Add(converter.ConvertToSharedChocolate(choco));
+            }
+
+
+            foreach (var tempChoco in sharedChocolates)
+            {
+                tempChoco.Ingredients = QueryIngredientsByChocolateId(tempChoco.ChocolateId);
+            }
+            return sharedChocolates;
+        }
+
+        public List<SharedDataTypes.Ingredient> QueryIngredientsByChocolateId(Guid Id)
+        {
+            List<SharedDataTypes.Ingredient> sharedIngredients = new List<SharedDataTypes.Ingredient>();
+
+            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolates.Count(x => x.ID_Chocolate.Equals(Id)) > 0).ToList())
             {
                 sharedIngredients.Add(converter.ConvertToSharedIngredient(item));
             }
@@ -60,7 +74,7 @@ namespace DataManagement
         public List<SharedDataTypes.Shape> QueryShapes()
         {
             int i = 0;
-            var shapes = mainDb.Shape.Select(p => new SharedDataTypes.Shape()
+            var shapes = mainDb.Shapes.Select(p => new SharedDataTypes.Shape()
             {
                 ShapeId = p.ID_Shape,
                 Name = p.Name,
@@ -68,7 +82,7 @@ namespace DataManagement
             }).ToList();
 
             //not sure if the best workaround
-            var images = mainDb.Shape.Select(p => p.Image).ToList();
+            var images = mainDb.Shapes.Select(p => p.Image).ToList();
 
             foreach (var item in shapes)
             {
@@ -83,18 +97,18 @@ namespace DataManagement
         {
             List<SharedDataTypes.Wrapping> sharedWrappings = new List<SharedDataTypes.Wrapping>();
 
-            foreach (var item in mainDb.Wrapping.Select(p => p).ToList())
+            foreach (var item in mainDb.Wrappings.Select(p => p).ToList())
             {
                 sharedWrappings.Add(converter.ConvertToSharedWrapping(item));
             }
             return sharedWrappings;
         }
 
-        public List<Ingredient> QueryIngredients()
+        public List<SharedDataTypes.Ingredient> QueryIngredients()
         {
-            List<Ingredient> sharedIngredients = new List<Ingredient>();
+            List<SharedDataTypes.Ingredient> sharedIngredients = new List<SharedDataTypes.Ingredient>();
 
-            foreach (var item in mainDb.Ingredients.Select(i => i).ToList())
+            foreach (DataBases.Ingredient item in mainDb.Ingredients.Select(i => i).ToList())
             {
                 sharedIngredients.Add(converter.ConvertToSharedIngredient(item));
             }
@@ -112,7 +126,7 @@ namespace DataManagement
         #region INSERT METHODS
         public bool InsertShape(SharedDataTypes.Shape shape)
         {
-            mainDb.Shape.Add(new DataBases.Shape()
+            mainDb.Shapes.Add(new DataBases.Shape()
             {
                 ID_Shape = shape.ShapeId,
                 Name = shape.Name,
@@ -124,7 +138,7 @@ namespace DataManagement
 
         public bool InsertWrapping(SharedDataTypes.Wrapping wrapping)
         {
-            mainDb.Wrapping.Add(new DataBases.Wrapping()
+            mainDb.Wrappings.Add(new DataBases.Wrapping()
             {
                 ID_Wrapping = wrapping.WrappingId,
                 Name = wrapping.Name,
@@ -134,10 +148,10 @@ namespace DataManagement
             return mainDb.SaveChanges() == 1;
         }
 
-        public bool InsertIngredient(Ingredient newIngredient)
+        public bool InsertIngredient(SharedDataTypes.Ingredient newIngredient)
         {
 
-            mainDb.Ingredients.Add(new Ingredients()
+            mainDb.Ingredients.Add(new DataBases.Ingredient()
             {
                 ID_Ingredients = newIngredient.IngredientId,
                 Name = newIngredient.Name,
@@ -153,7 +167,7 @@ namespace DataManagement
         #endregion
 
         #region UPDATE METHODS
-        public bool UpdateIngredient(Ingredient item)
+        public bool UpdateIngredient(SharedDataTypes.Ingredient item)
         {
             var temp = mainDb.Ingredients.Where(i => i.ID_Ingredients == item.IngredientId).Select(j => j).First();
             temp.Name = item.Name;

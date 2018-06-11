@@ -66,11 +66,18 @@ namespace AppSD
         List<string> QueryOrderStates();
 
         [OperationContract]
-        [WebInvoke(Method = "GET",
+        [WebInvoke(Method = "POST",
          ResponseFormat = WebMessageFormat.Json,
            BodyStyle = WebMessageBodyStyle.Bare,
            UriTemplate = "QueryIngredientsByChocolateId")]
         List<Ingredient> QueryIngredientsByChocolateId(Guid id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "QueryChocolatesWithIngredients")]
+        List<Chocolate> QueryChocolatesWithIngredients();
         #endregion
 
         #region UPDATE METHODS

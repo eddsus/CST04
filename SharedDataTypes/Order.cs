@@ -7,6 +7,11 @@ namespace SharedDataTypes
     {
         private Order p;
 
+        public Order()
+        {
+
+        }
+
         public Order(Order p)
         {
             if (p != null)

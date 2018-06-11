@@ -17,7 +17,7 @@ namespace DataManagement.DataBases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Shape()
         {
-            this.Chocolate = new HashSet<Chocolate>();
+            this.Chocolates = new HashSet<Chocolate>();
         }
     
         public System.Guid ID_Shape { get; set; }
@@ -25,6 +25,6 @@ namespace DataManagement.DataBases
         public string Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chocolate> Chocolate { get; set; }
+        public virtual ICollection<Chocolate> Chocolates { get; set; }
     }
 }

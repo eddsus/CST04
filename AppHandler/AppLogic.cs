@@ -41,6 +41,12 @@ namespace AppHandler
             return mainDh.QueryOrderStates();
         }
 
+        public List<Chocolate> QueryChocolatesWithIngredients()
+        {
+            return mainDh.QueryChocolatesWithIngredients();
+
+
+        }
         public bool UpdateIngredient(Ingredient item)
         {
             //::TODO:: Also update Frontend database

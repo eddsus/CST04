@@ -18,9 +18,9 @@ namespace DataManagement.DataBases
         public Chocolate()
         {
             this.OrderContent_has_Chocolate = new HashSet<OrderContent_has_Chocolate>();
-            this.Rating = new HashSet<Rating>();
-            this.Ingredients = new HashSet<Ingredients>();
-            this.Wrapping = new HashSet<Wrapping>();
+            this.Ratings = new HashSet<Rating>();
+            this.Ingredients = new HashSet<Ingredient>();
+            this.Wrappings = new HashSet<Wrapping>();
         }
     
         public System.Guid ID_Chocolate { get; set; }
@@ -39,10 +39,10 @@ namespace DataManagement.DataBases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderContent_has_Chocolate> OrderContent_has_Chocolate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Rating { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ingredients> Ingredients { get; set; }
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wrapping> Wrapping { get; set; }
+        public virtual ICollection<Wrapping> Wrappings { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace DataManagement.DataBases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Wrapping()
         {
-            this.Chocolate = new HashSet<Chocolate>();
-            this.Package = new HashSet<Package>();
+            this.Chocolates = new HashSet<Chocolate>();
+            this.Packages = new HashSet<Package>();
         }
     
         public System.Guid ID_Wrapping { get; set; }
@@ -27,8 +27,8 @@ namespace DataManagement.DataBases
         public string Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chocolate> Chocolate { get; set; }
+        public virtual ICollection<Chocolate> Chocolates { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Package> Package { get; set; }
+        public virtual ICollection<Package> Packages { get; set; }
     }
 }

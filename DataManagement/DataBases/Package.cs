@@ -18,8 +18,8 @@ namespace DataManagement.DataBases
         public Package()
         {
             this.OrderContent_has_Package = new HashSet<OrderContent_has_Package>();
-            this.Rating = new HashSet<Rating>();
-            this.Wrapping1 = new HashSet<Wrapping>();
+            this.Ratings = new HashSet<Rating>();
+            this.Wrappings = new HashSet<Wrapping>();
         }
     
         public System.Guid ID_Package { get; set; }
@@ -34,8 +34,8 @@ namespace DataManagement.DataBases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderContent_has_Package> OrderContent_has_Package { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Rating { get; set; }
+        public virtual ICollection<Rating> Ratings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wrapping> Wrapping1 { get; set; }
+        public virtual ICollection<Wrapping> Wrappings { get; set; }
     }
 }

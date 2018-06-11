@@ -11,19 +11,19 @@ namespace DataManagement.SharedTypeConverter
     public class SharedConverter
     {
 
-        //public SharedDataTypes.Order ConvertToSharedOrder(DataBases.Order p)
-        //{
-        //    return new SharedDataTypes.Order()
-        //    {
-        //        OrderId = p.ID_Order,
-        //        DateOfOrder = p.DateOfOrder,
-        //        DateOfDelivery = p.DateOfDelivery,
-        //        Customer = ConvertToSharedCustomer(p.Customer),
-        //        Status = ConvertToSharedOrderStatus(p.OrderStatus),
-        //        Note = p.Note,
-        //        Content = new List<SharedDataTypes.OrderContent>()
-        //    };
-        //}
+        public SharedDataTypes.Order ConvertToSharedOrder(DataBases.Order p)
+        {
+            return new SharedDataTypes.Order()
+            {
+                OrderId = p.ID_Order,
+                DateOfOrder = p.DateOfOrder,
+                DateOfDelivery = p.DateOfDelivery,
+                Customer = ConvertToSharedCustomer(p.Customer),
+                Status = ConvertToSharedOrderStatus(p.OrderStatu),
+                Note = p.Note,
+                Content = new List<SharedDataTypes.OrderContent>()
+            };
+        }
 
         public SharedDataTypes.Chocolate ConvertToSharedChocolate(DataBases.Chocolate choco)
         {
@@ -33,12 +33,13 @@ namespace DataManagement.SharedTypeConverter
                 Name = choco.Name,
                 Description = choco.Description,
                 Shape = ConvertToSharedShape(choco.Shape),
-                Image = new Uri(choco.Image),
-                Wrapping = ConvertToSharedWrapping(choco.Wrapping.First()),
-                Ingredients = new List<Ingredient>()
+                //Image = new Uri(choco.Image),
+                //Wrapping = ConvertToSharedWrapping(choco.Wrappings),
+                Ingredients = new List<SharedDataTypes.Ingredient>()
             };
 
         }
+
 
          
 
@@ -64,11 +65,11 @@ namespace DataManagement.SharedTypeConverter
         //    return tempList;
         //}
 
-        public SharedDataTypes.Ingredient ConvertToSharedIngredient(Ingredients DBIngredient)
+        public SharedDataTypes.Ingredient ConvertToSharedIngredient(DataBases.Ingredient DBIngredient)
         {
-            return new Ingredient
+            return new SharedDataTypes.Ingredient
             {
-                IngredientId = Guid.Parse(DBIngredient.ToString()),
+                IngredientId = DBIngredient.ID_Ingredients,
                 Name = DBIngredient.Name,
                 Description = DBIngredient.Description,
                 Available = DBIngredient.Availability,
@@ -80,7 +81,7 @@ namespace DataManagement.SharedTypeConverter
             };
         }
 
-        private static SharedDataTypes.OrderStatus ConvertToSharedOrderStatus(DataBases.OrderStatus os)
+        private static SharedDataTypes.OrderStatus ConvertToSharedOrderStatus(DataBases.OrderStatu os)
         {
             return new SharedDataTypes.OrderStatus()
             {
@@ -95,7 +96,7 @@ namespace DataManagement.SharedTypeConverter
                 CustomerId = c.ID_Customer,
                 FirstName = c.FirstName,
                 LastName = c.LastName,
-                Address = ConvertToSharedAddress(c.Address.First()),
+                Address = ConvertToSharedAddress(c.Addresses.First()),
                 Mail = c.Mail,
                 PhoneNumber = c.PhoneNumber,
             };

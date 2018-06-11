@@ -63,7 +63,7 @@
     <Compile Include="DataBases\CustomStyle.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBases\Ingredients.cs">
+    <Compile Include="DataBases\Ingredient.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\MainDbModel.Context.cs">
@@ -93,7 +93,7 @@
     <Compile Include="DataBases\OrderContent_has_Package.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBases\OrderStatus.cs">
+    <Compile Include="DataBases\OrderStatu.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Package.cs">
@@ -105,7 +105,7 @@
     <Compile Include="DataBases\Shape.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataBases\sysdiagrams.cs">
+    <Compile Include="DataBases\sysdiagram.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\Wrapping.cs">
