@@ -30,6 +30,11 @@ namespace AppHandler
             return mainDh.QueryWrappings();
         }
 
+        public List<string> QueryOrderStates()
+        {
+            return mainDh.QueryOrderStates();
+        }
+
         public bool UpdateIngredient(Ingredient item)
         {
             //::TODO:: Also update Frontend database

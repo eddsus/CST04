@@ -18,21 +18,7 @@ namespace DataManagement
         ChocolateCustomizerEntities mainDb = new ChocolateCustomizerEntities();
 
         #region GiveMeAll Queries
-        public List<Ingredient> QueryIngredients()
-        {
-            var temp = mainDb.Ingredients.Select(i => new Ingredient()
-            {
-                IngredientId = i.ID_Ingredients,
-                Description = i.Description,
-                Name = i.Name,
-                Price = i.Price,
-                Type = i.Type,
-                UnitType = i.UnitType,
-                Available = i.Availability,
-                Modified = i.ModifyDate
-            }).ToList();
-            return temp;
-        }
+
 
 
         public List<SharedDataTypes.Order> QueryOrders()
@@ -48,6 +34,18 @@ namespace DataManagement
             }
             return tempSharedOrders;
         }
+
+        public List<Ingredient> QueryIngredientsByChocolateId(Guid Id)
+        {
+            List<Ingredient> sharedIngredients = new List<Ingredient>();
+
+            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolate.Count(x => x.ID_Chocolate.Equals(Id)) > 0).ToList())
+            {
+                sharedIngredients.Add(converter.ConvertToSharedIngredient(item));
+            }
+            return sharedIngredients;
+        }
+
 
         public List<SharedDataTypes.Shape> QueryShapes()
         {
@@ -71,24 +69,33 @@ namespace DataManagement
             return shapes;
         }
 
-
         public List<SharedDataTypes.Wrapping> QueryWrappings()
         {
-            var wrappings = mainDb.Wrapping.Select(p => new SharedDataTypes.Wrapping()
-            {
-                WrappingId = p.ID_Wrapping,
-                Name = p.Name,
-                Price = p.Price,
-                ImgPath = p.Image 
-            }).ToList();
+            List<SharedDataTypes.Wrapping> sharedWrappings = new List<SharedDataTypes.Wrapping>();
 
-            //set Uri in Image
-            foreach (var item in wrappings)
+            foreach (var item in mainDb.Wrapping.Select(p => p).ToList())
             {
-                item.Image = new Uri(item.ImgPath);
+                sharedWrappings.Add(converter.ConvertToSharedWrapping(item));
             }
-            return wrappings;
+            return sharedWrappings;
         }
+
+        public List<Ingredient> QueryIngredients()
+        {
+            List<Ingredient> sharedIngredients = new List<Ingredient>();
+
+            foreach (var item in mainDb.Ingredients.Select(i => i).ToList())
+            {
+                sharedIngredients.Add(converter.ConvertToSharedIngredient(item));
+            }
+            return sharedIngredients;
+        }
+
+        public List<string> QueryOrderStates()
+        {
+            return mainDb.OrderStatus.Select(p => p.StatusDescription).ToList();
+        }
+
         #endregion
 
 

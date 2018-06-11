@@ -57,6 +57,15 @@ namespace AppSD
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "QueryWrappings")]
         List<Wrapping> QueryWrappings();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Bare,
+            UriTemplate = "QueryOrderStates")]
+        List<string> QueryOrderStates();
+
+
         #endregion
 
         #region UPDATE METHODS
