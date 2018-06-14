@@ -17,9 +17,7 @@ namespace DataManagement
 
         ChocolateCustomizerEntities mainDb = new ChocolateCustomizerEntities();
 
-        #region GiveMeAll Queries
-
-
+        #region QUERIES
 
         public List<SharedDataTypes.Order> QueryOrders()
         {
@@ -115,9 +113,14 @@ namespace DataManagement
             return sharedIngredients;
         }
 
-        public List<string> QueryOrderStates()
+        public List<OrderStatus> QueryOrderStates()
         {
-            return mainDb.OrderStatus.Select(p => p.StatusDescription).ToList();
+            var tempOrderStatusList = new List<OrderStatus>();
+            foreach (var item in mainDb.OrderStatus.Select(p => p).ToList())
+            {
+                tempOrderStatusList.Add(SharedConverter.ConvertToSharedOrderStatus(item));
+            }
+            return tempOrderStatusList;
         }
 
         #endregion

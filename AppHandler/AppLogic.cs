@@ -36,7 +36,7 @@ namespace AppHandler
             return mainDh.QueryWrappings();
         }
 
-        public List<string> QueryOrderStates()
+        public List<OrderStatus> QueryOrderStates()
         {
             return mainDh.QueryOrderStates();
         }

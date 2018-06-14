@@ -81,14 +81,6 @@ namespace DataManagement.SharedTypeConverter
             };
         }
 
-        private static SharedDataTypes.OrderStatus ConvertToSharedOrderStatus(DataBases.OrderStatu os)
-        {
-            return new SharedDataTypes.OrderStatus()
-            {
-                Decription = os.StatusDescription
-            };
-        }
-
         public static SharedDataTypes.Customer ConvertToSharedCustomer(DataBases.Customer c)
         {
             return new SharedDataTypes.Customer()
@@ -121,6 +113,15 @@ namespace DataManagement.SharedTypeConverter
                 WrappingId = DBWrapping.ID_Wrapping,
                 Name = DBWrapping.Name,
                 ImgPath = DBWrapping.Image
+            };
+        }
+
+        internal static OrderStatus ConvertToSharedOrderStatus(OrderStatu item)
+        {
+            return new SharedDataTypes.OrderStatus()
+            {
+                OrderStatusId = item.ID_OrderStatus,
+                Decription = item.StatusDescription
             };
         }
 

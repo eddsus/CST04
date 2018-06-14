@@ -63,7 +63,7 @@ namespace AppSD
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "QueryOrderStates")]
-        List<string> QueryOrderStates();
+        List<OrderStatus> QueryOrderStates();
 
         [OperationContract]
         [WebInvoke(Method = "POST",
