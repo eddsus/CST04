@@ -18,9 +18,9 @@ namespace DataManagement.DataBases
         public Chocolate()
         {
             this.OrderContent_has_Chocolate = new HashSet<OrderContent_has_Chocolate>();
+            this.Package_has_Chocolate = new HashSet<Package_has_Chocolate>();
             this.Ratings = new HashSet<Rating>();
             this.Ingredients = new HashSet<Ingredient>();
-            this.Wrappings = new HashSet<Wrapping>();
         }
     
         public System.Guid ID_Chocolate { get; set; }
@@ -31,18 +31,20 @@ namespace DataManagement.DataBases
         public System.Guid CustomStyle_ID { get; set; }
         public string Image { get; set; }
         public System.Guid Creator_Customer_ID { get; set; }
-        public Nullable<System.DateTime> ModifyDate { get; set; }
+        public System.DateTime ModifyDate { get; set; }
+        public System.Guid WrappingID { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual CustomStyle CustomStyle { get; set; }
         public virtual Shape Shape { get; set; }
+        public virtual Wrapping Wrapping { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderContent_has_Chocolate> OrderContent_has_Chocolate { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Package_has_Chocolate> Package_has_Chocolate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Ratings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ingredient> Ingredients { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wrapping> Wrappings { get; set; }
     }
 }

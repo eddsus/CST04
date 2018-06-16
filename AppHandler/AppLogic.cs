@@ -36,7 +36,7 @@ namespace AppHandler
             return mainDh.QueryWrappings();
         }
 
-        public List<string> QueryOrderStates()
+        public List<OrderStatus> QueryOrderStates()
         {
             return mainDh.QueryOrderStates();
         }
@@ -45,8 +45,8 @@ namespace AppHandler
         {
             return mainDh.QueryChocolatesWithIngredients();
 
-
         }
+
         public bool UpdateIngredient(Ingredient item)
         {
             //::TODO:: Also update Frontend database

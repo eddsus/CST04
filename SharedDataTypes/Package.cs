@@ -11,7 +11,7 @@ namespace SharedDataTypes
         public Wrapping Wrapping { get; set; }
         public bool Available { get; set; }
         public Customer Customer { get; set; }
-        public Uri Image { get; set; }
+        public string Image { get; set; }
         public List<Chocolate> Chocolates { get; set; }
         public List<Rating> Ratings { get; set; }
         public DateTime? Modified { get; set; }

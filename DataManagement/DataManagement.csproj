@@ -99,6 +99,9 @@
     <Compile Include="DataBases\Package.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBases\Package_has_Chocolate.cs">
+      <DependentUpon>MainDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataBases\Rating.cs">
       <DependentUpon>MainDbModel.tt</DependentUpon>
     </Compile>
@@ -135,6 +138,7 @@
       <Name>SharedDataTypes</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DataBases\MainDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

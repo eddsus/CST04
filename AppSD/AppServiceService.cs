@@ -56,7 +56,7 @@ namespace AppSD
             return new AppLogic().UpdateIngredient(item);
         }
 
-        public List<string> QueryOrderStates()
+        public List<OrderStatus> QueryOrderStates()
         {
            return new AppLogic().QueryOrderStates();
         }

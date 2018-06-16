@@ -9,7 +9,6 @@ namespace SharedDataTypes
 
         public Order()
         {
-
         }
 
         public Order(Order p)

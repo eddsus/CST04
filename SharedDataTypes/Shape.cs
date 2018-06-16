@@ -6,6 +6,6 @@ namespace SharedDataTypes
     {
         public Guid ShapeId { get; set; }
         public string Name { get; set; }
-        public Uri Image { get; set; }
+        public string Image { get; set; }
     }
 }
