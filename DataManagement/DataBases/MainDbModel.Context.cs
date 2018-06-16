@@ -36,6 +36,7 @@ namespace DataManagement.DataBases
         public virtual DbSet<OrderContent_has_Package> OrderContent_has_Package { get; set; }
         public virtual DbSet<OrderStatu> OrderStatus { get; set; }
         public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<Package_has_Chocolate> Package_has_Chocolate { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Shape> Shapes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

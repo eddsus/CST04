@@ -45,8 +45,8 @@ namespace AppHandler
         {
             return mainDh.QueryChocolatesWithIngredients();
 
-
         }
+
         public bool UpdateIngredient(Ingredient item)
         {
             //::TODO:: Also update Frontend database

@@ -7,7 +7,6 @@ namespace SharedDataTypes
         public Guid WrappingId{ get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
-        public Uri Image { get; set; }
-        public string ImgPath { get; set; }
+        public string Image { get; set; }
     }
 }

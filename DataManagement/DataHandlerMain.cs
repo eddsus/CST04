@@ -17,7 +17,7 @@ namespace DataManagement
 
         ChocolateCustomizerEntities mainDb = new ChocolateCustomizerEntities();
 
-        #region QUERIES
+        #region GiveMeAll Queries
 
         public List<SharedDataTypes.Order> QueryOrders()
         {
@@ -26,19 +26,43 @@ namespace DataManagement
             foreach (var item in mainDb.Orders.Select(p => p).ToList())
             {
                 tempSharedOrders.Add(converter.ConvertToSharedOrder(item));
+
             }
 
             foreach (var tempOrder in tempSharedOrders)
             {
-
-
-                foreach (var item in mainDb.OrderContents.Where(p=>p.Order_ID.Equals(tempOrder.OrderId)).Select(p=>p).ToList())
+                //int cnt = 0;
+                //SharedOrderContent is abstract
+                foreach (var tempOrderContent in mainDb.OrderContents.Where(p => p.Order_ID.Equals(tempOrder.OrderId)).Select(p => p).ToList())
                 {
-                    //tempOrder.Content.Add(converter.ConvertToShared);
+                    //cnt++;
+                    if (mainDb.Chocolates.Where(p => p.OrderContent_has_Chocolate.Count(x => x.OrderContent_ID == tempOrderContent.ID_OrderContent) > 0) == null)
+                    {
+                        //get DBChocolate and ConvertToSharedChocolateOrderContentChocolate
+                        tempOrder.Content.Add(converter.ConvertToSharedChocolateOrderContentChocolate(
+                            mainDb.Chocolates.Where(p => p.OrderContent_has_Chocolate.Count(x => x.OrderContent_ID == tempOrderContent.ID_OrderContent) > 0).
+                            Select(p => p).First()));
+                    }
+                    else
+                    {
+                        //get DBPackage and ConvertToSharedPackageOrderContentPackage
+                        tempOrder.Content.Add(converter.ConvertToSharedPackageOrderContentPackage(
+                            mainDb.Packages.Where(p => p.OrderContent_has_Package.Count(x => x.OrderContent_ID == tempOrderContent.ID_OrderContent) > 0).
+                            Select(p => p).First()));
+                    }
                 }
+
+                //foreach (var orderContent in tempOrder.Content)
+                //{
+                //    if (orderContent is SharedDataTypes.OrderContentChocolate)
+                //    {
+                //        orderContent.GetType()
+                //    }
+                //}
             }
             return tempSharedOrders;
         }
+
 
         public List<SharedDataTypes.Chocolate> QueryChocolatesWithIngredients()
         {
@@ -57,38 +81,72 @@ namespace DataManagement
             return sharedChocolates;
         }
 
-        public List<SharedDataTypes.Ingredient> QueryIngredientsByChocolateId(Guid Id)
-        {
-            List<SharedDataTypes.Ingredient> sharedIngredients = new List<SharedDataTypes.Ingredient>();
 
-            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolates.Count(x => x.ID_Chocolate.Equals(Id)) > 0).ToList())
+        public List<SharedDataTypes.Chocolate> QueryChocolatesWithIngredientsByPackageId(Guid packageId)
+        {
+            List<SharedDataTypes.Chocolate> sharedChocolates = new List<SharedDataTypes.Chocolate>();
+
+            foreach (var choco in mainDb.Chocolates.Where(p => p.Package_has_Chocolate.Count(q => q.Package_ID.Equals(packageId)) > 0).Select(p => p).ToList())
             {
-                sharedIngredients.Add(converter.ConvertToSharedIngredient(item));
+                sharedChocolates.Add(converter.ConvertToSharedChocolate(choco));
             }
-            return sharedIngredients;
+
+
+            foreach (var tempChoco in sharedChocolates)
+            {
+                tempChoco.Ingredients = QueryIngredientsByChocolateId(tempChoco.ChocolateId);
+            }
+            return sharedChocolates;
         }
 
+        public List<SharedDataTypes.Package> QueryPackagesWithChocolatesAndIngredients()
+        {
+            List<SharedDataTypes.Package> tempSharedPackages = new List<SharedDataTypes.Package>();
+
+            foreach (var item in mainDb.Packages.Select(p => p).ToList())
+            {
+                tempSharedPackages.Add(converter.ConvertToSharedPackage(item));
+            }
+
+            foreach (var item in tempSharedPackages)
+            {
+                //to be checked
+                item.Customer = QueryCustomerByPackageId(item.PackageId);
+                item.Chocolates = QueryChocolatesWithIngredientsByPackageId(item.PackageId);
+            }
+            return tempSharedPackages;
+        }
+
+        public SharedDataTypes.Customer QueryCustomerByPackageId(Guid packageId)
+        {
+            //to be checked
+            return converter.ConvertToSharedCustomer(mainDb.Customers.Where(p => p.Ratings.Count(x => x.Package_ID.Equals(packageId)) > 0).First());
+        }
+
+        public SharedDataTypes.Customer QueryCustomerByCustomerId(Guid customerId)
+        {
+            return converter.ConvertToSharedCustomer(mainDb.Customers.Where(p => p.ID_Customer.Equals(customerId)).Select(p => p).First());
+        }
+
+        public List<SharedDataTypes.Customer> QueryCustomers()
+        {
+            List<SharedDataTypes.Customer> tempCustomers = new List<SharedDataTypes.Customer>();
+            foreach (var item in mainDb.Customers.Select(p => p).ToList())
+            {
+                tempCustomers.Add(converter.ConvertToSharedCustomer(item));
+            }
+            return tempCustomers;
+        }
 
         public List<SharedDataTypes.Shape> QueryShapes()
         {
-            int i = 0;
-            var shapes = mainDb.Shapes.Select(p => new SharedDataTypes.Shape()
-            {
-                ShapeId = p.ID_Shape,
-                Name = p.Name,
-                //Image = new Uri(p.Image)
-            }).ToList();
+            List<SharedDataTypes.Shape> tempShapes = new List<SharedDataTypes.Shape>();
 
-            //not sure if the best workaround
-            var images = mainDb.Shapes.Select(p => p.Image).ToList();
-
-            foreach (var item in shapes)
+            foreach (var item in mainDb.Shapes.Select(p => p).ToList())
             {
-                item.Image = new Uri(images[i]);
-                i++;
+                tempShapes.Add(converter.ConvertToSharedShape(item));
             }
-
-            return shapes;
+            return tempShapes;
         }
 
         public List<SharedDataTypes.Wrapping> QueryWrappings()
@@ -104,24 +162,47 @@ namespace DataManagement
 
         public List<SharedDataTypes.Ingredient> QueryIngredients()
         {
-            List<SharedDataTypes.Ingredient> sharedIngredients = new List<SharedDataTypes.Ingredient>();
+            List<SharedDataTypes.Ingredient> tempIngredients = new List<SharedDataTypes.Ingredient>();
 
             foreach (DataBases.Ingredient item in mainDb.Ingredients.Select(i => i).ToList())
             {
-                sharedIngredients.Add(converter.ConvertToSharedIngredient(item));
+                tempIngredients.Add(converter.ConvertToSharedIngredient(item));
             }
-            return sharedIngredients;
+            return tempIngredients;
         }
 
-        public List<OrderStatus> QueryOrderStates()
+        public List<SharedDataTypes.Ingredient> QueryIngredientsByChocolateId(Guid chocoId)
         {
-            var tempOrderStatusList = new List<OrderStatus>();
-            foreach (var item in mainDb.OrderStatus.Select(p => p).ToList())
+            List<SharedDataTypes.Ingredient> tempIngredients = new List<SharedDataTypes.Ingredient>();
+
+            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolates.Count(x => x.ID_Chocolate.Equals(chocoId)) > 0).ToList())
             {
-                tempOrderStatusList.Add(SharedConverter.ConvertToSharedOrderStatus(item));
+                tempIngredients.Add(converter.ConvertToSharedIngredient(item));
             }
-            return tempOrderStatusList;
+            return tempIngredients;
         }
+
+        public List<SharedDataTypes.OrderStatus> QueryOrderStates()
+        {
+            List<SharedDataTypes.OrderStatus> tempSharedOrderStates = new List<OrderStatus>();
+            foreach (DataBases.OrderStatu item in mainDb.OrderStatus.Select(p => p).ToList())
+            {
+                tempSharedOrderStates.Add(converter.ConvertToSharedOrderStatus(item));
+            }
+            return tempSharedOrderStates;
+        }
+
+
+        public List<SharedDataTypes.Rating> QueryRatingsByPackageId(Guid PackageId)
+        {
+            return converter.ConvertToSharedRatings(mainDb.Ratings.Where(p => p.Package_ID.Equals(PackageId)).Select(p => p).ToList());
+        }
+
+        public List<SharedDataTypes.Rating> QueryRatingsByChocoId(Guid ChocoId)
+        {
+            return converter.ConvertToSharedRatings(mainDb.Ratings.Where(p => p.Chocolate_ID.Equals(ChocoId)).Select(p => p).ToList());
+        }
+
 
         #endregion
 
@@ -153,24 +234,13 @@ namespace DataManagement
 
         public bool InsertIngredient(SharedDataTypes.Ingredient newIngredient)
         {
-
-            mainDb.Ingredients.Add(new DataBases.Ingredient()
-            {
-                ID_Ingredients = newIngredient.IngredientId,
-                Name = newIngredient.Name,
-                Description = newIngredient.Description,
-                Price = newIngredient.Price,
-                Availability = newIngredient.Available,
-                Type = newIngredient.Type,
-                UnitType = newIngredient.UnitType,
-                ModifyDate = newIngredient.Modified
-            });
+            mainDb.Ingredients.Add(converter.ConvertToDBIngredient(newIngredient));
             return mainDb.SaveChanges() > 0;
         }
         #endregion
 
         #region UPDATE METHODS
-        public bool UpdateIngredient(SharedDataTypes.Ingredient item)
+        public bool UpdateIngredient(SharedDataTypes.Ingredient item )
         {
             var temp = mainDb.Ingredients.Where(i => i.ID_Ingredients == item.IngredientId).Select(j => j).First();
             temp.Name = item.Name;

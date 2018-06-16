@@ -4,26 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="46df195e56454dfdb503865929b54275" Name="Diagram1">
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Address" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Chocolate" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Customer" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.CustomStyle" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Ingredient" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Order" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderContent" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderContent_has_Chocolate" Width="1.5" PointX="12.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderContent_has_Package" Width="1.5" PointX="12.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderStatu" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Package" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Rating" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Shape" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChocolateCustomizerModel.Wrapping" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
+      <Diagram DiagramId="79f8c8608a104834aa84c2332c89ee58" Name="Diagram1" ShowGrid="true">
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Address" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Chocolate" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Customer" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.CustomStyle" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Ingredient" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Order" Width="1.5" PointX="0.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderContent" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderContent_has_Chocolate" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderContent_has_Package" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.OrderStatu" Width="1.5" PointX="1.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Package" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Package_has_Chocolate" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Rating" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Shape" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.sysdiagram" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChocolateCustomizerModel.Wrapping" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_CustomStyle" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_Shape" ManuallyRouted="false" />
+        <AssociationConnector Association="ChocolateCustomizerModel.FK_Chocolate_Wrapping" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_OrderContent_has_Chocolate_Chocolate" ManuallyRouted="false" />
+        <AssociationConnector Association="ChocolateCustomizerModel.FK_Package_has_Chocolate_Chocolate" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Rating_Chocolate" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Order_Customer" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Rating_Customer" ManuallyRouted="false" />
@@ -32,11 +35,11 @@
         <AssociationConnector Association="ChocolateCustomizerModel.FK_OrderContent_has_Chocolate_OrderContent" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_OrderContent_has_Package_OrderContent" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_OrderContent_has_Package_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="ChocolateCustomizerModel.FK_Package_has_Chocolate_Package" ManuallyRouted="false" />
+        <AssociationConnector Association="ChocolateCustomizerModel.FK_Package_Wrapping" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Rating_Package" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.Chocolate_has_Ingridients" ManuallyRouted="false" />
-        <AssociationConnector Association="ChocolateCustomizerModel.Chocolate_has_Wrapping" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.Customer_has_Address" ManuallyRouted="false" />
-        <AssociationConnector Association="ChocolateCustomizerModel.Package_has_Wrapping" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
