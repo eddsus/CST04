@@ -35,7 +35,8 @@ namespace DataManagement.SharedTypeConverter
                 Shape = ConvertToSharedShape(choco.Shape),
                 //Image = new Uri(choco.Image),
                 //Wrapping = ConvertToSharedWrapping(choco.Wrappings),
-                Ingredients = new List<SharedDataTypes.Ingredient>()
+                Ingredients = new List<SharedDataTypes.Ingredient>(),
+                CreatedBy = ConvertToSharedCustomer(choco.Customer)
             };
 
         }
