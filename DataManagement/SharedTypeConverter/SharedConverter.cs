@@ -36,10 +36,7 @@ namespace DataManagement.SharedTypeConverter
                 CustomStyle = ConvertToSharedCustomStyle(choco.CustomStyle),
                 Wrapping = ConvertToSharedWrapping(choco.Wrapping),
                 Modified = choco.ModifyDate,
-                Ratings = ConvertToSharedRatings(choco.Ratings)
-                //Image = new Uri(choco.Image),
-                //Wrapping = ConvertToSharedWrapping(choco.Wrappings),
-                Ingredients = new List<SharedDataTypes.Ingredient>(),
+                Ratings = ConvertToSharedRatings(choco.Ratings),
                 CreatedBy = ConvertToSharedCustomer(choco.Customer)
             };
         }
@@ -196,7 +193,7 @@ namespace DataManagement.SharedTypeConverter
                 Shape_ID = c.Shape.ShapeId,
                 CustomStyle_ID = c.CustomStyle.CustomStyleId,
                 Image = c.Image,
-                //Creator_Customer_ID=
+                Creator_Customer_ID = c.CreatedBy.CustomerId,
                 ModifyDate = c.Modified.GetValueOrDefault(),
                 WrappingID = c.Wrapping.WrappingId
             };

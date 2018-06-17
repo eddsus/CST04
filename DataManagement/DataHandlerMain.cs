@@ -11,8 +11,7 @@ namespace DataManagement
 {
     public class DataHandlerMain
     {
-        //use SharedTypeConverter for converting from DataBaseClasses to SharedDataTypes,
-        //it is static so you don't need to initialize it for usage
+        //use SharedTypeConverter for converting from DataBaseClasses to SharedDataTypes
         SharedConverter converter = new SharedConverter();
 
         ChocolateCustomizerEntities mainDb = new ChocolateCustomizerEntities();

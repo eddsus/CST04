@@ -20,7 +20,7 @@ namespace SharedDataTypes
         {
             get
             {
-                if (Ratings != null)
+                if (Ratings != null && Ratings.Count > 0)
                     return Ratings.Select(r => r.Value).Sum() / Ratings.Count;
                 else return -1;
             }
