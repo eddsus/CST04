@@ -2,7 +2,7 @@
 
 namespace SharedDataTypes
 {
-    public abstract class OrderContent
+    public class OrderContent
     {
         public Guid OrderContentId { get; set; }
         public int Amount { get; set; }

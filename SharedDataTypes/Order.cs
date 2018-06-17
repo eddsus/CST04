@@ -24,6 +24,13 @@ namespace SharedDataTypes
                 Content = p.Content;
             }
         }
+        private List<OrderContent> content;
+
+        public List<OrderContent> Content
+        {
+            get { return content; }
+            set { content = value; }
+        }
 
         public string OrderId { get; set; }
         public DateTime DateOfOrder { get; set; }
@@ -31,6 +38,5 @@ namespace SharedDataTypes
         public OrderStatus Status { get; set; }
         public Customer Customer { get; set; }
         public string Note { get; set; }
-        public List<OrderContent> Content { get; set; }
     }
 }

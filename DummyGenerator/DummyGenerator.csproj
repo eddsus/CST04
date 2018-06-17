@@ -61,6 +61,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppHandler\DBHandler.csproj">
+      <Project>{5A5A7CBA-B579-43CC-84F4-455A6B1F601E}</Project>
+      <Name>DBHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppSD\AppSD.csproj">
+      <Project>{63A0AD37-F609-41C0-88B0-E8FFE026A31C}</Project>
+      <Name>AppSD</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataManagement\DataManagement.csproj">
       <Project>{30A59313-6B7F-434D-A791-C49848350282}</Project>
       <Name>DataManagement</Name>

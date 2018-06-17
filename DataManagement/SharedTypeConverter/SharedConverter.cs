@@ -41,6 +41,26 @@ namespace DataManagement.SharedTypeConverter
             };
         }
 
+        internal List<SharedDataTypes.OrderContent> ConvertToSharedOrderContent(List<DataBases.OrderContent> dbOrderContent)
+        {
+            List<SharedDataTypes.OrderContent> tempSharedOrderContent = new List<SharedDataTypes.OrderContent>();
+            var t1 = dbOrderContent.Select(oc => new OrderContentChocolate()
+            {
+                OrderContentId = oc.ID_OrderContent,
+                Chocolate = ConvertToSharedChocolate(oc.OrderContent_has_Chocolate.First().Chocolate),
+                Amount = oc.OrderContent_has_Chocolate.First().Amount
+            }).ToList();
+            tempSharedOrderContent.AddRange(t1);
+            tempSharedOrderContent.AddRange(dbOrderContent.Select(oc => new OrderContentPackage()
+            {
+                OrderContentId = oc.ID_OrderContent,
+                Package = ConvertToSharedPackage(oc.OrderContent_has_Package.First().Package),
+                Amount = oc.OrderContent_has_Chocolate.First().Amount
+            }).ToList());
+            return tempSharedOrderContent;
+        }
+
+
         public SharedDataTypes.Customer ConvertToSharedCustomer(DataBases.Customer c)
         {
             return new SharedDataTypes.Customer()

@@ -1,4 +1,6 @@
 ﻿
+using AppHandler;
+using AppSD;
 using DataManagement;
 using Messaging;
 using SharedDataTypes;
@@ -17,25 +19,27 @@ namespace DummyGenerator
             DataHandlerMain mainDh = new DataHandlerMain();
             SyncMessageQueue<string> mq = new SyncMessageQueue<string>("testChannel");
 
+            var temp = new AppServiceService().QueryOrders();
+
             #region Add Ingredient to DB
-            Ingredient almonds = new Ingredient()
-            {
-                IngredientId = Guid.NewGuid(),
-                Name = "5 Banana King 4",
-                Description = "The inglorious Banana is back again and again",
-                Available = true,
-                Price = 0.30,
-                Type = "Filling",
-                UnitType = "g",
-                Modified = DateTime.Now
-            };
+            //Ingredient almonds = new Ingredient()
+            //{
+            //    IngredientId = Guid.NewGuid(),
+            //    Name = "5 Banana King 4",
+            //    Description = "The inglorious Banana is back again and again",
+            //    Available = true,
+            //    Price = 0.30,
+            //    Type = "Filling",
+            //    UnitType = "g",
+            //    Modified = DateTime.Now
+            //};
 
-            bool success = mainDh.InsertIngredient(almonds);
+            //bool success = mainDh.InsertIngredient(almonds);
 
-            if (success)
-            {
-                var result = mainDh.QueryIngredients();
-            }
+            //if (success)
+            //{
+            //    var result = mainDh.QueryIngredients();
+            //}
             #endregion
 
             #region Add a wrapping to the DB
