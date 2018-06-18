@@ -33,6 +33,16 @@ namespace AppSD
             return new AppLogic().QueryOrders();
         }
 
+        public List<OrderContentChocolate> QueryOrdersContentChocolate(string orderId)
+        {
+            return new AppLogic().QueryOrdersContentChocolate(orderId);
+        }
+
+        public List<OrderContentPackage> QueryOrdersContentPackage(string orderId)
+        {
+            return new AppLogic().QueryOrdersContentPackage(orderId);
+        }
+
         public List<Shape> QueryShapes()
         {
             return new AppLogic().QueryShapes();
@@ -65,8 +75,6 @@ namespace AppSD
         {
             return new AppLogic().QueryIngredientsByChocolateId(id);
         }
-
-        
         #endregion
 
     }

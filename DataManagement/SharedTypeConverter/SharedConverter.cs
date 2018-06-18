@@ -41,9 +41,9 @@ namespace DataManagement.SharedTypeConverter
             };
         }
 
-        internal List<SharedDataTypes.OrderContent> ConvertToSharedOrderContent(List<DataBases.OrderContent> dbOrderContent)
+        internal List<SharedDataTypes.OrderContentChocolate> ConvertOrdersContentChocolate(List<DataBases.OrderContent> dbOrderContent)
         {
-            List<SharedDataTypes.OrderContent> tempSharedOrderContent = new List<SharedDataTypes.OrderContent>();
+            List<SharedDataTypes.OrderContentChocolate> tempSharedOrderContent = new List<SharedDataTypes.OrderContentChocolate>();
             var t1 = dbOrderContent.Select(oc => new OrderContentChocolate()
             {
                 OrderContentId = oc.ID_OrderContent,
@@ -51,15 +51,21 @@ namespace DataManagement.SharedTypeConverter
                 Amount = oc.OrderContent_has_Chocolate.First().Amount
             }).ToList();
             tempSharedOrderContent.AddRange(t1);
-            tempSharedOrderContent.AddRange(dbOrderContent.Select(oc => new OrderContentPackage()
+            return tempSharedOrderContent;
+        }
+
+        internal List<SharedDataTypes.OrderContentPackage> ConvertOrdersContentPackage(List<DataBases.OrderContent> dbOrderContent)
+        {
+            List<SharedDataTypes.OrderContentPackage> tempSharedOrderContent = new List<SharedDataTypes.OrderContentPackage>();
+            var t2 = dbOrderContent.Select(oc => new OrderContentPackage()
             {
                 OrderContentId = oc.ID_OrderContent,
                 Package = ConvertToSharedPackage(oc.OrderContent_has_Package.First().Package),
                 Amount = oc.OrderContent_has_Chocolate.First().Amount
-            }).ToList());
+            }).ToList();
+            tempSharedOrderContent.AddRange(t2);
             return tempSharedOrderContent;
         }
-
 
         public SharedDataTypes.Customer ConvertToSharedCustomer(DataBases.Customer c)
         {
@@ -118,8 +124,8 @@ namespace DataManagement.SharedTypeConverter
                 DateOfDelivery = o.DateOfDelivery,
                 Customer = ConvertToSharedCustomer(o.Customer),
                 Status = ConvertToSharedOrderStatus(o.OrderStatu),
-                Note = o.Note,
-                Content = new List<SharedDataTypes.OrderContent>()
+                Note = o.Note
+                //Content = new List<SharedDataTypes.OrderContent>()
             };
         }
 

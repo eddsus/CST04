@@ -17,6 +17,15 @@ namespace AppHandler
             return mainDh.QueryOrders();
         }
 
+        public List<OrderContentChocolate> QueryOrdersContentChocolate(string orderId) {
+            return mainDh.QueryOrdersContentChocolate(orderId);
+        }
+
+        public List<OrderContentPackage> QueryOrdersContentPackage(string orderId)
+        {
+            return mainDh.QueryOrdersContentPackage(orderId);
+        }
+
         public List<Ingredient> QueryIngredients()
         {
             return mainDh.QueryIngredients();
@@ -46,6 +55,8 @@ namespace AppHandler
             return mainDh.QueryChocolatesWithIngredients();
 
         }
+
+
 
         public bool UpdateIngredient(Ingredient item)
         {
