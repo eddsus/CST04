@@ -12,12 +12,12 @@ namespace DataManagement.DataBases
     using System;
     using System.Collections.Generic;
     
-    public partial class Ingredient
+    public partial class Ingredients
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ingredient()
+        public Ingredients()
         {
-            this.Chocolates = new HashSet<Chocolate>();
+            this.Chocolate = new HashSet<Chocolate>();
         }
     
         public System.Guid ID_Ingredients { get; set; }
@@ -30,6 +30,6 @@ namespace DataManagement.DataBases
         public Nullable<System.DateTime> ModifyDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chocolate> Chocolates { get; set; }
+        public virtual ICollection<Chocolate> Chocolate { get; set; }
     }
 }

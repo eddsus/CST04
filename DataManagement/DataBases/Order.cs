@@ -17,7 +17,7 @@ namespace DataManagement.DataBases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.OrderContents = new HashSet<OrderContent>();
+            this.OrderContent = new HashSet<OrderContent>();
         }
     
         public string ID_Order { get; set; }
@@ -28,8 +28,8 @@ namespace DataManagement.DataBases
         public string Note { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual OrderStatu OrderStatu { get; set; }
+        public virtual OrderStatus OrderStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderContent> OrderContents { get; set; }
+        public virtual ICollection<OrderContent> OrderContent { get; set; }
     }
 }

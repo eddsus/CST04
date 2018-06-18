@@ -17,10 +17,10 @@ namespace DataManagement.DataBases
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
-            this.Chocolates = new HashSet<Chocolate>();
-            this.Orders = new HashSet<Order>();
-            this.Ratings = new HashSet<Rating>();
-            this.Addresses = new HashSet<Address>();
+            this.Chocolate = new HashSet<Chocolate>();
+            this.Order = new HashSet<Order>();
+            this.Rating = new HashSet<Rating>();
+            this.Address = new HashSet<Address>();
         }
     
         public System.Guid ID_Customer { get; set; }
@@ -30,12 +30,12 @@ namespace DataManagement.DataBases
         public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chocolate> Chocolates { get; set; }
+        public virtual ICollection<Chocolate> Chocolate { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<Rating> Rating { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Address> Addresses { get; set; }
+        public virtual ICollection<Address> Address { get; set; }
     }
 }

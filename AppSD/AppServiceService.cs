@@ -53,11 +53,20 @@ namespace AppSD
             return new AppLogic().QueryWrappings();
         }
 
+
+        public List<OrderStatus> QueryOrderStates()
+        {
+           return new AppLogic().QueryOrderStates();
+        }
         public List<Chocolate> QueryChocolatesWithIngredients()
         {
            return new AppLogic().QueryChocolatesWithIngredients();
         }
 
+        public List<Ingredient> QueryIngredientsByChocolateId(Guid id)
+        {
+            return new AppLogic().QueryIngredientsByChocolateId(id);
+        }
         #endregion
 
         #region UPDATE METHODS
@@ -66,15 +75,6 @@ namespace AppSD
             return new AppLogic().UpdateIngredient(item);
         }
 
-        public List<OrderStatus> QueryOrderStates()
-        {
-           return new AppLogic().QueryOrderStates();
-        }
-
-        public List<Ingredient> QueryIngredientsByChocolateId(Guid id)
-        {
-            return new AppLogic().QueryIngredientsByChocolateId(id);
-        }
         #endregion
 
     }

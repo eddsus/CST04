@@ -25,21 +25,21 @@ namespace DataManagement.DataBases
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Address> Addresses { get; set; }
-        public virtual DbSet<Chocolate> Chocolates { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<CustomStyle> CustomStyles { get; set; }
-        public virtual DbSet<Ingredient> Ingredients { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderContent> OrderContents { get; set; }
+        public virtual DbSet<Address> Address { get; set; }
+        public virtual DbSet<Chocolate> Chocolate { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<CustomStyle> CustomStyle { get; set; }
+        public virtual DbSet<Ingredients> Ingredients { get; set; }
+        public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderContent> OrderContent { get; set; }
         public virtual DbSet<OrderContent_has_Chocolate> OrderContent_has_Chocolate { get; set; }
         public virtual DbSet<OrderContent_has_Package> OrderContent_has_Package { get; set; }
-        public virtual DbSet<OrderStatu> OrderStatus { get; set; }
-        public virtual DbSet<Package> Packages { get; set; }
+        public virtual DbSet<OrderStatus> OrderStatus { get; set; }
+        public virtual DbSet<Package> Package { get; set; }
         public virtual DbSet<Package_has_Chocolate> Package_has_Chocolate { get; set; }
-        public virtual DbSet<Rating> Ratings { get; set; }
-        public virtual DbSet<Shape> Shapes { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Wrapping> Wrappings { get; set; }
+        public virtual DbSet<Rating> Rating { get; set; }
+        public virtual DbSet<Shape> Shape { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Wrapping> Wrapping { get; set; }
     }
 }

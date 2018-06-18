@@ -19,7 +19,7 @@ namespace DataManagement.DataBases
         {
             this.OrderContent_has_Package = new HashSet<OrderContent_has_Package>();
             this.Package_has_Chocolate = new HashSet<Package_has_Chocolate>();
-            this.Ratings = new HashSet<Rating>();
+            this.Rating = new HashSet<Rating>();
         }
     
         public System.Guid ID_Package { get; set; }
@@ -38,6 +38,6 @@ namespace DataManagement.DataBases
         public virtual ICollection<Package_has_Chocolate> Package_has_Chocolate { get; set; }
         public virtual Wrapping Wrapping1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<Rating> Rating { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace DataManagement
         public List<SharedDataTypes.Order> QueryOrders()
         {
             List<SharedDataTypes.Order> tempSharedOrders = new List<SharedDataTypes.Order>();
-            foreach (var item in mainDb.Orders.Select(p => p).ToList())
+            foreach (var item in mainDb.Order.Select(p => p).ToList())
             {
                 tempSharedOrders.Add(converter.ConvertToSharedOrder(item));
             }
@@ -30,13 +30,13 @@ namespace DataManagement
 
         public List<SharedDataTypes.OrderContentChocolate> QueryOrdersContentChocolate(string orderId)
         {
-            var temp = mainDb.OrderContents.Where(o => o.Order_ID.Equals(orderId)).Select(oc => oc).ToList();
+            var temp = mainDb.OrderContent.Where(o => o.Order_ID.Equals(orderId)).Select(oc => oc).ToList();
             return converter.ConvertOrdersContentChocolate(temp);
         }
 
         public List<SharedDataTypes.OrderContentPackage> QueryOrdersContentPackage(string orderId)
         {
-            var temp = mainDb.OrderContents.Where(o => o.Order_ID.Equals(orderId)).Select(oc => oc).ToList();
+            var temp = mainDb.OrderContent.Where(o => o.Order_ID.Equals(orderId)).Select(oc => oc).ToList();
             return converter.ConvertOrdersContentPackage(temp);
         }
 
@@ -44,7 +44,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Chocolate> sharedChocolates = new List<SharedDataTypes.Chocolate>();
 
-            foreach (var choco in mainDb.Chocolates.Select(p => p).ToList())
+            foreach (var choco in mainDb.Chocolate.Select(p => p).ToList())
             {
                 sharedChocolates.Add(converter.ConvertToSharedChocolate(choco));
             }
@@ -62,7 +62,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Chocolate> sharedChocolates = new List<SharedDataTypes.Chocolate>();
 
-            foreach (var choco in mainDb.Chocolates.Where(p => p.Package_has_Chocolate.Count(q => q.Package_ID.Equals(packageId)) > 0).Select(p => p).ToList())
+            foreach (var choco in mainDb.Chocolate.Where(p => p.Package_has_Chocolate.Count(q => q.Package_ID.Equals(packageId)) > 0).Select(p => p).ToList())
             {
                 sharedChocolates.Add(converter.ConvertToSharedChocolate(choco));
             }
@@ -79,7 +79,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Package> tempSharedPackages = new List<SharedDataTypes.Package>();
 
-            foreach (var item in mainDb.Packages.Select(p => p).ToList())
+            foreach (var item in mainDb.Package.Select(p => p).ToList())
             {
                 tempSharedPackages.Add(converter.ConvertToSharedPackage(item));
             }
@@ -96,18 +96,18 @@ namespace DataManagement
         public SharedDataTypes.Customer QueryCustomerByPackageId(Guid packageId)
         {
             //to be checked
-            return converter.ConvertToSharedCustomer(mainDb.Customers.Where(p => p.Ratings.Count(x => x.Package_ID.Equals(packageId)) > 0).First());
+            return converter.ConvertToSharedCustomer(mainDb.Customer.Where(p => p.Rating.Count(x => x.Package_ID.Equals(packageId)) > 0).First());
         }
 
         public SharedDataTypes.Customer QueryCustomerByCustomerId(Guid customerId)
         {
-            return converter.ConvertToSharedCustomer(mainDb.Customers.Where(p => p.ID_Customer.Equals(customerId)).Select(p => p).First());
+            return converter.ConvertToSharedCustomer(mainDb.Customer.Where(p => p.ID_Customer.Equals(customerId)).Select(p => p).First());
         }
 
         public List<SharedDataTypes.Customer> QueryCustomers()
         {
             List<SharedDataTypes.Customer> tempCustomers = new List<SharedDataTypes.Customer>();
-            foreach (var item in mainDb.Customers.Select(p => p).ToList())
+            foreach (var item in mainDb.Customer.Select(p => p).ToList())
             {
                 tempCustomers.Add(converter.ConvertToSharedCustomer(item));
             }
@@ -118,7 +118,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Shape> tempShapes = new List<SharedDataTypes.Shape>();
 
-            foreach (var item in mainDb.Shapes.Select(p => p).ToList())
+            foreach (var item in mainDb.Shape.Select(p => p).ToList())
             {
                 tempShapes.Add(converter.ConvertToSharedShape(item));
             }
@@ -129,7 +129,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Wrapping> sharedWrappings = new List<SharedDataTypes.Wrapping>();
 
-            foreach (var item in mainDb.Wrappings.Select(p => p).ToList())
+            foreach (var item in mainDb.Wrapping.Select(p => p).ToList())
             {
                 sharedWrappings.Add(converter.ConvertToSharedWrapping(item));
             }
@@ -140,7 +140,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Ingredient> tempIngredients = new List<SharedDataTypes.Ingredient>();
 
-            foreach (DataBases.Ingredient item in mainDb.Ingredients.Select(i => i).ToList())
+            foreach (DataBases.Ingredients item in mainDb.Ingredients.Select(i => i).ToList())
             {
                 tempIngredients.Add(converter.ConvertToSharedIngredient(item));
             }
@@ -151,7 +151,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Ingredient> tempIngredients = new List<SharedDataTypes.Ingredient>();
 
-            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolates.Count(x => x.ID_Chocolate.Equals(chocoId)) > 0).ToList())
+            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolate.Count(x => x.ID_Chocolate.Equals(chocoId)) > 0).ToList())
             {
                 tempIngredients.Add(converter.ConvertToSharedIngredient(item));
             }
@@ -160,8 +160,8 @@ namespace DataManagement
 
         public List<SharedDataTypes.OrderStatus> QueryOrderStates()
         {
-            List<SharedDataTypes.OrderStatus> tempSharedOrderStates = new List<OrderStatus>();
-            foreach (DataBases.OrderStatu item in mainDb.OrderStatus.Select(p => p).ToList())
+            List<SharedDataTypes.OrderStatus> tempSharedOrderStates = new List<SharedDataTypes.OrderStatus>();
+            foreach (DataBases.OrderStatus item in mainDb.OrderStatus.Select(p => p).ToList())
             {
                 tempSharedOrderStates.Add(converter.ConvertToSharedOrderStatus(item));
             }
@@ -171,12 +171,12 @@ namespace DataManagement
 
         public List<SharedDataTypes.Rating> QueryRatingsByPackageId(Guid PackageId)
         {
-            return converter.ConvertToSharedRatings(mainDb.Ratings.Where(p => p.Package_ID.Equals(PackageId)).Select(p => p).ToList());
+            return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Package_ID.Equals(PackageId)).Select(p => p).ToList());
         }
 
         public List<SharedDataTypes.Rating> QueryRatingsByChocoId(Guid ChocoId)
         {
-            return converter.ConvertToSharedRatings(mainDb.Ratings.Where(p => p.Chocolate_ID.Equals(ChocoId)).Select(p => p).ToList());
+            return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Chocolate_ID.Equals(ChocoId)).Select(p => p).ToList());
         }
 
 
@@ -186,7 +186,7 @@ namespace DataManagement
         #region INSERT METHODS
         public bool InsertShape(SharedDataTypes.Shape shape)
         {
-            mainDb.Shapes.Add(new DataBases.Shape()
+            mainDb.Shape.Add(new DataBases.Shape()
             {
                 ID_Shape = shape.ShapeId,
                 Name = shape.Name,
@@ -198,7 +198,7 @@ namespace DataManagement
 
         public bool InsertWrapping(SharedDataTypes.Wrapping wrapping)
         {
-            mainDb.Wrappings.Add(new DataBases.Wrapping()
+            mainDb.Wrapping.Add(new DataBases.Wrapping()
             {
                 ID_Wrapping = wrapping.WrappingId,
                 Name = wrapping.Name,

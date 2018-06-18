@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChocolateCustomizerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChocolateCustomizerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="ID_Address" />
@@ -150,9 +150,9 @@
           <Property Name="ID_Rating" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="Package_ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Chocolate_ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Comment" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Package_ID" Type="uniqueidentifier" />
+          <Property Name="Chocolate_ID" Type="uniqueidentifier" />
+          <Property Name="Comment" Type="varchar" MaxLength="50" />
           <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -400,7 +400,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rating_Chocolate">
-          <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="1" />
+          <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Chocolate">
@@ -424,7 +424,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rating_Package">
-          <End Role="Package" Type="Self.Package" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Package">
@@ -539,8 +539,7 @@
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChocolateCustomizerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -553,7 +552,7 @@
           <Property Name="ZIP" Type="Int32" Nullable="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HouseNumber" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customers" Relationship="Self.Customer_has_Address" FromRole="Address" ToRole="Customer" />
+          <NavigationProperty Name="Customer" Relationship="Self.Customer_has_Address" FromRole="Address" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Chocolate">
           <Key>
@@ -575,7 +574,7 @@
           <NavigationProperty Name="Wrapping" Relationship="Self.FK_Chocolate_Wrapping" FromRole="Chocolate" ToRole="Wrapping" />
           <NavigationProperty Name="OrderContent_has_Chocolate" Relationship="Self.FK_OrderContent_has_Chocolate_Chocolate" FromRole="Chocolate" ToRole="OrderContent_has_Chocolate" />
           <NavigationProperty Name="Package_has_Chocolate" Relationship="Self.FK_Package_has_Chocolate_Chocolate" FromRole="Chocolate" ToRole="Package_has_Chocolate" />
-          <NavigationProperty Name="Ratings" Relationship="Self.FK_Rating_Chocolate" FromRole="Chocolate" ToRole="Rating" />
+          <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Chocolate" FromRole="Chocolate" ToRole="Rating" />
           <NavigationProperty Name="Ingredients" Relationship="Self.Chocolate_has_Ingridients" FromRole="Chocolate" ToRole="Ingredients" />
         </EntityType>
         <EntityType Name="Customer">
@@ -587,10 +586,10 @@
           <Property Name="LastName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Mail" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Chocolates" Relationship="Self.FK_Chocolate_Customer" FromRole="Customer" ToRole="Chocolate" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
-          <NavigationProperty Name="Ratings" Relationship="Self.FK_Rating_Customer" FromRole="Customer" ToRole="Rating" />
-          <NavigationProperty Name="Addresses" Relationship="Self.Customer_has_Address" FromRole="Customer" ToRole="Address" />
+          <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Customer" FromRole="Customer" ToRole="Chocolate" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Customer" FromRole="Customer" ToRole="Rating" />
+          <NavigationProperty Name="Address" Relationship="Self.Customer_has_Address" FromRole="Customer" ToRole="Address" />
         </EntityType>
         <EntityType Name="CustomStyle">
           <Key>
@@ -599,9 +598,9 @@
           <Property Name="ID_CustomStyle" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Chocolates" Relationship="Self.FK_Chocolate_CustomStyle" FromRole="CustomStyle" ToRole="Chocolate" />
+          <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_CustomStyle" FromRole="CustomStyle" ToRole="Chocolate" />
         </EntityType>
-        <EntityType Name="Ingredient">
+        <EntityType Name="Ingredients">
           <Key>
             <PropertyRef Name="ID_Ingredients" />
           </Key>
@@ -613,7 +612,7 @@
           <Property Name="Availability" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ModifyDate" Type="DateTime" Precision="7" />
-          <NavigationProperty Name="Chocolates" Relationship="Self.Chocolate_has_Ingridients" FromRole="Ingredients" ToRole="Chocolate" />
+          <NavigationProperty Name="Chocolate" Relationship="Self.Chocolate_has_Ingridients" FromRole="Ingredients" ToRole="Chocolate" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -626,8 +625,8 @@
           <Property Name="Customer_ID" Type="Guid" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
-          <NavigationProperty Name="OrderStatu" Relationship="Self.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
-          <NavigationProperty Name="OrderContents" Relationship="Self.FK_OrderContent_Order" FromRole="Order" ToRole="OrderContent" />
+          <NavigationProperty Name="OrderStatus" Relationship="Self.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
+          <NavigationProperty Name="OrderContent" Relationship="Self.FK_OrderContent_Order" FromRole="Order" ToRole="OrderContent" />
         </EntityType>
         <EntityType Name="OrderContent">
           <Key>
@@ -661,13 +660,13 @@
           <NavigationProperty Name="OrderContent" Relationship="Self.FK_OrderContent_has_Package_OrderContent" FromRole="OrderContent_has_Package" ToRole="OrderContent" />
           <NavigationProperty Name="Package" Relationship="Self.FK_OrderContent_has_Package_Package" FromRole="OrderContent_has_Package" ToRole="Package" />
         </EntityType>
-        <EntityType Name="OrderStatu">
+        <EntityType Name="OrderStatus">
           <Key>
             <PropertyRef Name="ID_OrderStatus" />
           </Key>
           <Property Name="ID_OrderStatus" Type="Guid" Nullable="false" />
           <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -685,7 +684,7 @@
           <NavigationProperty Name="OrderContent_has_Package" Relationship="Self.FK_OrderContent_has_Package_Package" FromRole="Package" ToRole="OrderContent_has_Package" />
           <NavigationProperty Name="Package_has_Chocolate" Relationship="Self.FK_Package_has_Chocolate_Package" FromRole="Package" ToRole="Package_has_Chocolate" />
           <NavigationProperty Name="Wrapping1" Relationship="Self.FK_Package_Wrapping" FromRole="Package" ToRole="Wrapping" />
-          <NavigationProperty Name="Ratings" Relationship="Self.FK_Rating_Package" FromRole="Package" ToRole="Rating" />
+          <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Package" FromRole="Package" ToRole="Rating" />
         </EntityType>
         <EntityType Name="Package_has_Chocolate">
           <Key>
@@ -705,9 +704,9 @@
           <Property Name="ID_Rating" Type="Guid" Nullable="false" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Package_ID" Type="Guid" Nullable="false" />
-          <Property Name="Chocolate_ID" Type="Guid" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Package_ID" Type="Guid" />
+          <Property Name="Chocolate_ID" Type="Guid" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Published" Type="Boolean" Nullable="false" />
           <Property Name="Customer_ID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_Rating_Chocolate" FromRole="Rating" ToRole="Chocolate" />
@@ -721,9 +720,9 @@
           <Property Name="ID_Shape" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Chocolates" Relationship="Self.FK_Chocolate_Shape" FromRole="Shape" ToRole="Chocolate" />
+          <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Shape" FromRole="Shape" ToRole="Chocolate" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -741,8 +740,8 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Chocolates" Relationship="Self.FK_Chocolate_Wrapping" FromRole="Wrapping" ToRole="Chocolate" />
-          <NavigationProperty Name="Packages" Relationship="Self.FK_Package_Wrapping" FromRole="Wrapping" ToRole="Package" />
+          <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Wrapping" FromRole="Wrapping" ToRole="Chocolate" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_Package_Wrapping" FromRole="Wrapping" ToRole="Package" />
         </EntityType>
         <Association Name="FK_Chocolate_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -817,7 +816,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rating_Chocolate">
-          <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="1" />
+          <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Chocolate">
@@ -853,7 +852,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_OrderStatus">
-          <End Role="OrderStatus" Type="Self.OrderStatu" Multiplicity="1" />
+          <End Role="OrderStatus" Type="Self.OrderStatus" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderStatus">
@@ -937,7 +936,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rating_Package">
-          <End Role="Package" Type="Self.Package" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Package">
@@ -950,104 +949,104 @@
         </Association>
         <Association Name="Chocolate_has_Ingridients">
           <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="*" />
-          <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="*" />
+          <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="*" />
         </Association>
         <Association Name="Customer_has_Address">
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
         </Association>
         <EntityContainer Name="ChocolateCustomizerEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Addresses" EntityType="Self.Address" />
-          <EntitySet Name="Chocolates" EntityType="Self.Chocolate" />
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="CustomStyles" EntityType="Self.CustomStyle" />
-          <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="OrderContents" EntityType="Self.OrderContent" />
+          <EntitySet Name="Address" EntityType="Self.Address" />
+          <EntitySet Name="Chocolate" EntityType="Self.Chocolate" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="CustomStyle" EntityType="Self.CustomStyle" />
+          <EntitySet Name="Ingredients" EntityType="Self.Ingredients" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderContent" EntityType="Self.OrderContent" />
           <EntitySet Name="OrderContent_has_Chocolate" EntityType="Self.OrderContent_has_Chocolate" />
           <EntitySet Name="OrderContent_has_Package" EntityType="Self.OrderContent_has_Package" />
-          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatu" />
-          <EntitySet Name="Packages" EntityType="Self.Package" />
+          <EntitySet Name="OrderStatus" EntityType="Self.OrderStatus" />
+          <EntitySet Name="Package" EntityType="Self.Package" />
           <EntitySet Name="Package_has_Chocolate" EntityType="Self.Package_has_Chocolate" />
-          <EntitySet Name="Ratings" EntityType="Self.Rating" />
-          <EntitySet Name="Shapes" EntityType="Self.Shape" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Wrappings" EntityType="Self.Wrapping" />
+          <EntitySet Name="Rating" EntityType="Self.Rating" />
+          <EntitySet Name="Shape" EntityType="Self.Shape" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Wrapping" EntityType="Self.Wrapping" />
           <AssociationSet Name="FK_Chocolate_Customer" Association="Self.FK_Chocolate_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Chocolate" EntitySet="Chocolates" />
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_Chocolate_CustomStyle" Association="Self.FK_Chocolate_CustomStyle">
-            <End Role="CustomStyle" EntitySet="CustomStyles" />
-            <End Role="Chocolate" EntitySet="Chocolates" />
+            <End Role="CustomStyle" EntitySet="CustomStyle" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_Chocolate_Shape" Association="Self.FK_Chocolate_Shape">
-            <End Role="Shape" EntitySet="Shapes" />
-            <End Role="Chocolate" EntitySet="Chocolates" />
+            <End Role="Shape" EntitySet="Shape" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_Chocolate_Wrapping" Association="Self.FK_Chocolate_Wrapping">
-            <End Role="Wrapping" EntitySet="Wrappings" />
-            <End Role="Chocolate" EntitySet="Chocolates" />
+            <End Role="Wrapping" EntitySet="Wrapping" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderContent_has_Chocolate_Chocolate" Association="Self.FK_OrderContent_has_Chocolate_Chocolate">
-            <End Role="Chocolate" EntitySet="Chocolates" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
             <End Role="OrderContent_has_Chocolate" EntitySet="OrderContent_has_Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_Package_has_Chocolate_Chocolate" Association="Self.FK_Package_has_Chocolate_Chocolate">
-            <End Role="Chocolate" EntitySet="Chocolates" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
             <End Role="Package_has_Chocolate" EntitySet="Package_has_Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_Rating_Chocolate" Association="Self.FK_Rating_Chocolate">
-            <End Role="Chocolate" EntitySet="Chocolates" />
-            <End Role="Rating" EntitySet="Ratings" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
+            <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Order" EntitySet="Orders" />
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Rating_Customer" Association="Self.FK_Rating_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Rating" EntitySet="Ratings" />
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_OrderStatus" Association="Self.FK_Order_OrderStatus">
             <End Role="OrderStatus" EntitySet="OrderStatus" />
-            <End Role="Order" EntitySet="Orders" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderContent_Order" Association="Self.FK_OrderContent_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderContent" EntitySet="OrderContents" />
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderContent" EntitySet="OrderContent" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderContent_has_Chocolate_OrderContent" Association="Self.FK_OrderContent_has_Chocolate_OrderContent">
-            <End Role="OrderContent" EntitySet="OrderContents" />
+            <End Role="OrderContent" EntitySet="OrderContent" />
             <End Role="OrderContent_has_Chocolate" EntitySet="OrderContent_has_Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderContent_has_Package_OrderContent" Association="Self.FK_OrderContent_has_Package_OrderContent">
-            <End Role="OrderContent" EntitySet="OrderContents" />
+            <End Role="OrderContent" EntitySet="OrderContent" />
             <End Role="OrderContent_has_Package" EntitySet="OrderContent_has_Package" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderContent_has_Package_Package" Association="Self.FK_OrderContent_has_Package_Package">
-            <End Role="Package" EntitySet="Packages" />
+            <End Role="Package" EntitySet="Package" />
             <End Role="OrderContent_has_Package" EntitySet="OrderContent_has_Package" />
           </AssociationSet>
           <AssociationSet Name="FK_Package_has_Chocolate_Package" Association="Self.FK_Package_has_Chocolate_Package">
-            <End Role="Package" EntitySet="Packages" />
+            <End Role="Package" EntitySet="Package" />
             <End Role="Package_has_Chocolate" EntitySet="Package_has_Chocolate" />
           </AssociationSet>
           <AssociationSet Name="FK_Package_Wrapping" Association="Self.FK_Package_Wrapping">
-            <End Role="Wrapping" EntitySet="Wrappings" />
-            <End Role="Package" EntitySet="Packages" />
+            <End Role="Wrapping" EntitySet="Wrapping" />
+            <End Role="Package" EntitySet="Package" />
           </AssociationSet>
           <AssociationSet Name="FK_Rating_Package" Association="Self.FK_Rating_Package">
-            <End Role="Package" EntitySet="Packages" />
-            <End Role="Rating" EntitySet="Ratings" />
+            <End Role="Package" EntitySet="Package" />
+            <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
           <AssociationSet Name="Chocolate_has_Ingridients" Association="Self.Chocolate_has_Ingridients">
-            <End Role="Chocolate" EntitySet="Chocolates" />
+            <End Role="Chocolate" EntitySet="Chocolate" />
             <End Role="Ingredients" EntitySet="Ingredients" />
           </AssociationSet>
           <AssociationSet Name="Customer_has_Address" Association="Self.Customer_has_Address">
-            <End Role="Address" EntitySet="Addresses" />
-            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1056,7 +1055,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ChocolateCustomizerModelStoreContainer" CdmEntityContainer="ChocolateCustomizerEntities">
-          <EntitySetMapping Name="Addresses">
+          <EntitySetMapping Name="Address">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Address">
               <MappingFragment StoreEntitySet="Address">
                 <ScalarProperty Name="ID_Address" ColumnName="ID_Address" />
@@ -1067,7 +1066,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Chocolates">
+          <EntitySetMapping Name="Chocolate">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Chocolate">
               <MappingFragment StoreEntitySet="Chocolate">
                 <ScalarProperty Name="ID_Chocolate" ColumnName="ID_Chocolate" />
@@ -1083,7 +1082,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
+          <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
@@ -1094,7 +1093,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CustomStyles">
+          <EntitySetMapping Name="CustomStyle">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.CustomStyle">
               <MappingFragment StoreEntitySet="CustomStyle">
                 <ScalarProperty Name="ID_CustomStyle" ColumnName="ID_CustomStyle" />
@@ -1104,7 +1103,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Ingredients">
-            <EntityTypeMapping TypeName="ChocolateCustomizerModel.Ingredient">
+            <EntityTypeMapping TypeName="ChocolateCustomizerModel.Ingredients">
               <MappingFragment StoreEntitySet="Ingredients">
                 <ScalarProperty Name="ID_Ingredients" ColumnName="ID_Ingredients" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1117,7 +1116,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
+          <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
@@ -1129,7 +1128,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderContents">
+          <EntitySetMapping Name="OrderContent">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.OrderContent">
               <MappingFragment StoreEntitySet="OrderContent">
                 <ScalarProperty Name="ID_OrderContent" ColumnName="ID_OrderContent" />
@@ -1156,14 +1155,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderStatus">
-            <EntityTypeMapping TypeName="ChocolateCustomizerModel.OrderStatu">
+            <EntityTypeMapping TypeName="ChocolateCustomizerModel.OrderStatus">
               <MappingFragment StoreEntitySet="OrderStatus">
                 <ScalarProperty Name="ID_OrderStatus" ColumnName="ID_OrderStatus" />
                 <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Packages">
+          <EntitySetMapping Name="Package">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Package">
               <MappingFragment StoreEntitySet="Package">
                 <ScalarProperty Name="ID_Package" ColumnName="ID_Package" />
@@ -1187,7 +1186,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ratings">
+          <EntitySetMapping Name="Rating">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Rating">
               <MappingFragment StoreEntitySet="Rating">
                 <ScalarProperty Name="ID_Rating" ColumnName="ID_Rating" />
@@ -1201,7 +1200,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Shapes">
+          <EntitySetMapping Name="Shape">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Shape">
               <MappingFragment StoreEntitySet="Shape">
                 <ScalarProperty Name="ID_Shape" ColumnName="ID_Shape" />
@@ -1211,7 +1210,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ChocolateCustomizerModel.sysdiagram">
+            <EntityTypeMapping TypeName="ChocolateCustomizerModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1221,7 +1220,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Wrappings">
+          <EntitySetMapping Name="Wrapping">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Wrapping">
               <MappingFragment StoreEntitySet="Wrapping">
                 <ScalarProperty Name="ID_Wrapping" ColumnName="ID_Wrapping" />
@@ -1261,7 +1260,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

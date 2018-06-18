@@ -12,18 +12,18 @@ namespace DataManagement.DataBases
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderStatu
+    public partial class OrderStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderStatu()
+        public OrderStatus()
         {
-            this.Orders = new HashSet<Order>();
+            this.Order = new HashSet<Order>();
         }
     
         public System.Guid ID_OrderStatus { get; set; }
         public string StatusDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Order { get; set; }
     }
 }
