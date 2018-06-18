@@ -40,6 +40,7 @@
         <AssociationConnector Association="ChocolateCustomizerModel.FK_Rating_Package" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.Chocolate_has_Ingridients" ManuallyRouted="false" />
         <AssociationConnector Association="ChocolateCustomizerModel.Customer_has_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="ChocolateCustomizerModel.FK_Package_Customer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
