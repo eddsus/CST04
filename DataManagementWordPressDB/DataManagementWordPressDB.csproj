@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F8A6A60-1B49-4CF5-877F-B617ED3BF1C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataManagementWordPressDB</RootNamespace>
+    <AssemblyName>DataManagementWordPressDB</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\PrivateAssemblies\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\PrivateAssemblies\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Web, Version=8.0.11.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\PrivateAssemblies\MySql.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataHandlerWP.cs" />
+    <Compile Include="DataModel\WordPressDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WordPressDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\WordPressDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\WordPressDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WordPressDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_commentmeta.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_comments.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_lead_form.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_lead_form_data.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_lead_form_extension.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_lead_form_options.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_links.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_options.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_postmeta.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_posts.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_termmeta.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_terms.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_term_relationships.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_term_taxonomy.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_th_popup.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_usermeta.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_users.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_wcpdf_invoice_number.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_wc_download_log.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_wc_webhooks.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_api_keys.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_attribute_taxonomies.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_downloadable_product_permissions.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_log.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_order_itemmeta.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_order_items.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_payment_tokenmeta.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_payment_tokens.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_sessions.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_shipping_zones.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_shipping_zone_locations.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_shipping_zone_methods.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_tax_rates.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\wp_woocommerce_tax_rate_locations.cs">
+      <DependentUpon>WordPressDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataModel\WordPressDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WordPressDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="DataModel\WordPressDbModel.edmx.diagram">
+      <DependentUpon>WordPressDbModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel\WordPressDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WordPressDbModel.Context.cs</LastGenOutput>
+      <DependentUpon>WordPressDbModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataModel\WordPressDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WordPressDbModel.edmx</DependentUpon>
+      <LastGenOutput>WordPressDbModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

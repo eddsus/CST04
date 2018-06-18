@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ChocolateCustomizerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ChocolateCustomizerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="ID_Address" />
@@ -555,7 +555,8 @@
             <End Role="Rating" EntitySet="Rating" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChocolateCustomizerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -604,9 +605,9 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Customer" FromRole="Customer" ToRole="Chocolate" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Package" Relationship="Self.FK_Package_Customer" FromRole="Customer" ToRole="Package" />
           <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Customer" FromRole="Customer" ToRole="Rating" />
           <NavigationProperty Name="Address" Relationship="Self.Customer_has_Address" FromRole="Customer" ToRole="Address" />
-          <NavigationProperty Name="Package" Relationship="ChocolateCustomizerModel.FK_Package_Customer" FromRole="Customer" ToRole="Package" />
         </EntityType>
         <EntityType Name="CustomStyle">
           <Key>
@@ -698,11 +699,11 @@
           <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ModifyDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="WrappingID" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Package_Customer" FromRole="Package" ToRole="Customer" />
           <NavigationProperty Name="OrderContent_has_Package" Relationship="Self.FK_OrderContent_has_Package_Package" FromRole="Package" ToRole="OrderContent_has_Package" />
           <NavigationProperty Name="Package_has_Chocolate" Relationship="Self.FK_Package_has_Chocolate_Package" FromRole="Package" ToRole="Package_has_Chocolate" />
           <NavigationProperty Name="Wrapping1" Relationship="Self.FK_Package_Wrapping" FromRole="Package" ToRole="Wrapping" />
           <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Package" FromRole="Package" ToRole="Rating" />
-          <NavigationProperty Name="Customer" Relationship="ChocolateCustomizerModel.FK_Package_Customer" FromRole="Package" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Package_has_Chocolate">
           <Key>
@@ -853,6 +854,18 @@
               <PropertyRef Name="ID_Customer" />
             </Principal>
             <Dependent Role="Order">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Package_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Package" Type="Self.Package" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID_Customer" />
+            </Principal>
+            <Dependent Role="Package">
               <PropertyRef Name="Customer_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1022,6 +1035,10 @@
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_Package_Customer" Association="Self.FK_Package_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Package" EntitySet="Package" />
+          </AssociationSet>
           <AssociationSet Name="FK_Rating_Customer" Association="Self.FK_Rating_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Rating" EntitySet="Rating" />
@@ -1066,23 +1083,7 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
-          <AssociationSet Name="FK_Package_Customer" Association="ChocolateCustomizerModel.FK_Package_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Package" EntitySet="Package" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Package_Customer">
-          <End Type="ChocolateCustomizerModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="ChocolateCustomizerModel.Package" Role="Package" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID_Customer" />
-            </Principal>
-            <Dependent Role="Package">
-              <PropertyRef Name="Customer_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
