@@ -10,6 +10,7 @@ namespace SharedDataTypes
         public string Comment { get; set; }
         public bool Published { get; set; }
         public Customer Customer { get; set; }
+        public string ProductName { get; set; }
         public Package Package { get; set; }
         public Chocolate Chocolate { get; set; }
     }

@@ -38,7 +38,7 @@ namespace DataManagement.SharedTypeConverter
                     CustomStyle = ConvertToSharedCustomStyle(choco.CustomStyle),
                     Wrapping = ConvertToSharedWrapping(choco.Wrapping),
                     Modified = choco.ModifyDate,
-                    //Ratings = ConvertToSharedRatings(choco.Rating), No ratings => Leads to stack overflow
+                    Ratings = ConvertToSharedRatings(choco.Rating),// No ratings => Leads to stack overflow
                     CreatedBy = ConvertToSharedCustomer(choco.Customer)
                 };
             }
@@ -168,7 +168,7 @@ namespace DataManagement.SharedTypeConverter
                     Image = p.Image,
                     Customer = ConvertToSharedCustomer(p.Customer),
                     Modified = p.ModifyDate,
-                    //Ratings = new List<SharedDataTypes.Rating>(),
+                    Ratings = ConvertToSharedRatings(p.Rating),
                     Wrapping = ConvertToSharedWrapping(p.Wrapping1),
                     Available = p.Availability,
                     Chocolates = ConvertToSharedChocolateList(p.Package_has_Chocolate.Select(c => c).ToList())
@@ -192,10 +192,12 @@ namespace DataManagement.SharedTypeConverter
 
         public List<SharedDataTypes.Rating> ConvertToSharedRatings(ICollection<DataBases.Rating> r)
         {
+
             List<SharedDataTypes.Rating> tempRatings = new List<SharedDataTypes.Rating>();
 
             foreach (var item in r)
             {
+
                 if (item.Chocolate != null)
                 {
                     tempRatings.Add(new SharedDataTypes.Rating
@@ -203,12 +205,14 @@ namespace DataManagement.SharedTypeConverter
                         RatingId = item.ID_Rating,
                         Value = item.Value,
                         Date = item.Date,
-                        Chocolate = ConvertToSharedChocolate(item.Chocolate),
+                        //Chocolate = ConvertToSharedChocolate(item.Chocolate),
+                        ProductName = item.Chocolate.Name,
                         Comment = item.Comment,
                         Customer = ConvertToSharedCustomer(item.Customer),
                         Published = item.Published
                     });
-                } else if (item.Package != null)
+                }
+                else if (item.Package != null)
                 {
                     tempRatings.Add(new SharedDataTypes.Rating
                     {
@@ -217,7 +221,8 @@ namespace DataManagement.SharedTypeConverter
                         Date = item.Date,
                         Comment = item.Comment,
                         Customer = ConvertToSharedCustomer(item.Customer),
-                        Package = ConvertToSharedPackage(item.Package),
+                        //Package = ConvertToSharedPackage(item.Package),
+                        ProductName = item.Package.Name,
                         Published = item.Published
                     });
                 }
