@@ -71,6 +71,10 @@ namespace AppSD
             return new AppLogic().QueryRatings();
         }
 
+        public List<Package> QueryPackagesWithChocolatesAndIngredients()
+        {
+            return new AppLogic().QueryPackagesWithChocolatesAndIngredients();
+        }
 
         #endregion
 
@@ -94,6 +98,7 @@ namespace AppSD
         {
             return new AppLogic().UpdatePackage(item);
         }
+
 
         #endregion
 

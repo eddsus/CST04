@@ -45,11 +45,18 @@ namespace AppSD
         List<OrderContentChocolate> QueryOrdersContentChocolate(string orderId);
 
         [OperationContract]
-        [WebInvoke(Method = "GET",
+        [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "QueryOrdersContentPackage/{orderId}")]
         List<OrderContentPackage> QueryOrdersContentPackage(string orderId);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryPackagesWithChocolatesAndIngredients")]
+        List<Package> QueryPackagesWithChocolatesAndIngredients();
 
         [OperationContract]
         [WebInvoke(Method = "GET",

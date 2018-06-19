@@ -17,6 +17,11 @@ namespace AppHandler
             return mainDh.QueryOrders();
         }
 
+        public List<SharedDataTypes.Package> QueryPackagesWithChocolatesAndIngredients()
+        {
+            return mainDh.QueryPackagesWithChocolatesAndIngredients();
+        }
+
         public List<SharedDataTypes.Rating> QueryRatings()
         {
             return mainDh.QueryRatings();
