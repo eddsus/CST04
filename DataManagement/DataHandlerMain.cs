@@ -185,6 +185,11 @@ namespace DataManagement
 
         #endregion
 
+        #region DELETE METHODS
+
+        //delete order content by order no.
+
+        #endregion
 
         #region INSERT METHODS
         public bool InsertShape(SharedDataTypes.Shape shape)
@@ -219,17 +224,58 @@ namespace DataManagement
         #endregion
 
         #region UPDATE METHODS
-        public bool UpdateIngredient(SharedDataTypes.Ingredient item)
+        public bool UpdateIngredient(SharedDataTypes.Ingredient i)
         {
-            var temp = mainDb.Ingredients.Where(i => i.ID_Ingredients == item.IngredientId).Select(j => j).First();
-            temp.Name = item.Name;
-            temp.Description = item.Description;
-            temp.Price = item.Price;
-            temp.Availability = item.Available;
-            temp.Type = item.Type;
-            temp.UnitType = item.UnitType;
+            var temp = mainDb.Ingredients.Where(p => p.ID_Ingredients == i.IngredientId).Select(j => j).First();
+
+            temp.Name = i.Name;
+            temp.Description = i.Description;
+            temp.Price = i.Price;
+            temp.Availability = i.Available;
+            temp.Type = i.Type;
+            temp.UnitType = i.UnitType;
             temp.ModifyDate = DateTime.Now;
-            return mainDb.SaveChanges() > 0;
+            return mainDb.SaveChanges() == 1;
+        }
+
+        public bool UpdateChocolate(SharedDataTypes.Chocolate c)
+        {
+            var temp = mainDb.Chocolate.Where(p => p.ID_Chocolate.Equals(c.ChocolateId)).Select(p => p).First();
+
+            temp.Name = c.Name;
+            temp.Description = c.Description;
+            temp.Available = c.Available;
+            temp.Image = c.Image;
+            temp.WrappingID = c.Wrapping.WrappingId;
+            temp.Shape_ID = c.Shape.ShapeId;
+            temp.ModifyDate = DateTime.Now;
+
+            return mainDb.SaveChanges() == 1;
+        }
+
+        public bool ChangeStateOfAnOrder(Guid orderId, SharedDataTypes.OrderStatus status)
+        {
+            var temp = mainDb.Order.Where(p => p.ID_Order.Equals(orderId)).Select(p => p).First();
+
+            temp.Status_ID = status.OrderStatusId;
+
+            return mainDb.SaveChanges() == 1;
+        }
+
+        public bool UpdatePackage(SharedDataTypes.Package p)
+        {
+            var temp = mainDb.Package.Where(q => q.ID_Package.Equals(q.ID_Package)).Select(q => q).First();
+
+            temp.Name = p.Name;
+            temp.Descripton = p.Description;
+            temp.WrappingID = p.Wrapping.WrappingId;
+            temp.Availability = p.Available;
+            temp.Customer_ID = p.Customer.CustomerId;
+            temp.Wrapping = p.Wrapping.Name;
+            temp.Image = p.Image;
+            temp.ModifyDate = DateTime.Now;
+
+            return mainDb.SaveChanges() == 1;
         }
         #endregion
     }

@@ -108,6 +108,27 @@ namespace AppSD
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "UpdateIngredient"),]
         bool UpdateIngredient(Ingredient item);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "UpdateChocolate"),]
+        bool UpdateChocolate(Chocolate item);
+
+        //[OperationContract]
+        //[WebInvoke(Method = "POST",
+        //ResponseFormat = WebMessageFormat.Json,
+        //BodyStyle = WebMessageBodyStyle.Bare,
+        //UriTemplate = "ChangeStateOfAnOrder"),]
+        //bool ChangeStateOfAnOrder(Guid orderId, OrderStatus status);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "UpdatePackage"),]
+        bool UpdatePackage(Package item);
         #endregion
 
 

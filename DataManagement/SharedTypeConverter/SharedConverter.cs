@@ -10,6 +10,7 @@ namespace DataManagement.SharedTypeConverter
 {
     public class SharedConverter
     {
+        #region toSharedObject
         public SharedDataTypes.Address ConvertToSharedAddress(DataBases.Address a)
         {
             return new SharedDataTypes.Address()
@@ -251,6 +252,9 @@ namespace DataManagement.SharedTypeConverter
             };
         }
 
+        #endregion
+
+        #region ToDBObject
         public DataBases.Ingredients ConvertToDBIngredient(SharedDataTypes.Ingredient i)
         {
             return new DataBases.Ingredients
@@ -265,53 +269,37 @@ namespace DataManagement.SharedTypeConverter
                 ModifyDate = i.Modified
             };
         }
-        //public SharedDataTypes.OrderContent ConvertToSharedPackageOrderContentPackage(DataBases.Package p)
-        //{
-        //    return new OrderContentPackage
-        //    {
-        //        OrderContentId = p.ID_Package,
-        //        Package = ConvertToSharedPackage(p),
-        //        Amount = p.OrderContent_has_Package.Select(q => q.Amount).First()
-        //    };
-        //}
-        //public SharedDataTypes.OrderContent ConvertToSharedChocolateOrderContentChocolate(DataBases.Chocolate choco)
-        //{
-        //    return new OrderContentChocolate
-        //    {
-        //        OrderContentId = choco.ID_Chocolate,
-        //        Chocolate = ConvertToSharedChocolate(choco),
-        //        Amount = choco.OrderContent_has_Chocolate.Select(p => p.Amount).First()
-        //    };
-        //}
-        //public DataBases.Chocolate ConvertToDBChoco(SharedDataTypes.Chocolate c)
-        //{
-        //    return new DataBases.Chocolate
-        //    {
-        //        ID_Chocolate = c.ChocolateId,
-        //        Name = c.Name,
-        //        Description = c.Description,
-        //        Available = c.Available,
-        //        Shape_ID = c.Shape.ShapeId,
-        //        CustomStyle_ID = c.CustomStyle.CustomStyleId,
-        //        Image = c.Image,
-        //        Creator_Customer_ID = c.CreatedBy.CustomerId,
-        //        ModifyDate = c.Modified.GetValueOrDefault(),
-        //        WrappingID = c.Wrapping.WrappingId
-        //    };
-        //}
-        //public DataBases.Package ConvertToDBPackage(SharedDataTypes.Package p)
-        //{
-        //    return new DataBases.Package
-        //    {
-        //        ID_Package = p.PackageId,
-        //        Name = p.Name,
-        //        Descripton = p.Description,
-        //        WrappingID = p.Wrapping.WrappingId,
-        //        Availability = p.Available,
-        //        Customer_ID = p.Customer.CustomerId,
-        //        Image = p.Image,
-        //        ModifyDate = p.Modified.GetValueOrDefault(),
-        //    };
-        //}
+
+        public DataBases.Chocolate ConvertToDBChoco(SharedDataTypes.Chocolate c)
+        {
+            return new DataBases.Chocolate
+            {
+                ID_Chocolate = c.ChocolateId,
+                Name = c.Name,
+                Description = c.Description,
+                Available = c.Available,
+                Shape_ID = c.Shape.ShapeId,
+                CustomStyle_ID = c.CustomStyle.CustomStyleId,
+                Image = c.Image,
+                Creator_Customer_ID = c.CreatedBy.CustomerId,
+                ModifyDate = c.Modified.GetValueOrDefault(),
+                WrappingID = c.Wrapping.WrappingId
+            };
+        }
+        public DataBases.Package ConvertToDBPackage(SharedDataTypes.Package p)
+        {
+            return new DataBases.Package
+            {
+                ID_Package = p.PackageId,
+                Name = p.Name,
+                Descripton = p.Description,
+                WrappingID = p.Wrapping.WrappingId,
+                Availability = p.Available,
+                Customer_ID = p.Customer.CustomerId,
+                Image = p.Image,
+                ModifyDate = p.Modified.GetValueOrDefault(),
+            };
+        }
+        #endregion
     }
 }

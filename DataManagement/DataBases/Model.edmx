@@ -37,6 +37,7 @@
           </Key>
           <Property Name="Chocolazte_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Ingerdient_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -47,6 +48,7 @@
           <Property Name="LastName" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="Mail" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Customer_has_Address">
           <Key>
@@ -55,6 +57,7 @@
           </Key>
           <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Address_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="CustomStyle">
           <Key>
@@ -87,6 +90,7 @@
           <Property Name="Status_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Note" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="OrderContent">
           <Key>
@@ -94,6 +98,7 @@
           </Key>
           <Property Name="ID_OrderContent" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Order_ID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="OrderContent_has_Chocolate">
           <Key>
@@ -103,6 +108,7 @@
           <Property Name="OrderContent_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Chocolate_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="OrderContent_has_Package">
           <Key>
@@ -112,6 +118,7 @@
           <Property Name="OrderContent_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Package_ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -119,6 +126,7 @@
           </Key>
           <Property Name="ID_OrderStatus" Type="uniqueidentifier" Nullable="false" />
           <Property Name="StatusDescription" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -155,6 +163,7 @@
           <Property Name="Comment" Type="varchar" MaxLength="50" />
           <Property Name="Published" Type="bit" Nullable="false" />
           <Property Name="Customer_ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="Shape">
           <Key>
@@ -163,6 +172,7 @@
           <Property Name="ID_Shape" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
           <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -182,6 +192,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="Image" Type="varchar(max)" Nullable="false" />
+          <Property Name="ModifyDate" Type="datetime2" Precision="7" />
         </EntityType>
         <Association Name="FK_Chocolate_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -607,6 +618,7 @@
           <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Customer" FromRole="Customer" ToRole="Rating" />
           <NavigationProperty Name="Address" Relationship="Self.Customer_has_Address" FromRole="Customer" ToRole="Address" />
           <NavigationProperty Name="Package" Relationship="ChocolateCustomizerModel.FK_Package_Customer" FromRole="Customer" ToRole="Package" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="CustomStyle">
           <Key>
@@ -644,6 +656,7 @@
           <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="OrderStatus" Relationship="Self.FK_Order_OrderStatus" FromRole="Order" ToRole="OrderStatus" />
           <NavigationProperty Name="OrderContent" Relationship="Self.FK_OrderContent_Order" FromRole="Order" ToRole="OrderContent" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="OrderContent">
           <Key>
@@ -654,6 +667,7 @@
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderContent_Order" FromRole="OrderContent" ToRole="Order" />
           <NavigationProperty Name="OrderContent_has_Chocolate" Relationship="Self.FK_OrderContent_has_Chocolate_OrderContent" FromRole="OrderContent" ToRole="OrderContent_has_Chocolate" />
           <NavigationProperty Name="OrderContent_has_Package" Relationship="Self.FK_OrderContent_has_Package_OrderContent" FromRole="OrderContent" ToRole="OrderContent_has_Package" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="OrderContent_has_Chocolate">
           <Key>
@@ -665,6 +679,7 @@
           <Property Name="Amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_OrderContent_has_Chocolate_Chocolate" FromRole="OrderContent_has_Chocolate" ToRole="Chocolate" />
           <NavigationProperty Name="OrderContent" Relationship="Self.FK_OrderContent_has_Chocolate_OrderContent" FromRole="OrderContent_has_Chocolate" ToRole="OrderContent" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="OrderContent_has_Package">
           <Key>
@@ -676,6 +691,7 @@
           <Property Name="Amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="OrderContent" Relationship="Self.FK_OrderContent_has_Package_OrderContent" FromRole="OrderContent_has_Package" ToRole="OrderContent" />
           <NavigationProperty Name="Package" Relationship="Self.FK_OrderContent_has_Package_Package" FromRole="OrderContent_has_Package" ToRole="Package" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="OrderStatus">
           <Key>
@@ -684,6 +700,7 @@
           <Property Name="ID_OrderStatus" Type="Guid" Nullable="false" />
           <Property Name="StatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_OrderStatus" FromRole="OrderStatus" ToRole="Order" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -730,6 +747,7 @@
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_Rating_Chocolate" FromRole="Rating" ToRole="Chocolate" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Rating_Customer" FromRole="Rating" ToRole="Customer" />
           <NavigationProperty Name="Package" Relationship="Self.FK_Rating_Package" FromRole="Rating" ToRole="Package" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="Shape">
           <Key>
@@ -739,6 +757,7 @@
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Shape" FromRole="Shape" ToRole="Chocolate" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -760,6 +779,7 @@
           <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Chocolate" Relationship="Self.FK_Chocolate_Wrapping" FromRole="Wrapping" ToRole="Chocolate" />
           <NavigationProperty Name="Package" Relationship="Self.FK_Package_Wrapping" FromRole="Wrapping" ToRole="Package" />
+          <Property Name="ModifyDate" Type="DateTime" Precision="7" />
         </EntityType>
         <Association Name="FK_Chocolate_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -1119,6 +1139,7 @@
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1153,6 +1174,7 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
                 <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
                 <ScalarProperty Name="DateOfDelivery" ColumnName="DateOfDelivery" />
@@ -1165,6 +1187,7 @@
           <EntitySetMapping Name="OrderContent">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.OrderContent">
               <MappingFragment StoreEntitySet="OrderContent">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ID_OrderContent" ColumnName="ID_OrderContent" />
                 <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
               </MappingFragment>
@@ -1173,6 +1196,7 @@
           <EntitySetMapping Name="OrderContent_has_Chocolate">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.OrderContent_has_Chocolate">
               <MappingFragment StoreEntitySet="OrderContent_has_Chocolate">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="OrderContent_ID" ColumnName="OrderContent_ID" />
                 <ScalarProperty Name="Chocolate_ID" ColumnName="Chocolate_ID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
@@ -1182,6 +1206,7 @@
           <EntitySetMapping Name="OrderContent_has_Package">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.OrderContent_has_Package">
               <MappingFragment StoreEntitySet="OrderContent_has_Package">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="OrderContent_ID" ColumnName="OrderContent_ID" />
                 <ScalarProperty Name="Package_ID" ColumnName="Package_ID" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
@@ -1191,6 +1216,7 @@
           <EntitySetMapping Name="OrderStatus">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.OrderStatus">
               <MappingFragment StoreEntitySet="OrderStatus">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ID_OrderStatus" ColumnName="ID_OrderStatus" />
                 <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
               </MappingFragment>
@@ -1223,6 +1249,7 @@
           <EntitySetMapping Name="Rating">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Rating">
               <MappingFragment StoreEntitySet="Rating">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ID_Rating" ColumnName="ID_Rating" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -1237,6 +1264,7 @@
           <EntitySetMapping Name="Shape">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Shape">
               <MappingFragment StoreEntitySet="Shape">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ID_Shape" ColumnName="ID_Shape" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
@@ -1257,6 +1285,7 @@
           <EntitySetMapping Name="Wrapping">
             <EntityTypeMapping TypeName="ChocolateCustomizerModel.Wrapping">
               <MappingFragment StoreEntitySet="Wrapping">
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
                 <ScalarProperty Name="ID_Wrapping" ColumnName="ID_Wrapping" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Price" ColumnName="Price" />

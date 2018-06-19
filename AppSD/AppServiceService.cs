@@ -80,6 +80,20 @@ namespace AppSD
             return new AppLogic().UpdateIngredient(item);
         }
 
+        public bool UpdateChocolate(Chocolate item)
+        {
+            return new AppLogic().UpdateChocolate(item);
+        }
+
+        public bool ChangeStateOfAnOrder(Guid orderId, SharedDataTypes.OrderStatus status)
+        {
+            return new AppLogic().ChangeStateOfAnOrder(orderId, status);
+        }
+
+        public bool UpdatePackage(Package item)
+        {
+            return new AppLogic().UpdatePackage(item);
+        }
 
         #endregion
 

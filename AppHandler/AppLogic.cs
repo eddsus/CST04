@@ -22,6 +22,11 @@ namespace AppHandler
             return mainDh.QueryRatings();
         }
 
+        public bool ChangeStateOfAnOrder(Guid orderId, SharedDataTypes.OrderStatus status)
+        {
+            return mainDh.ChangeStateOfAnOrder(orderId, status);
+        }
+
         public List<OrderContentChocolate> QueryOrdersContentChocolate(string orderId)
         {
             return mainDh.QueryOrdersContentChocolate(orderId);
@@ -62,7 +67,15 @@ namespace AppHandler
 
         }
 
+        public bool UpdateChocolate(Chocolate c)
+        {
+            return mainDh.UpdateChocolate(c);
+        }
 
+        public bool UpdatePackage(Package p)
+        {
+            return mainDh.UpdatePackage(p);
+        }
 
         public bool UpdateIngredient(Ingredient item)
         {

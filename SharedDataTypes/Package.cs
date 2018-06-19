@@ -16,6 +16,18 @@ namespace SharedDataTypes
         public List<Rating> Ratings { get; set; }
         public DateTime? Modified { get; set; }
 
+        public double Price
+        {
+            get
+            {
+                double tempPrice = 0;
+                foreach (var item in Chocolates)
+                {
+                    tempPrice += item.Price;
+                }
+                return tempPrice + Wrapping.Price + 2;
+            }
+        }
 
     }
 }

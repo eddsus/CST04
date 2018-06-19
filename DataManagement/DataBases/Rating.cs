@@ -22,6 +22,7 @@ namespace DataManagement.DataBases
         public string Comment { get; set; }
         public bool Published { get; set; }
         public System.Guid Customer_ID { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
         public virtual Chocolate Chocolate { get; set; }
         public virtual Customer Customer { get; set; }
