@@ -60,6 +60,13 @@ namespace AppSD
 
         [OperationContract]
         [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryRatings")]
+        List<Rating> QueryRatings();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Bare,
             UriTemplate = "QueryShapes")]

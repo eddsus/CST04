@@ -14,7 +14,7 @@ namespace AppSD
     {
         public string REST_Tester(string id, string name)
         {
-            return id + " Name: "+ name + " Motherfucker!";
+            return id + " Name: " + name + " Motherfucker!";
         }
 
         public bool IsAlive()
@@ -53,20 +53,25 @@ namespace AppSD
             return new AppLogic().QueryWrappings();
         }
 
-
         public List<OrderStatus> QueryOrderStates()
         {
-           return new AppLogic().QueryOrderStates();
+            return new AppLogic().QueryOrderStates();
         }
         public List<Chocolate> QueryChocolatesWithIngredients()
         {
-           return new AppLogic().QueryChocolatesWithIngredients();
+            return new AppLogic().QueryChocolatesWithIngredients();
         }
 
         public List<Ingredient> QueryIngredientsByChocolateId(Guid id)
         {
             return new AppLogic().QueryIngredientsByChocolateId(id);
         }
+        public List<Rating> QueryRatings()
+        {
+            return new AppLogic().QueryRatings();
+        }
+
+
         #endregion
 
         #region UPDATE METHODS
@@ -74,6 +79,7 @@ namespace AppSD
         {
             return new AppLogic().UpdateIngredient(item);
         }
+
 
         #endregion
 

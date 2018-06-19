@@ -38,7 +38,7 @@ namespace DataManagement.SharedTypeConverter
                     CustomStyle = ConvertToSharedCustomStyle(choco.CustomStyle),
                     Wrapping = ConvertToSharedWrapping(choco.Wrapping),
                     Modified = choco.ModifyDate,
-                    Ratings = ConvertToSharedRatings(choco.Rating),// No ratings => Leads to stack overflow
+                    Ratings = ConvertToSharedRatings(choco.Rating),
                     CreatedBy = ConvertToSharedCustomer(choco.Customer)
                 };
             }

@@ -18,6 +18,11 @@ namespace DataManagement
 
         #region GiveMeAll Queries
 
+        public List<SharedDataTypes.Rating> QueryRatings()
+        {
+            return converter.ConvertToSharedRatings(mainDb.Rating.Select(p => p).ToList());
+        }
+
         public List<SharedDataTypes.Order> QueryOrders()
         {
             List<SharedDataTypes.Order> tempSharedOrders = new List<SharedDataTypes.Order>();
@@ -56,7 +61,6 @@ namespace DataManagement
             }
             return sharedChocolates;
         }
-
 
         public List<SharedDataTypes.Chocolate> QueryChocolatesWithIngredientsByPackageId(Guid packageId)
         {
@@ -167,7 +171,6 @@ namespace DataManagement
             }
             return tempSharedOrderStates;
         }
-
 
         public List<SharedDataTypes.Rating> QueryRatingsByPackageId(Guid PackageId)
         {
