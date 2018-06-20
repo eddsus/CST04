@@ -99,7 +99,6 @@ namespace DataManagement
 
         public SharedDataTypes.Customer QueryCustomerByPackageId(Guid packageId)
         {
-            //to be checked
             return converter.ConvertToSharedCustomer(mainDb.Customer.Where(p => p.Rating.Count(x => x.Package_ID.Equals(packageId)) > 0).First());
         }
 
@@ -187,40 +186,48 @@ namespace DataManagement
 
         #region DELETE METHODS
 
+        public bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc)
+        {
+
+            if (oc is OrderContentChocolate)
+            {
+                OrderContent_has_Chocolate temp = mainDb.OrderContent_has_Chocolate.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+                mainDb.OrderContent_has_Chocolate.Remove(temp);
+            }
+            else
+            {
+                OrderContent_has_Package temp1 = mainDb.OrderContent_has_Package.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+                mainDb.OrderContent_has_Package.Remove(temp1);
+            }
+
+            DataBases.OrderContent temp2 = mainDb.OrderContent.Where(p => p.ID_OrderContent.Equals(oc.OrderContentId)).Select(p => p).First();
+            mainDb.OrderContent.Remove(temp2);
+
+            return mainDb.SaveChanges() == 2;
+        }
         //delete order content by order no.
 
         #endregion
 
         #region INSERT METHODS
-        public bool InsertShape(SharedDataTypes.Shape shape)
+        public bool InsertShape(SharedDataTypes.Shape s)
         {
-            mainDb.Shape.Add(new DataBases.Shape()
-            {
-                ID_Shape = shape.ShapeId,
-                Name = shape.Name,
-                Image = shape.Image.ToString()
-            });
-
+            mainDb.Shape.Add(converter.ConvertToDBShape(s));
             return mainDb.SaveChanges() == 1;
         }
 
-        public bool InsertWrapping(SharedDataTypes.Wrapping wrapping)
+        public bool InsertWrapping(SharedDataTypes.Wrapping w)
         {
-            mainDb.Wrapping.Add(new DataBases.Wrapping()
-            {
-                ID_Wrapping = wrapping.WrappingId,
-                Name = wrapping.Name,
-                Price = wrapping.Price,
-                Image = wrapping.Image.ToString()
-            });
+            mainDb.Wrapping.Add(converter.ConvertToDBWrapping(w));
             return mainDb.SaveChanges() == 1;
         }
 
-        public bool InsertIngredient(SharedDataTypes.Ingredient newIngredient)
+        public bool InsertIngredient(SharedDataTypes.Ingredient i)
         {
-            mainDb.Ingredients.Add(converter.ConvertToDBIngredient(newIngredient));
-            return mainDb.SaveChanges() > 0;
+            mainDb.Ingredients.Add(converter.ConvertToDBIngredient(i));
+            return mainDb.SaveChanges() == 1;
         }
+
         #endregion
 
         #region UPDATE METHODS
@@ -253,11 +260,15 @@ namespace DataManagement
             return mainDb.SaveChanges() == 1;
         }
 
-        public bool ChangeStateOfAnOrder(Guid orderId, SharedDataTypes.OrderStatus status)
+        public bool UpdateOrder(SharedDataTypes.Order o)
         {
-            var temp = mainDb.Order.Where(p => p.ID_Order.Equals(orderId)).Select(p => p).First();
+            var temp = mainDb.Order.Where(p => p.ID_Order.Equals(o.OrderId)).Select(p => p).First();
 
-            temp.Status_ID = status.OrderStatusId;
+            temp.DateOfOrder = o.DateOfOrder;
+            temp.DateOfDelivery = o.DateOfDelivery;
+            temp.Status_ID = o.Status.OrderStatusId;
+            temp.Customer_ID = o.Customer.CustomerId;
+            temp.Note = o.Note;
 
             return mainDb.SaveChanges() == 1;
         }
