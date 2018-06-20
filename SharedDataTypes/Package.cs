@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SharedDataTypes
 {
@@ -15,6 +16,16 @@ namespace SharedDataTypes
         public List<Chocolate> Chocolates { get; set; }
         public List<Rating> Ratings { get; set; }
         public DateTime? Modified { get; set; }
+
+        public double AverageRating
+        {
+            get
+            {
+                if (Ratings != null && Ratings.Count > 0)
+                    return Ratings.Select(r => r.Value).Sum() / Ratings.Count;
+                else return -1;
+            }
+        }
 
         public double Price
         {

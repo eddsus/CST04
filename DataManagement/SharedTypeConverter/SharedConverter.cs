@@ -237,6 +237,7 @@ namespace DataManagement.SharedTypeConverter
             return tempRatings;
         }
 
+
         public SharedDataTypes.Shape ConvertToSharedShape(DataBases.Shape s)
         {
             return new SharedDataTypes.Shape
@@ -261,6 +262,30 @@ namespace DataManagement.SharedTypeConverter
         #endregion
 
         #region ToDBObject
+
+
+        public DataBases.Shape ConvertToDBShape(SharedDataTypes.Shape shape)
+        {
+            return new DataBases.Shape
+            {
+                ID_Shape = shape.ShapeId,
+                Name = shape.Name,
+                Image = shape.Image
+            };
+        }
+
+
+        public DataBases.Wrapping ConvertToDBWrapping(SharedDataTypes.Wrapping w)
+        {
+            return new DataBases.Wrapping
+            {
+                ID_Wrapping = w.WrappingId,
+                Name = w.Name,
+                Price = w.Price,
+                Image = w.Image,
+                ModifyDate = DateTime.Now
+            };
+        }
         public DataBases.Ingredients ConvertToDBIngredient(SharedDataTypes.Ingredient i)
         {
             return new DataBases.Ingredients

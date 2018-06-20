@@ -27,14 +27,19 @@ namespace AppHandler
             return mainDh.QueryRatings();
         }
 
-        public bool ChangeStateOfAnOrder(Guid orderId, SharedDataTypes.OrderStatus status)
+        public bool UpdateOrder(SharedDataTypes.Order o)
         {
-            return mainDh.ChangeStateOfAnOrder(orderId, status);
+            return mainDh.UpdateOrder(o);
         }
 
         public List<OrderContentChocolate> QueryOrdersContentChocolate(string orderId)
         {
             return mainDh.QueryOrdersContentChocolate(orderId);
+        }
+
+        public bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc)
+        {
+            return mainDh.DeleteOrderContentByContentId(oc);
         }
 
         public List<OrderContentPackage> QueryOrdersContentPackage(string orderId)
