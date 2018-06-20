@@ -73,15 +73,15 @@ namespace DataManagement.SharedTypeConverter
         internal List<SharedDataTypes.OrderContentChocolate> ConvertOrdersContentChocolate(List<DataBases.OrderContent> dbOrderContent)
         {
             List<SharedDataTypes.OrderContentChocolate> tempSharedOrderContent = new List<SharedDataTypes.OrderContentChocolate>();
-            if (dbOrderContent.Select(o => o.OrderContent_has_Chocolate).ToList().Count > 0)
+            foreach (var item in dbOrderContent)
             {
-                var t1 = dbOrderContent.Select(oc => new OrderContentChocolate()
-                {
-                    OrderContentId = oc.ID_OrderContent,
-                    Chocolate = ConvertToSharedChocolate(oc.OrderContent_has_Chocolate.First().Chocolate),
-                    Amount = oc.OrderContent_has_Chocolate.First().Amount
-                }).ToList();
-                tempSharedOrderContent.AddRange(t1);
+                if (item.OrderContent_has_Chocolate.Count > 0)
+                    tempSharedOrderContent.Add(new OrderContentChocolate()
+                    {
+                        OrderContentId = item.ID_OrderContent,
+                        Chocolate = ConvertToSharedChocolate(item.OrderContent_has_Chocolate.First().Chocolate),
+                        Amount = item.OrderContent_has_Chocolate.First().Amount
+                    });
             }
             return tempSharedOrderContent;
         }
@@ -89,13 +89,16 @@ namespace DataManagement.SharedTypeConverter
         internal List<SharedDataTypes.OrderContentPackage> ConvertOrdersContentPackage(List<DataBases.OrderContent> dbOrderContent)
         {
             List<SharedDataTypes.OrderContentPackage> tempSharedOrderContent = new List<SharedDataTypes.OrderContentPackage>();
-            var t2 = dbOrderContent.Select(oc => new OrderContentPackage()
+            foreach (var item in dbOrderContent)
             {
-                OrderContentId = oc.ID_OrderContent,
-                Package = ConvertToSharedPackage(oc.OrderContent_has_Package.First().Package),
-                Amount = oc.OrderContent_has_Chocolate.First().Amount
-            }).ToList();
-            tempSharedOrderContent.AddRange(t2);
+                if (item.OrderContent_has_Package.Count > 0)
+                    tempSharedOrderContent.Add(new OrderContentPackage()
+                    {
+                        OrderContentId = item.ID_OrderContent,
+                        Package = ConvertToSharedPackage(item.OrderContent_has_Package.First().Package),
+                        Amount = item.OrderContent_has_Package.First().Amount
+                    });
+            }
             return tempSharedOrderContent;
         }
 
