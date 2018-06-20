@@ -51,6 +51,7 @@ namespace AppSD
         UriTemplate = "QueryOrdersContentPackage/{orderId}")]
         List<OrderContentPackage> QueryOrdersContentPackage(string orderId);
 
+
         [OperationContract]
         [WebInvoke(Method = "GET",
         ResponseFormat = WebMessageFormat.Json,
@@ -100,6 +101,14 @@ namespace AppSD
            UriTemplate = "QueryIngredientsByChocolateId")]
         List<Ingredient> QueryIngredientsByChocolateId(Guid id);
 
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "DeleteOrderContentByContentId")]
+        bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc);
+
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
@@ -123,12 +132,12 @@ namespace AppSD
         UriTemplate = "UpdateChocolate"),]
         bool UpdateChocolate(Chocolate item);
 
-        //[OperationContract]
-        //[WebInvoke(Method = "POST",
-        //ResponseFormat = WebMessageFormat.Json,
-        //BodyStyle = WebMessageBodyStyle.Bare,
-        //UriTemplate = "ChangeStateOfAnOrder"),]
-        //bool ChangeStateOfAnOrder(Guid orderId, OrderStatus status);
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "UpdateOrder/{order}"),]
+        bool UpdateOrder(SharedDataTypes.Order o);
 
         [OperationContract]
         [WebInvoke(Method = "POST",

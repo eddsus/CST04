@@ -89,14 +89,20 @@ namespace AppSD
             return new AppLogic().UpdateChocolate(item);
         }
 
-        public bool ChangeStateOfAnOrder(Guid orderId, SharedDataTypes.OrderStatus status)
-        {
-            return new AppLogic().ChangeStateOfAnOrder(orderId, status);
-        }
 
         public bool UpdatePackage(Package item)
         {
             return new AppLogic().UpdatePackage(item);
+        }
+
+        public bool UpdateOrder(Order o)
+        {
+            return new AppLogic().UpdateOrder(o);
+        }
+
+        public bool DeleteOrderContentByContentId(OrderContent oc)
+        {
+            return new AppLogic().DeleteOrderContentByContentId(oc);
         }
 
 
