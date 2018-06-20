@@ -99,8 +99,7 @@ namespace DataManagement
 
         public SharedDataTypes.Customer QueryCustomerByPackageId(Guid packageId)
         {
-            //to be checked
-            return converter.ConvertToSharedCustomer(mainDb.Customer.Where(p => p.Rating.Count(x => x.Package_ID.Equals(packageId)) > 0).First());
+            return converter.ConvertToSharedCustomer(mainDb.Package.Where(p => p.ID_Package == packageId).Select(p => p.Customer).First());
         }
 
         public SharedDataTypes.Customer QueryCustomerByCustomerId(Guid customerId)

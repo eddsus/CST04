@@ -73,13 +73,16 @@ namespace DataManagement.SharedTypeConverter
         internal List<SharedDataTypes.OrderContentChocolate> ConvertOrdersContentChocolate(List<DataBases.OrderContent> dbOrderContent)
         {
             List<SharedDataTypes.OrderContentChocolate> tempSharedOrderContent = new List<SharedDataTypes.OrderContentChocolate>();
-            var t1 = dbOrderContent.Select(oc => new OrderContentChocolate()
+            if (dbOrderContent.Select(o => o.OrderContent_has_Chocolate).ToList().Count > 0)
             {
-                OrderContentId = oc.ID_OrderContent,
-                Chocolate = ConvertToSharedChocolate(oc.OrderContent_has_Chocolate.First().Chocolate),
-                Amount = oc.OrderContent_has_Chocolate.First().Amount
-            }).ToList();
-            tempSharedOrderContent.AddRange(t1);
+                var t1 = dbOrderContent.Select(oc => new OrderContentChocolate()
+                {
+                    OrderContentId = oc.ID_OrderContent,
+                    Chocolate = ConvertToSharedChocolate(oc.OrderContent_has_Chocolate.First().Chocolate),
+                    Amount = oc.OrderContent_has_Chocolate.First().Amount
+                }).ToList();
+                tempSharedOrderContent.AddRange(t1);
+            }
             return tempSharedOrderContent;
         }
 
