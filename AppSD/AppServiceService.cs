@@ -79,6 +79,8 @@ namespace AppSD
         #endregion
 
         #region UPDATE METHODS
+
+
         public bool UpdateIngredient(Ingredient item)
         {
             return new AppLogic().UpdateIngredient(item);
@@ -103,6 +105,11 @@ namespace AppSD
         public bool DeleteOrderContentByContentId(OrderContent oc)
         {
             return new AppLogic().DeleteOrderContentByContentId(oc);
+        }
+
+        public bool UpdateRating(Rating r)
+        {
+            return new AppLogic().UpdateRating(r);
         }
 
 

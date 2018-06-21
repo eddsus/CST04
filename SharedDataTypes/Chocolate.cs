@@ -18,12 +18,15 @@ namespace SharedDataTypes
         public List<Rating> Ratings { get; set; }
         public DateTime? Modified { get; set; }
         public Customer CreatedBy { get; set; }
+
+        public int AmountInPackage { get; set; }
         public double AverageRating
         {
             get
             {
                 if (Ratings != null && Ratings.Count > 0)
                     return Ratings.Select(r => r.Value).Sum() / Ratings.Count;
+                
                 else return -1;
             }
         }

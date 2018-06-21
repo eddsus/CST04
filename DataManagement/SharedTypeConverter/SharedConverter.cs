@@ -34,7 +34,7 @@ namespace DataManagement.SharedTypeConverter
                     Description = choco.Description,
                     Shape = ConvertToSharedShape(choco.Shape),
                     Image = choco.Image,
-                    Ingredients = ConvertToSharedIngredientList(choco.Ingredients),
+                    Ingredients = ConvertToSharedIngredientList(choco.Chocolate_has_Ingridients.Select(p => p.Ingredients).ToList()),
                     Available = choco.Available,
                     CustomStyle = ConvertToSharedCustomStyle(choco.CustomStyle),
                     Wrapping = ConvertToSharedWrapping(choco.Wrapping),
@@ -109,7 +109,7 @@ namespace DataManagement.SharedTypeConverter
                 CustomerId = c.ID_Customer,
                 FirstName = c.FirstName,
                 LastName = c.LastName,
-                Address = ConvertToSharedAddress(c.Address.First()),
+                Address = ConvertToSharedAddress(c.Customer_has_Address.Select(a => a.Address).First()),
                 Mail = c.Mail,
                 PhoneNumber = c.PhoneNumber
             };
