@@ -18,6 +18,8 @@ namespace SharedDataTypes
         public List<Rating> Ratings { get; set; }
         public DateTime? Modified { get; set; }
         public Customer CreatedBy { get; set; }
+
+        public int AmountInPackage { get; set; }
         public double AverageRating
         {
             get
