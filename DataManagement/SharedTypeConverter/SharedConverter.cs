@@ -38,7 +38,7 @@ namespace DataManagement.SharedTypeConverter
                     CustomStyle = ConvertToSharedCustomStyle(choco.CustomStyle),
                     Wrapping = ConvertToSharedWrapping(choco.Wrapping),
                     Modified = choco.ModifyDate,
-                    //Ratings = ConvertToSharedRatings(choco.Rating), No ratings => Leads to stack overflow
+                    //Ratings = ConvertToSharedRatings(choco.Rating),
                     CreatedBy = ConvertToSharedCustomer(choco.Customer)
                 };
             }
@@ -166,28 +166,18 @@ namespace DataManagement.SharedTypeConverter
                     Name = p.Name,
                     Description = p.Descripton,
                     Image = p.Image,
-                    Customer = ConvertToSharedCustomer(p.Customer),
+                    Customer = new SharedDataTypes.Customer(),
                     Modified = p.ModifyDate,
-                    //Ratings = new List<SharedDataTypes.Rating>(),
+                    Ratings = new List<SharedDataTypes.Rating>(),
                     Wrapping = ConvertToSharedWrapping(p.Wrapping1),
                     Available = p.Availability,
-                    Chocolates = ConvertToSharedChocolateList(p.Package_has_Chocolate.Select(c => c).ToList())
+                    Chocolates = new List<SharedDataTypes.Chocolate>()
                 };
             }
             else
             {
                 return null;
             }
-        }
-
-        private List<SharedDataTypes.Chocolate> ConvertToSharedChocolateList(List<Package_has_Chocolate> list)
-        {
-            var temp = new List<SharedDataTypes.Chocolate>();
-            foreach (var item in list)
-            {
-                temp.Add(ConvertToSharedChocolate(item.Chocolate));
-            }
-            return temp;
         }
 
         public List<SharedDataTypes.Rating> ConvertToSharedRatings(ICollection<DataBases.Rating> r)

@@ -363,18 +363,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Package_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="Package" Type="Self.Package" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID_Customer" />
-            </Principal>
-            <Dependent Role="Package">
-              <PropertyRef Name="Customer_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Package_has_Chocolate_Chocolate">
           <End Role="Chocolate" Type="Self.Chocolate" Multiplicity="1" />
           <End Role="Package_has_Chocolate" Type="Self.Package_has_Chocolate" Multiplicity="*" />
@@ -526,10 +514,6 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderContent" EntitySet="OrderContent" />
           </AssociationSet>
-          <AssociationSet Name="FK_Package_Customer" Association="Self.FK_Package_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Package" EntitySet="Package" />
-          </AssociationSet>
           <AssociationSet Name="FK_Package_has_Chocolate_Chocolate" Association="Self.FK_Package_has_Chocolate_Chocolate">
             <End Role="Chocolate" EntitySet="Chocolate" />
             <End Role="Package_has_Chocolate" EntitySet="Package_has_Chocolate" />
@@ -606,7 +590,6 @@
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
           <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Customer" FromRole="Customer" ToRole="Rating" />
           <NavigationProperty Name="Address" Relationship="Self.Customer_has_Address" FromRole="Customer" ToRole="Address" />
-          <NavigationProperty Name="Package" Relationship="ChocolateCustomizerModel.FK_Package_Customer" FromRole="Customer" ToRole="Package" />
         </EntityType>
         <EntityType Name="CustomStyle">
           <Key>
@@ -702,7 +685,6 @@
           <NavigationProperty Name="Package_has_Chocolate" Relationship="Self.FK_Package_has_Chocolate_Package" FromRole="Package" ToRole="Package_has_Chocolate" />
           <NavigationProperty Name="Wrapping1" Relationship="Self.FK_Package_Wrapping" FromRole="Package" ToRole="Wrapping" />
           <NavigationProperty Name="Rating" Relationship="Self.FK_Rating_Package" FromRole="Package" ToRole="Rating" />
-          <NavigationProperty Name="Customer" Relationship="ChocolateCustomizerModel.FK_Package_Customer" FromRole="Package" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Package_has_Chocolate">
           <Key>
@@ -1066,23 +1048,7 @@
             <End Role="Address" EntitySet="Address" />
             <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
-          <AssociationSet Name="FK_Package_Customer" Association="ChocolateCustomizerModel.FK_Package_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Package" EntitySet="Package" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Package_Customer">
-          <End Type="ChocolateCustomizerModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="ChocolateCustomizerModel.Package" Role="Package" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="ID_Customer" />
-            </Principal>
-            <Dependent Role="Package">
-              <PropertyRef Name="Customer_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

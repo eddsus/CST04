@@ -39,6 +39,5 @@ namespace DataManagement.DataBases
         public virtual Wrapping Wrapping1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Rating { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }
