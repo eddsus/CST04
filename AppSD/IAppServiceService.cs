@@ -136,7 +136,7 @@ namespace AppSD
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
-        UriTemplate = "UpdateOrder/{order}"),]
+        UriTemplate = "UpdateOrder"),]
         bool UpdateOrder(SharedDataTypes.Order o);
 
         [OperationContract]
