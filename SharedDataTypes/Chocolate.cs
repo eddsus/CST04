@@ -34,7 +34,7 @@ namespace SharedDataTypes
                 double tempPrice = 0;
                 foreach (var item in Ingredients)
                 {
-                    tempPrice += item.Price;
+                    tempPrice += item.Price; 
                 }
                 return tempPrice + Wrapping.Price + 3;
             }
