@@ -57,7 +57,13 @@
     <Compile Include="DataBases\Chocolate.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataBases\Chocolate_has_Ingridients.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataBases\Customer.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataBases\Customer_has_Address.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DataBases\CustomStyle.cs">

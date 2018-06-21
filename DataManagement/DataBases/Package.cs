@@ -32,6 +32,7 @@ namespace DataManagement.DataBases
         public System.DateTime ModifyDate { get; set; }
         public System.Guid WrappingID { get; set; }
     
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderContent_has_Package> OrderContent_has_Package { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,6 +40,5 @@ namespace DataManagement.DataBases
         public virtual Wrapping Wrapping1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rating> Rating { get; set; }
-        public virtual Customer Customer { get; set; }
     }
 }
