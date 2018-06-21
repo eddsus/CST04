@@ -208,6 +208,31 @@ namespace DataManagement
         #endregion
 
         #region INSERT METHODS
+
+        public bool InsertChocolate(SharedDataTypes.Chocolate c)
+        {
+            mainDb.Chocolate.Add(converter.ConvertToDBChoco(c));
+            int cnt = 1;
+            //foreach (var item in c.Ingredients)
+            //{
+            //    cnt++;
+            //    mainDb.Chocolate_has_Ingredients.Add(converter.ConvertToDBChocolateHasIngredients());
+            //}
+            return mainDb.SaveChanges() == cnt;
+        }
+
+        public bool InsertPackage(SharedDataTypes.Package p)
+        {
+            mainDb.Package.Add(converter.ConvertToDBPackage(p));
+            int cnt = 1;
+            foreach (var item in p.Chocolates)
+            {
+                cnt++;
+                mainDb.Package_has_Chocolate.Add(converter.ConvertToDBPackageHasChoco(item.ChocolateId, p.PackageId));
+            }
+            return mainDb.SaveChanges() == cnt;
+        }
+
         public bool InsertShape(SharedDataTypes.Shape s)
         {
             mainDb.Shape.Add(converter.ConvertToDBShape(s));

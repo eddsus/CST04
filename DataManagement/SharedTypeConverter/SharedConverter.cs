@@ -237,7 +237,6 @@ namespace DataManagement.SharedTypeConverter
             return tempRatings;
         }
 
-
         public SharedDataTypes.Shape ConvertToSharedShape(DataBases.Shape s)
         {
             return new SharedDataTypes.Shape
@@ -262,7 +261,14 @@ namespace DataManagement.SharedTypeConverter
         #endregion
 
         #region ToDBObject
-
+        internal Package_has_Chocolate ConvertToDBPackageHasChoco(Guid chocoId,Guid packageId)
+        {
+            return new Package_has_Chocolate {
+                Chocolate_ID=chocoId,
+                Package_ID=packageId,
+                ModifyDate=DateTime.Now
+            };
+        }
 
         public DataBases.Shape ConvertToDBShape(SharedDataTypes.Shape shape)
         {
