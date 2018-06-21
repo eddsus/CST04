@@ -54,7 +54,6 @@ namespace DataManagement
                 sharedChocolates.Add(converter.ConvertToSharedChocolate(choco));
             }
 
-
             foreach (var tempChoco in sharedChocolates)
             {
                 tempChoco.Ingredients = QueryIngredientsByChocolateId(tempChoco.ChocolateId);

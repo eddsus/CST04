@@ -32,9 +32,9 @@ namespace AppSD
         #region QUERIES
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "QueryOrders")]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryOrders")]
         List<Order> QueryOrders();
 
         [OperationContract]
@@ -61,9 +61,9 @@ namespace AppSD
 
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "QueryIngredients")]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryIngredients")]
         List<Ingredient> QueryIngredients();
 
         [OperationContract]
@@ -75,30 +75,30 @@ namespace AppSD
 
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "QueryShapes")]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryShapes")]
         List<Shape> QueryShapes();
 
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "QueryWrappings")]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryWrappings")]
         List<Wrapping> QueryWrappings();
 
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "QueryOrderStates")]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryOrderStates")]
         List<OrderStatus> QueryOrderStates();
 
         [OperationContract]
         [WebInvoke(Method = "POST",
-         ResponseFormat = WebMessageFormat.Json,
-           BodyStyle = WebMessageBodyStyle.Bare,
-           UriTemplate = "QueryIngredientsByChocolateId")]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryIngredientsByChocolateId")]
         List<Ingredient> QueryIngredientsByChocolateId(Guid id);
 
 
@@ -111,18 +111,18 @@ namespace AppSD
 
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "QueryChocolatesWithIngredients")]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryChocolatesWithIngredients")]
         List<Chocolate> QueryChocolatesWithIngredients();
         #endregion
 
         #region UPDATE METHODS
         [OperationContract]
         [WebInvoke(Method = "POST",
-            ResponseFormat = WebMessageFormat.Json,
-            BodyStyle = WebMessageBodyStyle.Bare,
-            UriTemplate = "UpdateIngredient"),]
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "UpdateIngredient"),]
         bool UpdateIngredient(Ingredient item);
 
         [OperationContract]
