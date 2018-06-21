@@ -153,7 +153,7 @@ namespace DataManagement
         {
             List<SharedDataTypes.Ingredient> tempIngredients = new List<SharedDataTypes.Ingredient>();
 
-            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolate.Count(x => x.ID_Chocolate.Equals(chocoId)) > 0).ToList())
+            foreach (var item in mainDb.Ingredients.Where(p => p.Chocolate_has_Ingridients.Count(x => x.Chocolazte_ID.Equals(chocoId)) > 0).ToList())
             {
                 tempIngredients.Add(converter.ConvertToSharedIngredient(item));
             }

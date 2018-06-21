@@ -121,6 +121,7 @@ namespace AppSD
         [OperationContract]
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "UpdateIngredient"),]
         bool UpdateIngredient(Ingredient item);
