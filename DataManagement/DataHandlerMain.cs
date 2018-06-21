@@ -185,25 +185,46 @@ namespace DataManagement
 
         #region DELETE METHODS
 
-        public bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc)
-        {
+        //public bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc)
+        //{
 
-            if (oc is OrderContentChocolate)
+        //    if (oc is OrderContentChocolate)
+        //    {
+        //        OrderContent_has_Chocolate temp = mainDb.OrderContent_has_Chocolate.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+        //        mainDb.OrderContent_has_Chocolate.Remove(temp);
+        //    }
+        //    else
+        //    {
+        //        OrderContent_has_Package temp1 = mainDb.OrderContent_has_Package.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+        //        mainDb.OrderContent_has_Package.Remove(temp1);
+        //    }
+
+        //    DataBases.OrderContent temp2 = mainDb.OrderContent.Where(p => p.ID_OrderContent.Equals(oc.OrderContentId)).Select(p => p).First();
+        //    mainDb.OrderContent.Remove(temp2);
+
+        //    return mainDb.SaveChanges() == 2;
+        //}
+
+        public bool DeleteOrderContentByContentId(string ocId, int type)
+        {
+            if (type == 0)
             {
-                OrderContent_has_Chocolate temp = mainDb.OrderContent_has_Chocolate.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+                DataBases.OrderContent_has_Chocolate temp = mainDb.OrderContent_has_Chocolate.Where(p => p.OrderContent_ID.Equals(ocId)).Select(p => p).First();
                 mainDb.OrderContent_has_Chocolate.Remove(temp);
             }
             else
             {
-                OrderContent_has_Package temp1 = mainDb.OrderContent_has_Package.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+                DataBases.OrderContent_has_Package temp1 = mainDb.OrderContent_has_Package.Where(p => p.OrderContent_ID.Equals(ocId)).Select(p => p).First();
                 mainDb.OrderContent_has_Package.Remove(temp1);
             }
 
-            DataBases.OrderContent temp2 = mainDb.OrderContent.Where(p => p.ID_OrderContent.Equals(oc.OrderContentId)).Select(p => p).First();
+            DataBases.OrderContent temp2 = mainDb.OrderContent.Where(p => p.ID_OrderContent.Equals(ocId)).Select(p => p).First();
+
             mainDb.OrderContent.Remove(temp2);
 
             return mainDb.SaveChanges() == 2;
         }
+
 
         #endregion
 
