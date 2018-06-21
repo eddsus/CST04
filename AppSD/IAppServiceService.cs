@@ -143,6 +143,13 @@ namespace AppSD
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "UpdateRating"),]
+        bool UpdateRating(SharedDataTypes.Rating r);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "UpdatePackage"),]
         bool UpdatePackage(Package item);
         #endregion

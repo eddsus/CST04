@@ -170,15 +170,15 @@ namespace DataManagement
             return tempSharedOrderStates;
         }
 
-        public List<SharedDataTypes.Rating> QueryRatingsByPackageId(Guid PackageId)
-        {
-            return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Package_ID.Equals(PackageId)).Select(p => p).ToList());
-        }
+        //public List<SharedDataTypes.Rating> QueryRatingsByPackageId(Guid PackageId)
+        //{
+        //    return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Package_ID.Equals(PackageId)).Select(p => p).ToList());
+        //}
 
-        public List<SharedDataTypes.Rating> QueryRatingsByChocoId(Guid ChocoId)
-        {
-            return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Chocolate_ID.Equals(ChocoId)).Select(p => p).ToList());
-        }
+        //public List<SharedDataTypes.Rating> QueryRatingsByChocoId(Guid ChocoId)
+        //{
+        //    return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Chocolate_ID.Equals(ChocoId)).Select(p => p).ToList());
+        //}
 
 
         #endregion
@@ -204,7 +204,6 @@ namespace DataManagement
 
             return mainDb.SaveChanges() == 2;
         }
-        //delete order content by order no.
 
         #endregion
 
@@ -230,6 +229,21 @@ namespace DataManagement
         #endregion
 
         #region UPDATE METHODS
+        public bool UpdateRating(SharedDataTypes.Rating r)
+        {
+            var temp = mainDb.Rating.Where(p => p.ID_Rating.Equals(r.RatingId)).Select(p => p).First();
+
+            temp.Value = r.Value;
+            temp.Date = r.Date;
+            temp.Package_ID = r.Package.PackageId;
+            temp.Chocolate_ID = r.Chocolate.ChocolateId;
+            temp.Customer_ID = r.Customer.CustomerId;
+            temp.Comment = r.Comment;
+            temp.Published = r.Published;
+
+            return mainDb.SaveChanges() == 1;
+        }
+
         public bool UpdateIngredient(SharedDataTypes.Ingredient i)
         {
             var temp = mainDb.Ingredients.Where(p => p.ID_Ingredients == i.IngredientId).Select(j => j).First();
