@@ -18,6 +18,11 @@ namespace DataManagement
 
         #region GiveMeAll Queries
 
+        public List<SharedDataTypes.Rating> QueryRatings()
+        {
+            return converter.ConvertToSharedRatings(mainDb.Rating.Select(p => p).ToList());
+        }
+
         public List<SharedDataTypes.Order> QueryOrders()
         {
             List<SharedDataTypes.Order> tempSharedOrders = new List<SharedDataTypes.Order>();
@@ -49,14 +54,12 @@ namespace DataManagement
                 sharedChocolates.Add(converter.ConvertToSharedChocolate(choco));
             }
 
-
             foreach (var tempChoco in sharedChocolates)
             {
                 tempChoco.Ingredients = QueryIngredientsByChocolateId(tempChoco.ChocolateId);
             }
             return sharedChocolates;
         }
-
 
         public List<SharedDataTypes.Chocolate> QueryChocolatesWithIngredientsByPackageId(Guid packageId)
         {
@@ -95,8 +98,7 @@ namespace DataManagement
 
         public SharedDataTypes.Customer QueryCustomerByPackageId(Guid packageId)
         {
-            //to be checked
-            return converter.ConvertToSharedCustomer(mainDb.Customer.Where(p => p.Rating.Count(x => x.Package_ID.Equals(packageId)) > 0).First());
+            return converter.ConvertToSharedCustomer(mainDb.Package.Where(p => p.ID_Package == packageId).Select(p => p.Customer).First());
         }
 
         public SharedDataTypes.Customer QueryCustomerByCustomerId(Guid customerId)
@@ -168,65 +170,136 @@ namespace DataManagement
             return tempSharedOrderStates;
         }
 
+        //public List<SharedDataTypes.Rating> QueryRatingsByPackageId(Guid PackageId)
+        //{
+        //    return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Package_ID.Equals(PackageId)).Select(p => p).ToList());
+        //}
 
-        public List<SharedDataTypes.Rating> QueryRatingsByPackageId(Guid PackageId)
-        {
-            return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Package_ID.Equals(PackageId)).Select(p => p).ToList());
-        }
-
-        public List<SharedDataTypes.Rating> QueryRatingsByChocoId(Guid ChocoId)
-        {
-            return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Chocolate_ID.Equals(ChocoId)).Select(p => p).ToList());
-        }
+        //public List<SharedDataTypes.Rating> QueryRatingsByChocoId(Guid ChocoId)
+        //{
+        //    return converter.ConvertToSharedRatings(mainDb.Rating.Where(p => p.Chocolate_ID.Equals(ChocoId)).Select(p => p).ToList());
+        //}
 
 
         #endregion
 
+        #region DELETE METHODS
+
+        public bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc)
+        {
+
+            if (oc is OrderContentChocolate)
+            {
+                OrderContent_has_Chocolate temp = mainDb.OrderContent_has_Chocolate.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+                mainDb.OrderContent_has_Chocolate.Remove(temp);
+            }
+            else
+            {
+                OrderContent_has_Package temp1 = mainDb.OrderContent_has_Package.Where(p => p.OrderContent_ID.Equals(oc.OrderContentId)).Select(p => p).First();
+                mainDb.OrderContent_has_Package.Remove(temp1);
+            }
+
+            DataBases.OrderContent temp2 = mainDb.OrderContent.Where(p => p.ID_OrderContent.Equals(oc.OrderContentId)).Select(p => p).First();
+            mainDb.OrderContent.Remove(temp2);
+
+            return mainDb.SaveChanges() == 2;
+        }
+
+        #endregion
 
         #region INSERT METHODS
-        public bool InsertShape(SharedDataTypes.Shape shape)
+        public bool InsertShape(SharedDataTypes.Shape s)
         {
-            mainDb.Shape.Add(new DataBases.Shape()
-            {
-                ID_Shape = shape.ShapeId,
-                Name = shape.Name,
-                Image = shape.Image.ToString()
-            });
-
+            mainDb.Shape.Add(converter.ConvertToDBShape(s));
             return mainDb.SaveChanges() == 1;
         }
 
-        public bool InsertWrapping(SharedDataTypes.Wrapping wrapping)
+        public bool InsertWrapping(SharedDataTypes.Wrapping w)
         {
-            mainDb.Wrapping.Add(new DataBases.Wrapping()
-            {
-                ID_Wrapping = wrapping.WrappingId,
-                Name = wrapping.Name,
-                Price = wrapping.Price,
-                Image = wrapping.Image.ToString()
-            });
+            mainDb.Wrapping.Add(converter.ConvertToDBWrapping(w));
             return mainDb.SaveChanges() == 1;
         }
 
-        public bool InsertIngredient(SharedDataTypes.Ingredient newIngredient)
+        public bool InsertIngredient(SharedDataTypes.Ingredient i)
         {
-            mainDb.Ingredients.Add(converter.ConvertToDBIngredient(newIngredient));
-            return mainDb.SaveChanges() > 0;
+            mainDb.Ingredients.Add(converter.ConvertToDBIngredient(i));
+            return mainDb.SaveChanges() == 1;
         }
+
         #endregion
 
         #region UPDATE METHODS
-        public bool UpdateIngredient(SharedDataTypes.Ingredient item)
+        public bool UpdateRating(SharedDataTypes.Rating r)
         {
-            var temp = mainDb.Ingredients.Where(i => i.ID_Ingredients == item.IngredientId).Select(j => j).First();
-            temp.Name = item.Name;
-            temp.Description = item.Description;
-            temp.Price = item.Price;
-            temp.Availability = item.Available;
-            temp.Type = item.Type;
-            temp.UnitType = item.UnitType;
+            var temp = mainDb.Rating.Where(p => p.ID_Rating.Equals(r.RatingId)).Select(p => p).First();
+
+            temp.Value = r.Value;
+            temp.Date = r.Date;
+            temp.Package_ID = r.Package.PackageId;
+            temp.Chocolate_ID = r.Chocolate.ChocolateId;
+            temp.Customer_ID = r.Customer.CustomerId;
+            temp.Comment = r.Comment;
+            temp.Published = r.Published;
+
+            return mainDb.SaveChanges() == 1;
+        }
+
+        public bool UpdateIngredient(SharedDataTypes.Ingredient i)
+        {
+            var temp = mainDb.Ingredients.Where(p => p.ID_Ingredients == i.IngredientId).Select(j => j).First();
+
+            temp.Name = i.Name;
+            temp.Description = i.Description;
+            temp.Price = i.Price;
+            temp.Availability = i.Available;
+            temp.Type = i.Type;
+            temp.UnitType = i.UnitType;
             temp.ModifyDate = DateTime.Now;
-            return mainDb.SaveChanges() > 0;
+            return mainDb.SaveChanges() == 1;
+        }
+
+        public bool UpdateChocolate(SharedDataTypes.Chocolate c)
+        {
+            var temp = mainDb.Chocolate.Where(p => p.ID_Chocolate.Equals(c.ChocolateId)).Select(p => p).First();
+
+            temp.Name = c.Name;
+            temp.Description = c.Description;
+            temp.Available = c.Available;
+            temp.Image = c.Image;
+            temp.WrappingID = c.Wrapping.WrappingId;
+            temp.Shape_ID = c.Shape.ShapeId;
+            temp.ModifyDate = DateTime.Now;
+
+            return mainDb.SaveChanges() == 1;
+        }
+
+        public bool UpdateOrder(SharedDataTypes.Order o)
+        {
+            var temp = mainDb.Order.Where(p => p.ID_Order.Equals(o.OrderId)).Select(p => p).First();
+
+            temp.DateOfOrder = o.DateOfOrder;
+            temp.DateOfDelivery = o.DateOfDelivery;
+            temp.Status_ID = o.Status.OrderStatusId;
+            temp.Customer_ID = o.Customer.CustomerId;
+            temp.Note = o.Note;
+
+            return mainDb.SaveChanges() == 1;
+        }
+
+        public bool UpdatePackage(SharedDataTypes.Package p)
+        {
+            var temp = mainDb.Package.Where(q => q.ID_Package.Equals(q.ID_Package)).Select(q => q).First();
+
+            temp.Name = p.Name;
+            temp.Descripton = p.Description;
+            temp.WrappingID = p.Wrapping.WrappingId;
+            temp.Availability = p.Available;
+            temp.Customer_ID = p.Customer.CustomerId;
+            temp.Wrapping = p.Wrapping.Name;
+            temp.Image = p.Image;
+            temp.ModifyDate = DateTime.Now;
+
+            return mainDb.SaveChanges() == 1;
         }
         #endregion
     }

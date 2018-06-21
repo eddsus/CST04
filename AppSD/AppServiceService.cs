@@ -14,7 +14,7 @@ namespace AppSD
     {
         public string REST_Tester(string id, string name)
         {
-            return id + " Name: "+ name + " Motherfucker!";
+            return id + " Name: " + name + " Motherfucker!";
         }
 
         public bool IsAlive()
@@ -53,27 +53,65 @@ namespace AppSD
             return new AppLogic().QueryWrappings();
         }
 
-
         public List<OrderStatus> QueryOrderStates()
         {
-           return new AppLogic().QueryOrderStates();
+            return new AppLogic().QueryOrderStates();
         }
         public List<Chocolate> QueryChocolatesWithIngredients()
         {
-           return new AppLogic().QueryChocolatesWithIngredients();
+            return new AppLogic().QueryChocolatesWithIngredients();
         }
 
         public List<Ingredient> QueryIngredientsByChocolateId(Guid id)
         {
             return new AppLogic().QueryIngredientsByChocolateId(id);
         }
+        public List<Rating> QueryRatings()
+        {
+            return new AppLogic().QueryRatings();
+        }
+
+        public List<Package> QueryPackagesWithChocolatesAndIngredients()
+        {
+            return new AppLogic().QueryPackagesWithChocolatesAndIngredients();
+        }
+
         #endregion
 
         #region UPDATE METHODS
+
+
         public bool UpdateIngredient(Ingredient item)
         {
             return new AppLogic().UpdateIngredient(item);
         }
+
+        public bool UpdateChocolate(Chocolate item)
+        {
+            return new AppLogic().UpdateChocolate(item);
+        }
+
+
+        public bool UpdatePackage(Package item)
+        {
+            return new AppLogic().UpdatePackage(item);
+        }
+
+        public bool UpdateOrder(Order o)
+        {
+            return new AppLogic().UpdateOrder(o);
+        }
+
+        public bool DeleteOrderContentByContentId(OrderContent oc)
+        {
+            return new AppLogic().DeleteOrderContentByContentId(oc);
+        }
+
+        public bool UpdateRating(Rating r)
+        {
+            return new AppLogic().UpdateRating(r);
+        }
+
 
         #endregion
 

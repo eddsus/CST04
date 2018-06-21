@@ -17,8 +17,34 @@ namespace AppHandler
             return mainDh.QueryOrders();
         }
 
-        public List<OrderContentChocolate> QueryOrdersContentChocolate(string orderId) {
+        public bool UpdateRating(SharedDataTypes.Rating r)
+        {
+            return mainDh.UpdateRating(r);
+        }
+
+        public List<SharedDataTypes.Package> QueryPackagesWithChocolatesAndIngredients()
+        {
+            return mainDh.QueryPackagesWithChocolatesAndIngredients();
+        }
+
+        public List<SharedDataTypes.Rating> QueryRatings()
+        {
+            return mainDh.QueryRatings();
+        }
+
+        public bool UpdateOrder(SharedDataTypes.Order o)
+        {
+            return mainDh.UpdateOrder(o);
+        }
+
+        public List<OrderContentChocolate> QueryOrdersContentChocolate(string orderId)
+        {
             return mainDh.QueryOrdersContentChocolate(orderId);
+        }
+
+        public bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc)
+        {
+            return mainDh.DeleteOrderContentByContentId(oc);
         }
 
         public List<OrderContentPackage> QueryOrdersContentPackage(string orderId)
@@ -56,7 +82,15 @@ namespace AppHandler
 
         }
 
+        public bool UpdateChocolate(Chocolate c)
+        {
+            return mainDh.UpdateChocolate(c);
+        }
 
+        public bool UpdatePackage(Package p)
+        {
+            return mainDh.UpdatePackage(p);
+        }
 
         public bool UpdateIngredient(Ingredient item)
         {

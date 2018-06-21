@@ -10,6 +10,7 @@ namespace DataManagement.SharedTypeConverter
 {
     public class SharedConverter
     {
+        #region toSharedObject
         public SharedDataTypes.Address ConvertToSharedAddress(DataBases.Address a)
         {
             return new SharedDataTypes.Address()
@@ -38,7 +39,7 @@ namespace DataManagement.SharedTypeConverter
                     CustomStyle = ConvertToSharedCustomStyle(choco.CustomStyle),
                     Wrapping = ConvertToSharedWrapping(choco.Wrapping),
                     Modified = choco.ModifyDate,
-                    //Ratings = ConvertToSharedRatings(choco.Rating),
+                    Ratings = ConvertToSharedRatings(choco.Rating),
                     CreatedBy = ConvertToSharedCustomer(choco.Customer)
                 };
             }
@@ -72,26 +73,32 @@ namespace DataManagement.SharedTypeConverter
         internal List<SharedDataTypes.OrderContentChocolate> ConvertOrdersContentChocolate(List<DataBases.OrderContent> dbOrderContent)
         {
             List<SharedDataTypes.OrderContentChocolate> tempSharedOrderContent = new List<SharedDataTypes.OrderContentChocolate>();
-            var t1 = dbOrderContent.Select(oc => new OrderContentChocolate()
+            foreach (var item in dbOrderContent)
             {
-                OrderContentId = oc.ID_OrderContent,
-                Chocolate = ConvertToSharedChocolate(oc.OrderContent_has_Chocolate.First().Chocolate),
-                Amount = oc.OrderContent_has_Chocolate.First().Amount
-            }).ToList();
-            tempSharedOrderContent.AddRange(t1);
+                if (item.OrderContent_has_Chocolate.Count > 0)
+                    tempSharedOrderContent.Add(new OrderContentChocolate()
+                    {
+                        OrderContentId = item.ID_OrderContent,
+                        Chocolate = ConvertToSharedChocolate(item.OrderContent_has_Chocolate.First().Chocolate),
+                        Amount = item.OrderContent_has_Chocolate.First().Amount
+                    });
+            }
             return tempSharedOrderContent;
         }
 
         internal List<SharedDataTypes.OrderContentPackage> ConvertOrdersContentPackage(List<DataBases.OrderContent> dbOrderContent)
         {
             List<SharedDataTypes.OrderContentPackage> tempSharedOrderContent = new List<SharedDataTypes.OrderContentPackage>();
-            var t2 = dbOrderContent.Select(oc => new OrderContentPackage()
+            foreach (var item in dbOrderContent)
             {
-                OrderContentId = oc.ID_OrderContent,
-                Package = ConvertToSharedPackage(oc.OrderContent_has_Package.First().Package),
-                Amount = oc.OrderContent_has_Chocolate.First().Amount
-            }).ToList();
-            tempSharedOrderContent.AddRange(t2);
+                if (item.OrderContent_has_Package.Count > 0)
+                    tempSharedOrderContent.Add(new OrderContentPackage()
+                    {
+                        OrderContentId = item.ID_OrderContent,
+                        Package = ConvertToSharedPackage(item.OrderContent_has_Package.First().Package),
+                        Amount = item.OrderContent_has_Package.First().Amount
+                    });
+            }
             return tempSharedOrderContent;
         }
 
@@ -166,12 +173,12 @@ namespace DataManagement.SharedTypeConverter
                     Name = p.Name,
                     Description = p.Descripton,
                     Image = p.Image,
-                    Customer = new SharedDataTypes.Customer(),
+                    Customer = ConvertToSharedCustomer(p.Customer),
                     Modified = p.ModifyDate,
-                    Ratings = new List<SharedDataTypes.Rating>(),
+                    Ratings = ConvertToSharedRatings(p.Rating),
                     Wrapping = ConvertToSharedWrapping(p.Wrapping1),
                     Available = p.Availability,
-                    Chocolates = new List<SharedDataTypes.Chocolate>()
+                    Chocolates = ConvertToSharedChocolateList(p.Package_has_Chocolate.Select(c => c).ToList())
                 };
             }
             else
@@ -180,12 +187,24 @@ namespace DataManagement.SharedTypeConverter
             }
         }
 
+        private List<SharedDataTypes.Chocolate> ConvertToSharedChocolateList(List<Package_has_Chocolate> list)
+        {
+            var temp = new List<SharedDataTypes.Chocolate>();
+            foreach (var item in list)
+            {
+                temp.Add(ConvertToSharedChocolate(item.Chocolate));
+            }
+            return temp;
+        }
+
         public List<SharedDataTypes.Rating> ConvertToSharedRatings(ICollection<DataBases.Rating> r)
         {
+
             List<SharedDataTypes.Rating> tempRatings = new List<SharedDataTypes.Rating>();
 
             foreach (var item in r)
             {
+
                 if (item.Chocolate != null)
                 {
                     tempRatings.Add(new SharedDataTypes.Rating
@@ -193,12 +212,14 @@ namespace DataManagement.SharedTypeConverter
                         RatingId = item.ID_Rating,
                         Value = item.Value,
                         Date = item.Date,
-                        Chocolate = ConvertToSharedChocolate(item.Chocolate),
+                        //Chocolate = ConvertToSharedChocolate(item.Chocolate),
+                        ProductName = item.Chocolate.Name,
                         Comment = item.Comment,
                         Customer = ConvertToSharedCustomer(item.Customer),
                         Published = item.Published
                     });
-                } else if (item.Package != null)
+                }
+                else if (item.Package != null)
                 {
                     tempRatings.Add(new SharedDataTypes.Rating
                     {
@@ -207,13 +228,15 @@ namespace DataManagement.SharedTypeConverter
                         Date = item.Date,
                         Comment = item.Comment,
                         Customer = ConvertToSharedCustomer(item.Customer),
-                        Package = ConvertToSharedPackage(item.Package),
+                        //Package = ConvertToSharedPackage(item.Package),
+                        ProductName = item.Package.Name,
                         Published = item.Published
                     });
                 }
             }
             return tempRatings;
         }
+
 
         public SharedDataTypes.Shape ConvertToSharedShape(DataBases.Shape s)
         {
@@ -236,6 +259,33 @@ namespace DataManagement.SharedTypeConverter
             };
         }
 
+        #endregion
+
+        #region ToDBObject
+
+
+        public DataBases.Shape ConvertToDBShape(SharedDataTypes.Shape shape)
+        {
+            return new DataBases.Shape
+            {
+                ID_Shape = shape.ShapeId,
+                Name = shape.Name,
+                Image = shape.Image
+            };
+        }
+
+
+        public DataBases.Wrapping ConvertToDBWrapping(SharedDataTypes.Wrapping w)
+        {
+            return new DataBases.Wrapping
+            {
+                ID_Wrapping = w.WrappingId,
+                Name = w.Name,
+                Price = w.Price,
+                Image = w.Image,
+                ModifyDate = DateTime.Now
+            };
+        }
         public DataBases.Ingredients ConvertToDBIngredient(SharedDataTypes.Ingredient i)
         {
             return new DataBases.Ingredients
@@ -250,53 +300,37 @@ namespace DataManagement.SharedTypeConverter
                 ModifyDate = i.Modified
             };
         }
-        //public SharedDataTypes.OrderContent ConvertToSharedPackageOrderContentPackage(DataBases.Package p)
-        //{
-        //    return new OrderContentPackage
-        //    {
-        //        OrderContentId = p.ID_Package,
-        //        Package = ConvertToSharedPackage(p),
-        //        Amount = p.OrderContent_has_Package.Select(q => q.Amount).First()
-        //    };
-        //}
-        //public SharedDataTypes.OrderContent ConvertToSharedChocolateOrderContentChocolate(DataBases.Chocolate choco)
-        //{
-        //    return new OrderContentChocolate
-        //    {
-        //        OrderContentId = choco.ID_Chocolate,
-        //        Chocolate = ConvertToSharedChocolate(choco),
-        //        Amount = choco.OrderContent_has_Chocolate.Select(p => p.Amount).First()
-        //    };
-        //}
-        //public DataBases.Chocolate ConvertToDBChoco(SharedDataTypes.Chocolate c)
-        //{
-        //    return new DataBases.Chocolate
-        //    {
-        //        ID_Chocolate = c.ChocolateId,
-        //        Name = c.Name,
-        //        Description = c.Description,
-        //        Available = c.Available,
-        //        Shape_ID = c.Shape.ShapeId,
-        //        CustomStyle_ID = c.CustomStyle.CustomStyleId,
-        //        Image = c.Image,
-        //        Creator_Customer_ID = c.CreatedBy.CustomerId,
-        //        ModifyDate = c.Modified.GetValueOrDefault(),
-        //        WrappingID = c.Wrapping.WrappingId
-        //    };
-        //}
-        //public DataBases.Package ConvertToDBPackage(SharedDataTypes.Package p)
-        //{
-        //    return new DataBases.Package
-        //    {
-        //        ID_Package = p.PackageId,
-        //        Name = p.Name,
-        //        Descripton = p.Description,
-        //        WrappingID = p.Wrapping.WrappingId,
-        //        Availability = p.Available,
-        //        Customer_ID = p.Customer.CustomerId,
-        //        Image = p.Image,
-        //        ModifyDate = p.Modified.GetValueOrDefault(),
-        //    };
-        //}
+
+        public DataBases.Chocolate ConvertToDBChoco(SharedDataTypes.Chocolate c)
+        {
+            return new DataBases.Chocolate
+            {
+                ID_Chocolate = c.ChocolateId,
+                Name = c.Name,
+                Description = c.Description,
+                Available = c.Available,
+                Shape_ID = c.Shape.ShapeId,
+                CustomStyle_ID = c.CustomStyle.CustomStyleId,
+                Image = c.Image,
+                Creator_Customer_ID = c.CreatedBy.CustomerId,
+                ModifyDate = c.Modified.GetValueOrDefault(),
+                WrappingID = c.Wrapping.WrappingId
+            };
+        }
+        public DataBases.Package ConvertToDBPackage(SharedDataTypes.Package p)
+        {
+            return new DataBases.Package
+            {
+                ID_Package = p.PackageId,
+                Name = p.Name,
+                Descripton = p.Description,
+                WrappingID = p.Wrapping.WrappingId,
+                Availability = p.Available,
+                Customer_ID = p.Customer.CustomerId,
+                Image = p.Image,
+                ModifyDate = p.Modified.GetValueOrDefault(),
+            };
+        }
+        #endregion
     }
 }

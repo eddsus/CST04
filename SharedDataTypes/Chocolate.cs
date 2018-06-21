@@ -16,17 +16,32 @@ namespace SharedDataTypes
         public Wrapping Wrapping { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public List<Rating> Ratings { get; set; }
-        public int AverageRating
+        public DateTime? Modified { get; set; }
+        public Customer CreatedBy { get; set; }
+
+        public int AmountInPackage { get; set; }
+        public double AverageRating
         {
             get
             {
                 if (Ratings != null && Ratings.Count > 0)
                     return Ratings.Select(r => r.Value).Sum() / Ratings.Count;
+                
                 else return -1;
             }
         }
-        public DateTime? Modified { get; set; }
-        public Customer CreatedBy { get; set; }
+        public double Price
+        {
+            get
+            {
+                double tempPrice = 0;
+                foreach (var item in Ingredients)
+                {
+                    tempPrice += item.Price;
+                }
+                return tempPrice + Wrapping.Price + 3;
+            }
+        }
 
     }
 }

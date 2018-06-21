@@ -21,6 +21,7 @@ namespace DataManagement.DataBases
             this.Order = new HashSet<Order>();
             this.Rating = new HashSet<Rating>();
             this.Address = new HashSet<Address>();
+            this.Package = new HashSet<Package>();
         }
     
         public System.Guid ID_Customer { get; set; }
@@ -28,6 +29,7 @@ namespace DataManagement.DataBases
         public string LastName { get; set; }
         public string Mail { get; set; }
         public string PhoneNumber { get; set; }
+        public Nullable<System.DateTime> ModifyDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chocolate> Chocolate { get; set; }
@@ -37,5 +39,7 @@ namespace DataManagement.DataBases
         public virtual ICollection<Rating> Rating { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Address { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Package> Package { get; set; }
     }
 }
