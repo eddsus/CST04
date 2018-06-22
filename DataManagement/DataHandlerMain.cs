@@ -205,9 +205,9 @@ namespace DataManagement
         //    return mainDb.SaveChanges() == 2;
         //}
 
-        public bool DeleteOrderContentByContentId(string ocId, int type)
+        public bool DeleteOrderContentByContentId(string ocId, string type)
         {
-            if (type == 0)
+            if (type == "0")
             {
                 DataBases.OrderContent_has_Chocolate temp = mainDb.OrderContent_has_Chocolate.Where(p => p.OrderContent_ID.Equals(ocId)).Select(p => p).First();
                 mainDb.OrderContent_has_Chocolate.Remove(temp);

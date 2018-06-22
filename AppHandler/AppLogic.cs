@@ -41,7 +41,7 @@ namespace AppHandler
         {
             return mainDh.QueryOrdersContentChocolate(orderId);
         }
-        public bool DeleteOrderContentByContentId(string ocId, int type)
+        public bool DeleteOrderContentByContentId(string ocId, string type)
         {
             return mainDh.DeleteOrderContentByContentId(ocId, type);
         }

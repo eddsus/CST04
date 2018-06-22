@@ -107,7 +107,7 @@ namespace AppSD
             return new AppLogic().UpdateRating(r);
         }
 
-        public bool DeleteOrderContentByContentId(string ocId, int type)
+        public bool DeleteOrderContentByContentId(string ocId, string type)
         {
             return new AppLogic().DeleteOrderContentByContentId(ocId, type);
         }
