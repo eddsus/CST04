@@ -223,6 +223,8 @@ namespace DataManagement
 
         public bool InsertIngredient(SharedDataTypes.Ingredient i)
         {
+            i.IngredientId = Guid.NewGuid();
+            //i.Modified = DateTime.Now();
             mainDb.Ingredients.Add(converter.ConvertToDBIngredient(i));
             return mainDb.SaveChanges() == 1;
         }

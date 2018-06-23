@@ -5,7 +5,7 @@ namespace SharedDataTypes
 {
     public class Order
     {
-        private Order p;
+        //private Order p;
 
         public Order()
         {
