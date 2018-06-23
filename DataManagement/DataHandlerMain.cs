@@ -281,8 +281,8 @@ namespace DataManagement
 
             temp.Value = r.Value;
             temp.Date = r.Date;
-            temp.Package_ID = r.Package.PackageId;
-            temp.Chocolate_ID = r.Chocolate.ChocolateId;
+            //temp.Package_ID = r.Package.PackageId;
+            //temp.Chocolate_ID = r.Chocolate.ChocolateId;
             temp.Customer_ID = r.Customer.CustomerId;
             temp.Comment = r.Comment;
             temp.Published = r.Published;
@@ -328,6 +328,7 @@ namespace DataManagement
             temp.Status_ID = o.Status.OrderStatusId;
             temp.Customer_ID = o.Customer.CustomerId;
             temp.Note = o.Note;
+            temp.ModifyDate = DateTime.Now;
 
             return mainDb.SaveChanges() == 1;
         }
