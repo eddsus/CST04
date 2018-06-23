@@ -279,6 +279,10 @@ namespace DataManagement.SharedTypeConverter
 
         #endregion
 
+
+
+
+
         #region ToDBObject
         internal Package_has_Chocolate ConvertToDBPackageHasChoco(Guid chocoId, Guid packageId)
         {
@@ -305,10 +309,10 @@ namespace DataManagement.SharedTypeConverter
             {
                 ID_Shape = shape.ShapeId,
                 Name = shape.Name,
-                Image = shape.Image
+                Image = shape.Image,
+                ModifyDate=DateTime.Now
             };
         }
-
 
         public DataBases.Wrapping ConvertToDBWrapping(SharedDataTypes.Wrapping w)
         {
@@ -332,7 +336,7 @@ namespace DataManagement.SharedTypeConverter
                 Type = i.Type,
                 UnitType = i.UnitType,
                 Availability = i.Available,
-                ModifyDate = i.Modified
+                ModifyDate = DateTime.Now
             };
         }
 
@@ -340,7 +344,7 @@ namespace DataManagement.SharedTypeConverter
         {
             return new DataBases.Chocolate
             {
-                ID_Chocolate = c.ChocolateId,
+                ID_Chocolate = Guid.NewGuid(),
                 Name = c.Name,
                 Description = c.Description,
                 Available = c.Available,
@@ -348,22 +352,22 @@ namespace DataManagement.SharedTypeConverter
                 CustomStyle_ID = c.CustomStyle.CustomStyleId,
                 Image = c.Image,
                 Creator_Customer_ID = c.CreatedBy.CustomerId,
-                ModifyDate = c.Modified.GetValueOrDefault(),
-                WrappingID = c.Wrapping.WrappingId
+                ModifyDate = DateTime.Now,
+                WrappingID = c.Wrapping.WrappingId,
             };
         }
         public DataBases.Package ConvertToDBPackage(SharedDataTypes.Package p)
         {
             return new DataBases.Package
             {
-                ID_Package = p.PackageId,
+                ID_Package = Guid.NewGuid(),
                 Name = p.Name,
                 Descripton = p.Description,
                 WrappingID = p.Wrapping.WrappingId,
                 Availability = p.Available,
                 Customer_ID = p.Customer.CustomerId,
                 Image = p.Image,
-                ModifyDate = p.Modified.GetValueOrDefault(),
+                ModifyDate = DateTime.Now,
             };
         }
         #endregion

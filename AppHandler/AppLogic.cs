@@ -17,6 +17,20 @@ namespace AppHandler
             return mainDh.QueryOrders();
         }
 
+        public bool InsertChocolate(SharedDataTypes.Chocolate c)
+        {
+            return mainDh.InsertChocolate(c);
+        }
+
+        public bool InsertIngredient(SharedDataTypes.Ingredient i)
+        {
+            return mainDh.InsertIngredient(i);
+        }
+
+        public List<SharedDataTypes.Customer> QueryCustomers()
+        {
+            return mainDh.QueryCustomers();
+        }
         public bool UpdateRating(SharedDataTypes.Rating r)
         {
             return mainDh.UpdateRating(r);
