@@ -19,7 +19,8 @@ namespace DataManagement.SharedTypeConverter
                 City = a.City,
                 HouseNumber = a.HouseNumber,
                 StreetName = a.StreetName,
-                Zip = a.ZIP
+                Zip = a.ZIP,
+                Modified = a.ModifyDate
             };
         }
 
@@ -34,7 +35,7 @@ namespace DataManagement.SharedTypeConverter
                     Description = choco.Description,
                     Shape = ConvertToSharedShape(choco.Shape),
                     Image = choco.Image,
-                    Ingredients = ConvertToSharedIngredientList(choco.Chocolate_has_Ingridients.Select(p => p.Ingredients).ToList()),
+                    Ingredients = new List<SharedDataTypes.Ingredient>(),
                     Available = choco.Available,
                     CustomStyle = ConvertToSharedCustomStyle(choco.CustomStyle),
                     Wrapping = ConvertToSharedWrapping(choco.Wrapping),
@@ -49,6 +50,7 @@ namespace DataManagement.SharedTypeConverter
             }
         }
 
+        //no reference??
         private List<SharedDataTypes.Ingredient> ConvertToSharedIngredientList(ICollection<DataBases.Ingredients> ingredients)
         {
             var tempIngredients = new List<SharedDataTypes.Ingredient>();
@@ -80,7 +82,8 @@ namespace DataManagement.SharedTypeConverter
                     {
                         OrderContentId = item.ID_OrderContent,
                         Chocolate = ConvertToSharedChocolate(item.OrderContent_has_Chocolate.First().Chocolate),
-                        Amount = item.OrderContent_has_Chocolate.First().Amount
+                        Amount = item.OrderContent_has_Chocolate.First().Amount,
+                        Modified = item.ModifyDate
                     });
             }
             return tempSharedOrderContent;
@@ -96,7 +99,8 @@ namespace DataManagement.SharedTypeConverter
                     {
                         OrderContentId = item.ID_OrderContent,
                         Package = ConvertToSharedPackage(item.OrderContent_has_Package.First().Package),
-                        Amount = item.OrderContent_has_Package.First().Amount
+                        Amount = item.OrderContent_has_Package.First().Amount,
+                        Modified = item.ModifyDate
                     });
             }
             return tempSharedOrderContent;
@@ -111,7 +115,8 @@ namespace DataManagement.SharedTypeConverter
                 LastName = c.LastName,
                 Address = ConvertToSharedAddress(c.Customer_has_Address.Select(a => a.Address).First()),
                 Mail = c.Mail,
-                PhoneNumber = c.PhoneNumber
+                PhoneNumber = c.PhoneNumber,
+                Modified = c.ModifyDate
             };
         }
 
@@ -121,7 +126,8 @@ namespace DataManagement.SharedTypeConverter
             {
                 CustomStyleId = cs.ID_CustomStyle,
                 Name = cs.Name,
-                Description = cs.Description
+                Description = cs.Description,
+                Modified = cs.ModifyDate
             };
         }
 
@@ -149,7 +155,9 @@ namespace DataManagement.SharedTypeConverter
                 DateOfDelivery = o.DateOfDelivery,
                 Customer = ConvertToSharedCustomer(o.Customer),
                 Status = ConvertToSharedOrderStatus(o.OrderStatus),
-                Note = o.Note
+                Note = o.Note,
+                Modified = o.ModifyDate,
+                
                 //Content = this has to stay empty or else everything will be fucked up
             };
         }
@@ -159,7 +167,8 @@ namespace DataManagement.SharedTypeConverter
             return new SharedDataTypes.OrderStatus()
             {
                 OrderStatusId = os.ID_OrderStatus,
-                Decription = os.StatusDescription
+                Decription = os.StatusDescription,
+                Modified = os.ModifyDate
             };
         }
 
@@ -197,6 +206,7 @@ namespace DataManagement.SharedTypeConverter
             return temp;
         }
 
+        //      chocolate/package wont be saved so that we can avoid stack overflow ex, might by problematic
         public List<SharedDataTypes.Rating> ConvertToSharedRatings(ICollection<DataBases.Rating> r)
         {
 
@@ -214,9 +224,12 @@ namespace DataManagement.SharedTypeConverter
                         Date = item.Date,
                         //Chocolate = ConvertToSharedChocolate(item.Chocolate),
                         ProductName = item.Chocolate.Name,
+                        ProductId = item.Chocolate.ID_Chocolate,
                         Comment = item.Comment,
                         Customer = ConvertToSharedCustomer(item.Customer),
-                        Published = item.Published
+                        Published = item.Published,
+                        Modified = item.ModifyDate,
+                        type = true
                     });
                 }
                 else if (item.Package != null)
@@ -230,12 +243,16 @@ namespace DataManagement.SharedTypeConverter
                         Customer = ConvertToSharedCustomer(item.Customer),
                         //Package = ConvertToSharedPackage(item.Package),
                         ProductName = item.Package.Name,
-                        Published = item.Published
+                        ProductId = item.Package.ID_Package,
+                        Published = item.Published,
+                        Modified = item.ModifyDate,
+                        type = false
                     });
                 }
             }
             return tempRatings;
         }
+
 
         public SharedDataTypes.Shape ConvertToSharedShape(DataBases.Shape s)
         {
@@ -243,7 +260,8 @@ namespace DataManagement.SharedTypeConverter
             {
                 ShapeId = s.ID_Shape,
                 Name = s.Name,
-                Image = s.Image
+                Image = s.Image,
+                Modified = s.ModifyDate
             };
         }
 
@@ -254,18 +272,29 @@ namespace DataManagement.SharedTypeConverter
                 WrappingId = w.ID_Wrapping,
                 Name = w.Name,
                 Price = w.Price,
-                Image = w.Image
+                Image = w.Image,
+                Modified = w.ModifyDate
             };
         }
 
         #endregion
 
         #region ToDBObject
-        internal Package_has_Chocolate ConvertToDBPackageHasChoco(Guid chocoId,Guid packageId)
+        internal Package_has_Chocolate ConvertToDBPackageHasChoco(Guid chocoId, Guid packageId)
         {
-            return new Package_has_Chocolate {
-                Chocolate_ID=chocoId,
-                Package_ID=packageId,
+            return new Package_has_Chocolate
+            {
+                Chocolate_ID = chocoId,
+                Package_ID = packageId,
+                ModifyDate = DateTime.Now
+            };
+        }
+
+        internal Chocolate_has_Ingridients ConvertToDBChocolateHasIngredients(Guid chocolateId, Guid ingredientId)
+        {
+            return new Chocolate_has_Ingridients {
+                Chocolazte_ID=chocolateId,
+                Ingerdient_ID=ingredientId,
                 ModifyDate=DateTime.Now
             };
         }
