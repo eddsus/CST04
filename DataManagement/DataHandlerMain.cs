@@ -289,13 +289,14 @@ namespace DataManagement
         {
             var temp = mainDb.Chocolate.Where(p => p.ID_Chocolate.Equals(c.ChocolateId)).Select(p => p).First();
 
-            temp.Name = c.Name;
-            temp.Description = c.Description;
+            temp.Name = (c.Name == null)?temp.Name:c.Name;
+            temp.Description = (c.Description==null)?temp.Description:c.Description;
             temp.Available = c.Available;
-            temp.Image = c.Image;
-            temp.WrappingID = c.Wrapping.WrappingId;
-            temp.Shape_ID = c.Shape.ShapeId;
+            temp.Image = (c.Image.Equals(""))?temp.Image:c.Image;
+            temp.WrappingID = (c.Wrapping==null)?temp.Wrapping.ID_Wrapping:c.Wrapping.WrappingId;
+            temp.Shape_ID = (c.Shape==null)?temp.Shape.ID_Shape:c.Shape.ShapeId;
             temp.ModifyDate = DateTime.Now;
+            temp.Creator_Customer_ID = (c.CreatedBy==null)?temp.Creator_Customer_ID:c.CreatedBy.CustomerId;
 
             return mainDb.SaveChanges() == 1;
         }
