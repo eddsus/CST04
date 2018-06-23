@@ -103,11 +103,12 @@ namespace AppSD
 
 
         [OperationContract]
-        [WebInvoke(Method = "POST",
+        [WebInvoke(Method = "GET",
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
-        UriTemplate = "DeleteOrderContentByContentId")]
-        bool DeleteOrderContentByContentId(SharedDataTypes.OrderContent oc);
+        UriTemplate = "DeleteOrderContentByContentId/{ocId}-{type}")]
+        bool DeleteOrderContentByContentId(string ocId, string type);
+
 
         [OperationContract]
         [WebInvoke(Method = "GET",

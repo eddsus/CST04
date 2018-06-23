@@ -102,14 +102,14 @@ namespace AppSD
             return new AppLogic().UpdateOrder(o);
         }
 
-        public bool DeleteOrderContentByContentId(OrderContent oc)
-        {
-            return new AppLogic().DeleteOrderContentByContentId(oc);
-        }
-
         public bool UpdateRating(Rating r)
         {
             return new AppLogic().UpdateRating(r);
+        }
+
+        public bool DeleteOrderContentByContentId(string ocId, string type)
+        {
+            return new AppLogic().DeleteOrderContentByContentId(ocId, type);
         }
 
 
