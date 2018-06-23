@@ -9,5 +9,8 @@ namespace SharedDataTypes
         public int HouseNumber { get; set; }
         public int Zip { get; set; }
         public string City { get; set; }
+        public DateTime? Modified { get; set; }
+
+
     }
 }

@@ -6,6 +6,8 @@ namespace SharedDataTypes
     {
         public Guid OrderContentId { get; set; }
         public int Amount { get; set; }
+        public DateTime? Modified { get; set; }
+
 
     }
 }

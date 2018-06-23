@@ -38,5 +38,7 @@ namespace SharedDataTypes
         public OrderStatus Status { get; set; }
         public Customer Customer { get; set; }
         public string Note { get; set; }
+        public DateTime? Modified { get; set; }
+
     }
 }
