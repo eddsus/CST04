@@ -116,6 +116,13 @@ namespace AppSD
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "QueryChocolatesWithIngredients")]
         List<Chocolate> QueryChocolatesWithIngredients();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryCustomers")]
+        List<Customer> QueryCustomers();
         #endregion
 
         #region UPDATE METHODS
@@ -156,6 +163,24 @@ namespace AppSD
         bool UpdatePackage(Package item);
         #endregion
 
+        #region INSERTS
 
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertIngredient"),]
+        bool InsertIngredient(Ingredient item);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertChocolate"),]
+        bool InsertChocolate(Chocolate item);
+
+        #endregion
     }
 }

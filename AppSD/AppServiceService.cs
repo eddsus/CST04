@@ -112,6 +112,21 @@ namespace AppSD
             return new AppLogic().DeleteOrderContentByContentId(ocId, type);
         }
 
+        public List<Customer> QueryCustomers()
+        {
+            return new AppLogic().QueryCustomers();
+        }
+
+        public bool InsertIngredient(Ingredient item)
+        {
+            return new AppLogic().InsertIngredient(item);
+        }
+
+        public bool InsertChocolate(Chocolate item)
+        {
+            return new AppLogic().InsertChocolate(item);
+        }
+
 
         #endregion
 
