@@ -332,7 +332,7 @@ namespace DataManagement.SharedTypeConverter
                 Type = i.Type,
                 UnitType = i.UnitType,
                 Availability = i.Available,
-                ModifyDate = i.Modified
+                //ModifyDate = i.Modified
             };
         }
 
