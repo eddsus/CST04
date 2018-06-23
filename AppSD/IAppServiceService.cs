@@ -130,6 +130,7 @@ namespace AppSD
         [OperationContract]
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "UpdateChocolate"),]
         bool UpdateChocolate(Chocolate item);
@@ -137,6 +138,7 @@ namespace AppSD
         [OperationContract]
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "UpdateOrder"),]
         bool UpdateOrder(SharedDataTypes.Order o);
@@ -145,6 +147,7 @@ namespace AppSD
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
         UriTemplate = "UpdateRating"),]
         bool UpdateRating(SharedDataTypes.Rating r);
 
@@ -152,6 +155,7 @@ namespace AppSD
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
+        RequestFormat = WebMessageFormat.Json,
         UriTemplate = "UpdatePackage"),]
         bool UpdatePackage(Package item);
         #endregion
