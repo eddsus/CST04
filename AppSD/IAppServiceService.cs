@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.ServiceModel.Web;
+using SharedDataTypesWordpress;
 
 namespace AppSD
 {
@@ -101,6 +102,14 @@ namespace AppSD
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "QueryIngredientsByChocolateId")]
         List<Ingredient> QueryIngredientsByChocolateId(Guid id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryIngredientsByChocolateIdAsString/{id}")]
+        List<Ingredient> QueryIngredientsByChocolateIdAsString(string id);
 
 
         [OperationContract]
@@ -201,6 +210,15 @@ namespace AppSD
         UriTemplate = "InsertPackage"),]
         bool InsertPackage(Package item);
 
+        #endregion
+
+        #region WP_QUERIES
+        [OperationContract]
+        List<WPPosts> QueryProducts();
+
+
+        [OperationContract]
+        int AddProduct();
         #endregion
     }
 }

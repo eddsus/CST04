@@ -6,6 +6,8 @@ using System.ServiceModel;
 using System.Text;
 using SharedDataTypes;
 using AppHandler;
+using WPDataRepo;
+using SharedDataTypesWordpress;
 
 namespace AppSD
 {
@@ -66,6 +68,12 @@ namespace AppSD
         {
             return new AppLogic().QueryIngredientsByChocolateId(id);
         }
+
+        public List<Ingredient> QueryIngredientsByChocolateIdAsString(string id)
+        {
+            return new AppLogic().QueryIngredientsByChocolateId(new Guid(id));
+        }
+
         public List<Rating> QueryRatings()
         {
             return new AppLogic().QueryRatings();
@@ -137,7 +145,23 @@ namespace AppSD
             return new AppLogic().InsertPackage(item);
         }
 
+
+
         #endregion
 
+        #region WP_QUERIES
+
+        WPDataHandler dbh = new WPDataHandler();
+
+        public List<WPPosts> QueryProducts()
+        {
+            return dbh.QueryProducts();
+        }
+
+        public int AddProduct()
+        {
+            return dbh.AddProduct();
+        }
+        #endregion
     }
 }
