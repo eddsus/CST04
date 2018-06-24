@@ -9,6 +9,5 @@ namespace SharedDataTypes
         public string Description { get; set; }
         public DateTime? Modified { get; set; }
 
-
     }
 }

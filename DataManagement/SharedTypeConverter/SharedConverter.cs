@@ -120,7 +120,7 @@ namespace DataManagement.SharedTypeConverter
             };
         }
 
-        private SharedDataTypes.CustomStyle ConvertToSharedCustomStyle(DataBases.CustomStyle cs)
+        public SharedDataTypes.CustomStyle ConvertToSharedCustomStyle(DataBases.CustomStyle cs)
         {
             return new SharedDataTypes.CustomStyle
             {
@@ -130,6 +130,7 @@ namespace DataManagement.SharedTypeConverter
                 Modified = cs.ModifyDate
             };
         }
+
 
         public SharedDataTypes.Ingredient ConvertToSharedIngredient(DataBases.Ingredients i)
         {

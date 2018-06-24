@@ -126,6 +126,18 @@ namespace DataManagement
             return tempShapes;
         }
 
+        public List<SharedDataTypes.CustomStyle> QueryCustomStyles()
+        {
+            List<SharedDataTypes.CustomStyle> tempCs = new List<SharedDataTypes.CustomStyle>();
+
+            foreach (var item in mainDb.CustomStyle.Select(p => p))
+            {
+                tempCs.Add(converter.ConvertToSharedCustomStyle(item));
+            }
+
+            return tempCs;
+        }
+
         public List<SharedDataTypes.Wrapping> QueryWrappings()
         {
             List<SharedDataTypes.Wrapping> sharedWrappings = new List<SharedDataTypes.Wrapping>();

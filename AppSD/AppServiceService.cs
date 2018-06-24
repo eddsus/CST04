@@ -117,6 +117,11 @@ namespace AppSD
             return new AppLogic().QueryCustomers();
         }
 
+        public List<CustomStyle> QueryCustomStyles()
+        {
+            return new AppLogic().QueryCustomStyles();
+        }
+
         public bool InsertIngredient(Ingredient item)
         {
             return new AppLogic().InsertIngredient(item);
