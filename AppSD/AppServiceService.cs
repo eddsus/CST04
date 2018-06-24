@@ -40,6 +40,12 @@ namespace AppSD
             return new AppLogic().QueryOrdersContentChocolate(orderId);
         }
 
+        public Customer QueryCustomerByCustomerId(string customerId)
+        {
+            return new AppLogic().QueryCustomerByCustomerId(customerId);
+        }
+
+
         public List<OrderContentPackage> QueryOrdersContentPackage(string orderId)
         {
             return new AppLogic().QueryOrdersContentPackage(orderId);
@@ -140,6 +146,10 @@ namespace AppSD
             return new AppLogic().InsertChocolate(item);
         }
 
+        public bool InsertPackage(Package item)
+        {
+            return new AppLogic().InsertPackage(item);
+        }
 
 
 

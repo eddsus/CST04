@@ -17,6 +17,11 @@ namespace AppHandler
             return mainDh.QueryOrders();
         }
 
+        public bool InsertPackage(SharedDataTypes.Package p)
+        {
+            return mainDh.InsertPackage(p);
+        }
+
         public bool InsertChocolate(SharedDataTypes.Chocolate c)
         {
             return mainDh.InsertChocolate(c);
@@ -78,6 +83,11 @@ namespace AppHandler
         public List<Ingredient> QueryIngredientsByChocolateId(Guid id)
         {
             return mainDh.QueryIngredientsByChocolateId(id);
+        }
+
+        public Customer QueryCustomerByCustomerId(string id)
+        {
+            return mainDh.QueryCustomerByCustomerId(id);
         }
 
         public List<Shape> QueryShapes()

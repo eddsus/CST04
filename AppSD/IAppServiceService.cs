@@ -111,6 +111,14 @@ namespace AppSD
         UriTemplate = "QueryIngredientsByChocolateIdAsString/{id}")]
         List<Ingredient> QueryIngredientsByChocolateIdAsString(string id);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryCustomerByCustomerId/{id}")]
+        Customer QueryCustomerByCustomerId(string id);
+
 
         [OperationContract]
         [WebInvoke(Method = "GET",
@@ -201,6 +209,14 @@ namespace AppSD
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "InsertChocolate"),]
         bool InsertChocolate(Chocolate item);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertPackage"),]
+        bool InsertPackage(Package item);
 
         #endregion
 

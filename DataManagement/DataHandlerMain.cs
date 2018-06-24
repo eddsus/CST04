@@ -100,7 +100,7 @@ namespace DataManagement
             return converter.ConvertToSharedCustomer(mainDb.Package.Where(p => p.ID_Package == packageId).Select(p => p.Customer).First());
         }
 
-        public SharedDataTypes.Customer QueryCustomerByCustomerId(Guid customerId)
+        public SharedDataTypes.Customer QueryCustomerByCustomerId(string customerId)
         {
             return converter.ConvertToSharedCustomer(mainDb.Customer.Where(p => p.ID_Customer.Equals(customerId)).Select(p => p).First());
         }
@@ -199,6 +199,7 @@ namespace DataManagement
 
         public bool InsertChocolate(SharedDataTypes.Chocolate c)
         {
+            c.ChocolateId = Guid.NewGuid();
             mainDb.Chocolate.Add(converter.ConvertToDBChoco(c));
             int cnt = 1;
             foreach (var item in c.Ingredients)
@@ -211,7 +212,9 @@ namespace DataManagement
 
         public bool InsertPackage(SharedDataTypes.Package p)
         {
+            p.PackageId = Guid.NewGuid();
             mainDb.Package.Add(converter.ConvertToDBPackage(p));
+            mainDb.SaveChanges();
             int cnt = 1;
             foreach (var item in p.Chocolates)
             {
