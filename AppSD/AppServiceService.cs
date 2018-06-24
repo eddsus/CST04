@@ -6,8 +6,8 @@ using System.ServiceModel;
 using System.Text;
 using SharedDataTypes;
 using AppHandler;
-using SharedDataTypesWordpress;
 using WPDataRepo;
+using SharedDataTypesWordpress;
 
 namespace AppSD
 {
