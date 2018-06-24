@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{87B03C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B4530BA5-3EFB-48F6-B764-822EED7DA11D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeMapModel", "CodeMapModel", "{BA1736B5-F710-4428-97C7-73B2D9CF944D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBHandler", "AppHandler\DBHandler.csproj", "{5A5A7CBA-B579-43CC-84F4-455A6B1F601E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyGenerator", "DummyGenerator\DummyGenerator.csproj", "{0BB85766-FED4-49EB-9F17-9B86DE93BDB4}"

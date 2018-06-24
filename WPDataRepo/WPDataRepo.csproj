@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WPDataRepo</RootNamespace>
     <AssemblyName>WPDataRepo</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -210,7 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedDataTypesWordpress\SharedDataTypesWordpress.csproj">
-      <Project>{DC788400-3AD4-46AF-8B44-ED0D660504F7}</Project>
+      <Project>{dc788400-3ad4-46af-8b44-ed0d660504f7}</Project>
       <Name>SharedDataTypesWordpress</Name>
     </ProjectReference>
   </ItemGroup>
