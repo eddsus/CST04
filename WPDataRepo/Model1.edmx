@@ -1,0 +1,1375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="wordpressModel.Store" Provider="Devart.Data.MySql" ProviderManifestToken="MySQL, 5.5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="wp_commentmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comment_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="varchar" MaxLength="255" />
+          <Property Name="meta_value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="wp_comments">
+          <Key>
+            <PropertyRef Name="comment_ID" />
+          </Key>
+          <Property Name="comment_ID" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comment_post_ID" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="comment_author" Type="tinytext" Nullable="false" />
+          <Property Name="comment_author_email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="comment_author_url" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="comment_author_IP" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="comment_date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="comment_date_gmt" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="comment_content" Type="text" Nullable="false" />
+          <Property Name="comment_karma" Type="int" Nullable="false" />
+          <Property Name="comment_approved" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="comment_agent" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="comment_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="comment_parent" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="user_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_lead_form">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="form_title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="form_data" Type="text" Nullable="false" />
+          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="mail_setting" Type="text" Nullable="false" />
+          <Property Name="usermail_setting" Type="text" Nullable="false" />
+          <Property Name="multiData" Type="text" Nullable="false" />
+          <Property Name="form_skin" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="form_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="captcha_status" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="storeType" Type="enum" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_lead_form_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="form_id" Type="int" />
+          <Property Name="form_data" Type="longtext" />
+          <Property Name="ip_address" Type="varchar" MaxLength="100" />
+          <Property Name="server_request" Type="text" />
+          <Property Name="date" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="wp_lead_form_extension">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="form_id" Type="int" Nullable="false" />
+          <Property Name="ext_api" Type="text" Nullable="false" />
+          <Property Name="ext_map" Type="text" Nullable="false" />
+          <Property Name="active" Type="sbyte" Nullable="false" />
+          <Property Name="ext_type" Type="int" Nullable="false" />
+          <Property Name="edate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_lead_form_options">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="int" Nullable="false" />
+          <Property Name="colorData" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_links">
+          <Key>
+            <PropertyRef Name="link_id" />
+          </Key>
+          <Property Name="link_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="link_url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="link_name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="link_image" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="link_target" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="link_description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="link_visible" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="link_owner" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="link_rating" Type="int" Nullable="false" />
+          <Property Name="link_updated" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="link_rel" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="link_notes" Type="mediumtext" Nullable="false" />
+          <Property Name="link_rss" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_options">
+          <Key>
+            <PropertyRef Name="option_id" />
+          </Key>
+          <Property Name="option_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="option_name" Type="varchar" MaxLength="191" Nullable="false" />
+          <Property Name="option_value" Type="longtext" Nullable="false" />
+          <Property Name="autoload" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_postmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="post_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="varchar" MaxLength="255" />
+          <Property Name="meta_value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="wp_posts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="post_author" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="post_date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="post_date_gmt" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="post_content" Type="longtext" Nullable="false" />
+          <Property Name="post_title" Type="text" Nullable="false" />
+          <Property Name="post_excerpt" Type="text" Nullable="false" />
+          <Property Name="post_status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="comment_status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ping_status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="post_password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="post_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="to_ping" Type="text" Nullable="false" />
+          <Property Name="pinged" Type="text" Nullable="false" />
+          <Property Name="post_modified" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="post_modified_gmt" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="post_content_filtered" Type="longtext" Nullable="false" />
+          <Property Name="post_parent" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="guid" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="menu_order" Type="int" Nullable="false" />
+          <Property Name="post_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="post_mime_type" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="comment_count" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_term_relationships">
+          <Key>
+            <PropertyRef Name="object_id" />
+            <PropertyRef Name="term_taxonomy_id" />
+          </Key>
+          <Property Name="object_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="term_taxonomy_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="term_order" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_term_taxonomy">
+          <Key>
+            <PropertyRef Name="term_taxonomy_id" />
+          </Key>
+          <Property Name="term_taxonomy_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="term_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="taxonomy" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="description" Type="longtext" Nullable="false" />
+          <Property Name="parent" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="count" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_termmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="term_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="varchar" MaxLength="255" />
+          <Property Name="meta_value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="wp_terms">
+          <Key>
+            <PropertyRef Name="term_id" />
+          </Key>
+          <Property Name="term_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="slug" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="term_group" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_th_popup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="popupData" Type="text" Nullable="false" />
+          <Property Name="settings" Type="text" Nullable="false" />
+          <Property Name="popupDate" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_usermeta">
+          <Key>
+            <PropertyRef Name="umeta_id" />
+          </Key>
+          <Property Name="umeta_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="varchar" MaxLength="255" />
+          <Property Name="meta_value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="wp_users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_login" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="user_pass" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_nicename" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="user_url" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="user_registered" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="user_activation_key" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_status" Type="int" Nullable="false" />
+          <Property Name="display_name" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_wc_download_log">
+          <Key>
+            <PropertyRef Name="download_log_id" />
+          </Key>
+          <Property Name="download_log_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="permission_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="user_id" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="user_ip_address" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="wp_wc_webhooks">
+          <Key>
+            <PropertyRef Name="webhook_id" />
+          </Key>
+          <Property Name="webhook_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="name" Type="text" Nullable="false" />
+          <Property Name="user_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="delivery_url" Type="text" Nullable="false" />
+          <Property Name="secret" Type="text" Nullable="false" />
+          <Property Name="topic" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="date_created" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="date_created_gmt" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="date_modified" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="date_modified_gmt" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="api_version" Type="smallint" Nullable="false" />
+          <Property Name="failure_count" Type="smallint" Nullable="false" />
+          <Property Name="pending_delivery" Type="sbyte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_wcpdf_invoice_number">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="calculated_number" Type="int" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_api_keys">
+          <Key>
+            <PropertyRef Name="key_id" />
+          </Key>
+          <Property Name="key_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="permissions" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="consumer_key" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="consumer_secret" Type="char" MaxLength="43" Nullable="false" />
+          <Property Name="nonces" Type="longtext" />
+          <Property Name="truncated_key" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="last_access" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_attribute_taxonomies">
+          <Key>
+            <PropertyRef Name="attribute_id" />
+          </Key>
+          <Property Name="attribute_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="attribute_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="attribute_label" Type="varchar" MaxLength="200" />
+          <Property Name="attribute_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="attribute_orderby" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="attribute_public" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_downloadable_product_permissions">
+          <Key>
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="permission_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="download_id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="product_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="order_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="order_key" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="user_email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="user_id" Type="decimal" Precision="20" Scale="0" />
+          <Property Name="downloads_remaining" Type="varchar" MaxLength="9" />
+          <Property Name="access_granted" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="access_expires" Type="datetime" Precision="0" />
+          <Property Name="download_count" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_log">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="timestamp" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="level" Type="smallint" Nullable="false" />
+          <Property Name="source" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="message" Type="longtext" Nullable="false" />
+          <Property Name="context" Type="longtext" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_order_itemmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_item_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="varchar" MaxLength="255" />
+          <Property Name="meta_value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_order_items">
+          <Key>
+            <PropertyRef Name="order_item_id" />
+          </Key>
+          <Property Name="order_item_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_item_name" Type="text" Nullable="false" />
+          <Property Name="order_item_type" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="order_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_payment_tokenmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="payment_token_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="varchar" MaxLength="255" />
+          <Property Name="meta_value" Type="longtext" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_payment_tokens">
+          <Key>
+            <PropertyRef Name="token_id" />
+          </Key>
+          <Property Name="token_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gateway_id" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="token" Type="text" Nullable="false" />
+          <Property Name="user_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="is_default" Type="sbyte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_sessions">
+          <Key>
+            <PropertyRef Name="session_key" />
+          </Key>
+          <Property Name="session_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="session_key" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="session_value" Type="longtext" Nullable="false" />
+          <Property Name="session_expiry" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_shipping_zone_locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="zone_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="location_code" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="location_type" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_shipping_zone_methods">
+          <Key>
+            <PropertyRef Name="instance_id" />
+          </Key>
+          <Property Name="zone_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="instance_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="method_id" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="method_order" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="is_enabled" Type="sbyte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_shipping_zones">
+          <Key>
+            <PropertyRef Name="zone_id" />
+          </Key>
+          <Property Name="zone_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="zone_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="zone_order" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_tax_rate_locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location_code" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="tax_rate_id" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="location_type" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_tax_rates">
+          <Key>
+            <PropertyRef Name="tax_rate_id" />
+          </Key>
+          <Property Name="tax_rate_id" Type="decimal" Precision="20" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tax_rate_country" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="tax_rate_state" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="tax_rate" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="tax_rate_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="tax_rate_priority" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="tax_rate_compound" Type="int" Nullable="false" />
+          <Property Name="tax_rate_shipping" Type="int" Nullable="false" />
+          <Property Name="tax_rate_order" Type="decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="tax_rate_class" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_wc_download_log_permission_id">
+          <End Role="wp_woocommerce_downloadable_product_permissions" Type="Self.wp_woocommerce_downloadable_product_permissions" Multiplicity="1" />
+          <End Role="wp_wc_download_log" Type="Self.wp_wc_download_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wp_woocommerce_downloadable_product_permissions">
+              <PropertyRef Name="permission_id" />
+            </Principal>
+            <Dependent Role="wp_wc_download_log">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wordpressModelStoreContainer">
+          <EntitySet Name="wp_commentmeta" EntityType="Self.wp_commentmeta" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_comments" EntityType="Self.wp_comments" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_lead_form" EntityType="Self.wp_lead_form" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_lead_form_data" EntityType="Self.wp_lead_form_data" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_lead_form_extension" EntityType="Self.wp_lead_form_extension" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_lead_form_options" EntityType="Self.wp_lead_form_options" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_links" EntityType="Self.wp_links" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_options" EntityType="Self.wp_options" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_postmeta" EntityType="Self.wp_postmeta" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_posts" EntityType="Self.wp_posts" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_term_relationships" EntityType="Self.wp_term_relationships" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_term_taxonomy" EntityType="Self.wp_term_taxonomy" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_termmeta" EntityType="Self.wp_termmeta" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_terms" EntityType="Self.wp_terms" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_th_popup" EntityType="Self.wp_th_popup" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_usermeta" EntityType="Self.wp_usermeta" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_users" EntityType="Self.wp_users" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_wc_download_log" EntityType="Self.wp_wc_download_log" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_wc_webhooks" EntityType="Self.wp_wc_webhooks" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_wcpdf_invoice_number" EntityType="Self.wp_wcpdf_invoice_number" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_api_keys" EntityType="Self.wp_woocommerce_api_keys" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_attribute_taxonomies" EntityType="Self.wp_woocommerce_attribute_taxonomies" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_downloadable_product_permissions" EntityType="Self.wp_woocommerce_downloadable_product_permissions" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_log" EntityType="Self.wp_woocommerce_log" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_order_itemmeta" EntityType="Self.wp_woocommerce_order_itemmeta" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_order_items" EntityType="Self.wp_woocommerce_order_items" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_payment_tokenmeta" EntityType="Self.wp_woocommerce_payment_tokenmeta" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_payment_tokens" EntityType="Self.wp_woocommerce_payment_tokens" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_sessions" EntityType="Self.wp_woocommerce_sessions" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_shipping_zone_locations" EntityType="Self.wp_woocommerce_shipping_zone_locations" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_shipping_zone_methods" EntityType="Self.wp_woocommerce_shipping_zone_methods" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_shipping_zones" EntityType="Self.wp_woocommerce_shipping_zones" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_tax_rate_locations" EntityType="Self.wp_woocommerce_tax_rate_locations" Schema="wordpress" store:Type="Tables" />
+          <EntitySet Name="wp_woocommerce_tax_rates" EntityType="Self.wp_woocommerce_tax_rates" Schema="wordpress" store:Type="Tables" />
+          <AssociationSet Name="fk_wc_download_log_permission_id" Association="Self.fk_wc_download_log_permission_id">
+            <End Role="wp_woocommerce_downloadable_product_permissions" EntitySet="wp_woocommerce_downloadable_product_permissions" />
+            <End Role="wp_wc_download_log" EntitySet="wp_wc_download_log" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="wordpressModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="wp_commentmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comment_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="wp_comments">
+          <Key>
+            <PropertyRef Name="comment_ID" />
+          </Key>
+          <Property Name="comment_ID" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comment_post_ID" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="comment_author" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="comment_author_email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_author_url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_author_IP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_date" Type="DateTime" Nullable="false" />
+          <Property Name="comment_date_gmt" Type="DateTime" Nullable="false" />
+          <Property Name="comment_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="comment_karma" Type="Int32" Nullable="false" />
+          <Property Name="comment_approved" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_agent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_parent" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="user_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_lead_form">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="form_title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="form_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="mail_setting" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="usermail_setting" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="multiData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="form_skin" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="form_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="captcha_status" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="storeType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_lead_form_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="form_id" Type="Int32" />
+          <Property Name="form_data" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ip_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="server_request" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="wp_lead_form_extension">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="form_id" Type="Int32" Nullable="false" />
+          <Property Name="ext_api" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ext_map" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="active" Type="SByte" Nullable="false" />
+          <Property Name="ext_type" Type="Int32" Nullable="false" />
+          <Property Name="edate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_lead_form_options">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="Int32" Nullable="false" />
+          <Property Name="colorData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_links">
+          <Key>
+            <PropertyRef Name="link_id" />
+          </Key>
+          <Property Name="link_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="link_url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link_image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link_target" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link_visible" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link_owner" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="link_rating" Type="Int32" Nullable="false" />
+          <Property Name="link_updated" Type="DateTime" Nullable="false" />
+          <Property Name="link_rel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="link_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="link_rss" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_options">
+          <Key>
+            <PropertyRef Name="option_id" />
+          </Key>
+          <Property Name="option_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="option_name" Type="String" MaxLength="191" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="option_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="autoload" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_postmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="wp_posts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post_author" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="post_date" Type="DateTime" Nullable="false" />
+          <Property Name="post_date_gmt" Type="DateTime" Nullable="false" />
+          <Property Name="post_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="post_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="post_excerpt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="post_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ping_status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="post_password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="post_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="to_ping" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pinged" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="post_modified" Type="DateTime" Nullable="false" />
+          <Property Name="post_modified_gmt" Type="DateTime" Nullable="false" />
+          <Property Name="post_content_filtered" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="post_parent" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="guid" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="menu_order" Type="Int32" Nullable="false" />
+          <Property Name="post_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="post_mime_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="comment_count" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_term_relationships">
+          <Key>
+            <PropertyRef Name="object_id" />
+            <PropertyRef Name="term_taxonomy_id" />
+          </Key>
+          <Property Name="object_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="term_taxonomy_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="term_order" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_term_taxonomy">
+          <Key>
+            <PropertyRef Name="term_taxonomy_id" />
+          </Key>
+          <Property Name="term_taxonomy_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="term_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="taxonomy" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="count" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_termmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="term_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="wp_terms">
+          <Key>
+            <PropertyRef Name="term_id" />
+          </Key>
+          <Property Name="term_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="slug" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="term_group" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_th_popup">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="popupData" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="settings" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="popupDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_usermeta">
+          <Key>
+            <PropertyRef Name="umeta_id" />
+          </Key>
+          <Property Name="umeta_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="wp_users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_login" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_pass" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_nicename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_registered" Type="DateTime" Nullable="false" />
+          <Property Name="user_activation_key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_status" Type="Int32" Nullable="false" />
+          <Property Name="display_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_wc_download_log">
+          <Key>
+            <PropertyRef Name="download_log_id" />
+          </Key>
+          <Property Name="download_log_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" />
+          <Property Name="permission_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="user_id" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="user_ip_address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="wp_woocommerce_downloadable_product_permissions" Relationship="Self.fk_wc_download_log_permission_id" FromRole="wp_wc_download_log" ToRole="wp_woocommerce_downloadable_product_permissions" />
+        </EntityType>
+        <EntityType Name="wp_wc_webhooks">
+          <Key>
+            <PropertyRef Name="webhook_id" />
+          </Key>
+          <Property Name="webhook_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="delivery_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="secret" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date_created" Type="DateTime" Nullable="false" />
+          <Property Name="date_created_gmt" Type="DateTime" Nullable="false" />
+          <Property Name="date_modified" Type="DateTime" Nullable="false" />
+          <Property Name="date_modified_gmt" Type="DateTime" Nullable="false" />
+          <Property Name="api_version" Type="Int16" Nullable="false" />
+          <Property Name="failure_count" Type="Int16" Nullable="false" />
+          <Property Name="pending_delivery" Type="SByte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_wcpdf_invoice_number">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Int32" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="calculated_number" Type="Int32" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_api_keys">
+          <Key>
+            <PropertyRef Name="key_id" />
+          </Key>
+          <Property Name="key_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="permissions" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="consumer_key" Type="String" MaxLength="64" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="consumer_secret" Type="String" MaxLength="43" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nonces" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="truncated_key" Type="String" MaxLength="7" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="last_access" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_attribute_taxonomies">
+          <Key>
+            <PropertyRef Name="attribute_id" />
+          </Key>
+          <Property Name="attribute_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="attribute_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attribute_label" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="attribute_type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attribute_orderby" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="attribute_public" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_downloadable_product_permissions">
+          <Key>
+            <PropertyRef Name="permission_id" />
+          </Key>
+          <Property Name="permission_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="download_id" Type="String" MaxLength="36" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="order_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="order_key" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="downloads_remaining" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="access_granted" Type="DateTime" Nullable="false" />
+          <Property Name="access_expires" Type="DateTime" />
+          <Property Name="download_count" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <NavigationProperty Name="wp_wc_download_log" Relationship="Self.fk_wc_download_log_permission_id" FromRole="wp_woocommerce_downloadable_product_permissions" ToRole="wp_wc_download_log" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_log">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" />
+          <Property Name="level" Type="Int16" Nullable="false" />
+          <Property Name="source" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="context" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_order_itemmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_item_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_order_items">
+          <Key>
+            <PropertyRef Name="order_item_id" />
+          </Key>
+          <Property Name="order_item_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_item_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="order_item_type" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_payment_tokenmeta">
+          <Key>
+            <PropertyRef Name="meta_id" />
+          </Key>
+          <Property Name="meta_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="payment_token_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="meta_key" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="meta_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_payment_tokens">
+          <Key>
+            <PropertyRef Name="token_id" />
+          </Key>
+          <Property Name="token_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gateway_id" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="is_default" Type="SByte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_sessions">
+          <Key>
+            <PropertyRef Name="session_key" />
+          </Key>
+          <Property Name="session_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="session_key" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="session_value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="session_expiry" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_shipping_zone_locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="zone_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="location_code" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="location_type" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_shipping_zone_methods">
+          <Key>
+            <PropertyRef Name="instance_id" />
+          </Key>
+          <Property Name="zone_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="instance_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="method_id" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="method_order" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="is_enabled" Type="SByte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_shipping_zones">
+          <Key>
+            <PropertyRef Name="zone_id" />
+          </Key>
+          <Property Name="zone_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="zone_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="zone_order" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_tax_rate_locations">
+          <Key>
+            <PropertyRef Name="location_id" />
+          </Key>
+          <Property Name="location_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location_code" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tax_rate_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="location_type" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wp_woocommerce_tax_rates">
+          <Key>
+            <PropertyRef Name="tax_rate_id" />
+          </Key>
+          <Property Name="tax_rate_id" Type="Decimal" Precision="20" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tax_rate_country" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tax_rate_state" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tax_rate" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tax_rate_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tax_rate_priority" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="tax_rate_compound" Type="Int32" Nullable="false" />
+          <Property Name="tax_rate_shipping" Type="Int32" Nullable="false" />
+          <Property Name="tax_rate_order" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="tax_rate_class" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_wc_download_log_permission_id">
+          <End Role="wp_woocommerce_downloadable_product_permissions" Type="Self.wp_woocommerce_downloadable_product_permissions" Multiplicity="1" />
+          <End Role="wp_wc_download_log" Type="Self.wp_wc_download_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="wp_woocommerce_downloadable_product_permissions">
+              <PropertyRef Name="permission_id" />
+            </Principal>
+            <Dependent Role="wp_wc_download_log">
+              <PropertyRef Name="permission_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wordpressEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="wp_commentmeta" EntityType="Self.wp_commentmeta" />
+          <EntitySet Name="wp_comments" EntityType="Self.wp_comments" />
+          <EntitySet Name="wp_lead_form" EntityType="Self.wp_lead_form" />
+          <EntitySet Name="wp_lead_form_data" EntityType="Self.wp_lead_form_data" />
+          <EntitySet Name="wp_lead_form_extension" EntityType="Self.wp_lead_form_extension" />
+          <EntitySet Name="wp_lead_form_options" EntityType="Self.wp_lead_form_options" />
+          <EntitySet Name="wp_links" EntityType="Self.wp_links" />
+          <EntitySet Name="wp_options" EntityType="Self.wp_options" />
+          <EntitySet Name="wp_postmeta" EntityType="Self.wp_postmeta" />
+          <EntitySet Name="wp_posts" EntityType="Self.wp_posts" />
+          <EntitySet Name="wp_term_relationships" EntityType="Self.wp_term_relationships" />
+          <EntitySet Name="wp_term_taxonomy" EntityType="Self.wp_term_taxonomy" />
+          <EntitySet Name="wp_termmeta" EntityType="Self.wp_termmeta" />
+          <EntitySet Name="wp_terms" EntityType="Self.wp_terms" />
+          <EntitySet Name="wp_th_popup" EntityType="Self.wp_th_popup" />
+          <EntitySet Name="wp_usermeta" EntityType="Self.wp_usermeta" />
+          <EntitySet Name="wp_users" EntityType="Self.wp_users" />
+          <EntitySet Name="wp_wc_download_log" EntityType="Self.wp_wc_download_log" />
+          <EntitySet Name="wp_wc_webhooks" EntityType="Self.wp_wc_webhooks" />
+          <EntitySet Name="wp_wcpdf_invoice_number" EntityType="Self.wp_wcpdf_invoice_number" />
+          <EntitySet Name="wp_woocommerce_api_keys" EntityType="Self.wp_woocommerce_api_keys" />
+          <EntitySet Name="wp_woocommerce_attribute_taxonomies" EntityType="Self.wp_woocommerce_attribute_taxonomies" />
+          <EntitySet Name="wp_woocommerce_downloadable_product_permissions" EntityType="Self.wp_woocommerce_downloadable_product_permissions" />
+          <EntitySet Name="wp_woocommerce_log" EntityType="Self.wp_woocommerce_log" />
+          <EntitySet Name="wp_woocommerce_order_itemmeta" EntityType="Self.wp_woocommerce_order_itemmeta" />
+          <EntitySet Name="wp_woocommerce_order_items" EntityType="Self.wp_woocommerce_order_items" />
+          <EntitySet Name="wp_woocommerce_payment_tokenmeta" EntityType="Self.wp_woocommerce_payment_tokenmeta" />
+          <EntitySet Name="wp_woocommerce_payment_tokens" EntityType="Self.wp_woocommerce_payment_tokens" />
+          <EntitySet Name="wp_woocommerce_sessions" EntityType="Self.wp_woocommerce_sessions" />
+          <EntitySet Name="wp_woocommerce_shipping_zone_locations" EntityType="Self.wp_woocommerce_shipping_zone_locations" />
+          <EntitySet Name="wp_woocommerce_shipping_zone_methods" EntityType="Self.wp_woocommerce_shipping_zone_methods" />
+          <EntitySet Name="wp_woocommerce_shipping_zones" EntityType="Self.wp_woocommerce_shipping_zones" />
+          <EntitySet Name="wp_woocommerce_tax_rate_locations" EntityType="Self.wp_woocommerce_tax_rate_locations" />
+          <EntitySet Name="wp_woocommerce_tax_rates" EntityType="Self.wp_woocommerce_tax_rates" />
+          <AssociationSet Name="fk_wc_download_log_permission_id" Association="Self.fk_wc_download_log_permission_id">
+            <End Role="wp_woocommerce_downloadable_product_permissions" EntitySet="wp_woocommerce_downloadable_product_permissions" />
+            <End Role="wp_wc_download_log" EntitySet="wp_wc_download_log" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="wordpressModelStoreContainer" CdmEntityContainer="wordpressEntities">
+          <EntitySetMapping Name="wp_commentmeta">
+            <EntityTypeMapping TypeName="wordpressModel.wp_commentmeta">
+              <MappingFragment StoreEntitySet="wp_commentmeta">
+                <ScalarProperty Name="meta_id" ColumnName="meta_id" />
+                <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+                <ScalarProperty Name="meta_key" ColumnName="meta_key" />
+                <ScalarProperty Name="meta_value" ColumnName="meta_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_comments">
+            <EntityTypeMapping TypeName="wordpressModel.wp_comments">
+              <MappingFragment StoreEntitySet="wp_comments">
+                <ScalarProperty Name="comment_ID" ColumnName="comment_ID" />
+                <ScalarProperty Name="comment_post_ID" ColumnName="comment_post_ID" />
+                <ScalarProperty Name="comment_author" ColumnName="comment_author" />
+                <ScalarProperty Name="comment_author_email" ColumnName="comment_author_email" />
+                <ScalarProperty Name="comment_author_url" ColumnName="comment_author_url" />
+                <ScalarProperty Name="comment_author_IP" ColumnName="comment_author_IP" />
+                <ScalarProperty Name="comment_date" ColumnName="comment_date" />
+                <ScalarProperty Name="comment_date_gmt" ColumnName="comment_date_gmt" />
+                <ScalarProperty Name="comment_content" ColumnName="comment_content" />
+                <ScalarProperty Name="comment_karma" ColumnName="comment_karma" />
+                <ScalarProperty Name="comment_approved" ColumnName="comment_approved" />
+                <ScalarProperty Name="comment_agent" ColumnName="comment_agent" />
+                <ScalarProperty Name="comment_type" ColumnName="comment_type" />
+                <ScalarProperty Name="comment_parent" ColumnName="comment_parent" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_lead_form">
+            <EntityTypeMapping TypeName="wordpressModel.wp_lead_form">
+              <MappingFragment StoreEntitySet="wp_lead_form">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="form_title" ColumnName="form_title" />
+                <ScalarProperty Name="form_data" ColumnName="form_data" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="mail_setting" ColumnName="mail_setting" />
+                <ScalarProperty Name="usermail_setting" ColumnName="usermail_setting" />
+                <ScalarProperty Name="multiData" ColumnName="multiData" />
+                <ScalarProperty Name="form_skin" ColumnName="form_skin" />
+                <ScalarProperty Name="form_status" ColumnName="form_status" />
+                <ScalarProperty Name="captcha_status" ColumnName="captcha_status" />
+                <ScalarProperty Name="storeType" ColumnName="storeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_lead_form_data">
+            <EntityTypeMapping TypeName="wordpressModel.wp_lead_form_data">
+              <MappingFragment StoreEntitySet="wp_lead_form_data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="form_id" ColumnName="form_id" />
+                <ScalarProperty Name="form_data" ColumnName="form_data" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="server_request" ColumnName="server_request" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_lead_form_extension">
+            <EntityTypeMapping TypeName="wordpressModel.wp_lead_form_extension">
+              <MappingFragment StoreEntitySet="wp_lead_form_extension">
+                <ScalarProperty Name="eid" ColumnName="eid" />
+                <ScalarProperty Name="form_id" ColumnName="form_id" />
+                <ScalarProperty Name="ext_api" ColumnName="ext_api" />
+                <ScalarProperty Name="ext_map" ColumnName="ext_map" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="ext_type" ColumnName="ext_type" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_lead_form_options">
+            <EntityTypeMapping TypeName="wordpressModel.wp_lead_form_options">
+              <MappingFragment StoreEntitySet="wp_lead_form_options">
+                <ScalarProperty Name="fid" ColumnName="fid" />
+                <ScalarProperty Name="colorData" ColumnName="colorData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_links">
+            <EntityTypeMapping TypeName="wordpressModel.wp_links">
+              <MappingFragment StoreEntitySet="wp_links">
+                <ScalarProperty Name="link_id" ColumnName="link_id" />
+                <ScalarProperty Name="link_url" ColumnName="link_url" />
+                <ScalarProperty Name="link_name" ColumnName="link_name" />
+                <ScalarProperty Name="link_image" ColumnName="link_image" />
+                <ScalarProperty Name="link_target" ColumnName="link_target" />
+                <ScalarProperty Name="link_description" ColumnName="link_description" />
+                <ScalarProperty Name="link_visible" ColumnName="link_visible" />
+                <ScalarProperty Name="link_owner" ColumnName="link_owner" />
+                <ScalarProperty Name="link_rating" ColumnName="link_rating" />
+                <ScalarProperty Name="link_updated" ColumnName="link_updated" />
+                <ScalarProperty Name="link_rel" ColumnName="link_rel" />
+                <ScalarProperty Name="link_notes" ColumnName="link_notes" />
+                <ScalarProperty Name="link_rss" ColumnName="link_rss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_options">
+            <EntityTypeMapping TypeName="wordpressModel.wp_options">
+              <MappingFragment StoreEntitySet="wp_options">
+                <ScalarProperty Name="option_id" ColumnName="option_id" />
+                <ScalarProperty Name="option_name" ColumnName="option_name" />
+                <ScalarProperty Name="option_value" ColumnName="option_value" />
+                <ScalarProperty Name="autoload" ColumnName="autoload" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_postmeta">
+            <EntityTypeMapping TypeName="wordpressModel.wp_postmeta">
+              <MappingFragment StoreEntitySet="wp_postmeta">
+                <ScalarProperty Name="meta_id" ColumnName="meta_id" />
+                <ScalarProperty Name="post_id" ColumnName="post_id" />
+                <ScalarProperty Name="meta_key" ColumnName="meta_key" />
+                <ScalarProperty Name="meta_value" ColumnName="meta_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_posts">
+            <EntityTypeMapping TypeName="wordpressModel.wp_posts">
+              <MappingFragment StoreEntitySet="wp_posts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="post_author" ColumnName="post_author" />
+                <ScalarProperty Name="post_date" ColumnName="post_date" />
+                <ScalarProperty Name="post_date_gmt" ColumnName="post_date_gmt" />
+                <ScalarProperty Name="post_content" ColumnName="post_content" />
+                <ScalarProperty Name="post_title" ColumnName="post_title" />
+                <ScalarProperty Name="post_excerpt" ColumnName="post_excerpt" />
+                <ScalarProperty Name="post_status" ColumnName="post_status" />
+                <ScalarProperty Name="comment_status" ColumnName="comment_status" />
+                <ScalarProperty Name="ping_status" ColumnName="ping_status" />
+                <ScalarProperty Name="post_password" ColumnName="post_password" />
+                <ScalarProperty Name="post_name" ColumnName="post_name" />
+                <ScalarProperty Name="to_ping" ColumnName="to_ping" />
+                <ScalarProperty Name="pinged" ColumnName="pinged" />
+                <ScalarProperty Name="post_modified" ColumnName="post_modified" />
+                <ScalarProperty Name="post_modified_gmt" ColumnName="post_modified_gmt" />
+                <ScalarProperty Name="post_content_filtered" ColumnName="post_content_filtered" />
+                <ScalarProperty Name="post_parent" ColumnName="post_parent" />
+                <ScalarProperty Name="guid" ColumnName="guid" />
+                <ScalarProperty Name="menu_order" ColumnName="menu_order" />
+                <ScalarProperty Name="post_type" ColumnName="post_type" />
+                <ScalarProperty Name="post_mime_type" ColumnName="post_mime_type" />
+                <ScalarProperty Name="comment_count" ColumnName="comment_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_term_relationships">
+            <EntityTypeMapping TypeName="wordpressModel.wp_term_relationships">
+              <MappingFragment StoreEntitySet="wp_term_relationships">
+                <ScalarProperty Name="object_id" ColumnName="object_id" />
+                <ScalarProperty Name="term_taxonomy_id" ColumnName="term_taxonomy_id" />
+                <ScalarProperty Name="term_order" ColumnName="term_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_term_taxonomy">
+            <EntityTypeMapping TypeName="wordpressModel.wp_term_taxonomy">
+              <MappingFragment StoreEntitySet="wp_term_taxonomy">
+                <ScalarProperty Name="term_taxonomy_id" ColumnName="term_taxonomy_id" />
+                <ScalarProperty Name="term_id" ColumnName="term_id" />
+                <ScalarProperty Name="taxonomy" ColumnName="taxonomy" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="parent" ColumnName="parent" />
+                <ScalarProperty Name="count" ColumnName="count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_termmeta">
+            <EntityTypeMapping TypeName="wordpressModel.wp_termmeta">
+              <MappingFragment StoreEntitySet="wp_termmeta">
+                <ScalarProperty Name="meta_id" ColumnName="meta_id" />
+                <ScalarProperty Name="term_id" ColumnName="term_id" />
+                <ScalarProperty Name="meta_key" ColumnName="meta_key" />
+                <ScalarProperty Name="meta_value" ColumnName="meta_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_terms">
+            <EntityTypeMapping TypeName="wordpressModel.wp_terms">
+              <MappingFragment StoreEntitySet="wp_terms">
+                <ScalarProperty Name="term_id" ColumnName="term_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="slug" ColumnName="slug" />
+                <ScalarProperty Name="term_group" ColumnName="term_group" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_th_popup">
+            <EntityTypeMapping TypeName="wordpressModel.wp_th_popup">
+              <MappingFragment StoreEntitySet="wp_th_popup">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="popupData" ColumnName="popupData" />
+                <ScalarProperty Name="settings" ColumnName="settings" />
+                <ScalarProperty Name="popupDate" ColumnName="popupDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_usermeta">
+            <EntityTypeMapping TypeName="wordpressModel.wp_usermeta">
+              <MappingFragment StoreEntitySet="wp_usermeta">
+                <ScalarProperty Name="umeta_id" ColumnName="umeta_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="meta_key" ColumnName="meta_key" />
+                <ScalarProperty Name="meta_value" ColumnName="meta_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_users">
+            <EntityTypeMapping TypeName="wordpressModel.wp_users">
+              <MappingFragment StoreEntitySet="wp_users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="user_login" ColumnName="user_login" />
+                <ScalarProperty Name="user_pass" ColumnName="user_pass" />
+                <ScalarProperty Name="user_nicename" ColumnName="user_nicename" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_url" ColumnName="user_url" />
+                <ScalarProperty Name="user_registered" ColumnName="user_registered" />
+                <ScalarProperty Name="user_activation_key" ColumnName="user_activation_key" />
+                <ScalarProperty Name="user_status" ColumnName="user_status" />
+                <ScalarProperty Name="display_name" ColumnName="display_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_wc_download_log">
+            <EntityTypeMapping TypeName="wordpressModel.wp_wc_download_log">
+              <MappingFragment StoreEntitySet="wp_wc_download_log">
+                <ScalarProperty Name="download_log_id" ColumnName="download_log_id" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_ip_address" ColumnName="user_ip_address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_wc_webhooks">
+            <EntityTypeMapping TypeName="wordpressModel.wp_wc_webhooks">
+              <MappingFragment StoreEntitySet="wp_wc_webhooks">
+                <ScalarProperty Name="webhook_id" ColumnName="webhook_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="delivery_url" ColumnName="delivery_url" />
+                <ScalarProperty Name="secret" ColumnName="secret" />
+                <ScalarProperty Name="topic" ColumnName="topic" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="date_created_gmt" ColumnName="date_created_gmt" />
+                <ScalarProperty Name="date_modified" ColumnName="date_modified" />
+                <ScalarProperty Name="date_modified_gmt" ColumnName="date_modified_gmt" />
+                <ScalarProperty Name="api_version" ColumnName="api_version" />
+                <ScalarProperty Name="failure_count" ColumnName="failure_count" />
+                <ScalarProperty Name="pending_delivery" ColumnName="pending_delivery" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_wcpdf_invoice_number">
+            <EntityTypeMapping TypeName="wordpressModel.wp_wcpdf_invoice_number">
+              <MappingFragment StoreEntitySet="wp_wcpdf_invoice_number">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="calculated_number" ColumnName="calculated_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_api_keys">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_api_keys">
+              <MappingFragment StoreEntitySet="wp_woocommerce_api_keys">
+                <ScalarProperty Name="key_id" ColumnName="key_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="permissions" ColumnName="permissions" />
+                <ScalarProperty Name="consumer_key" ColumnName="consumer_key" />
+                <ScalarProperty Name="consumer_secret" ColumnName="consumer_secret" />
+                <ScalarProperty Name="nonces" ColumnName="nonces" />
+                <ScalarProperty Name="truncated_key" ColumnName="truncated_key" />
+                <ScalarProperty Name="last_access" ColumnName="last_access" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_attribute_taxonomies">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_attribute_taxonomies">
+              <MappingFragment StoreEntitySet="wp_woocommerce_attribute_taxonomies">
+                <ScalarProperty Name="attribute_id" ColumnName="attribute_id" />
+                <ScalarProperty Name="attribute_name" ColumnName="attribute_name" />
+                <ScalarProperty Name="attribute_label" ColumnName="attribute_label" />
+                <ScalarProperty Name="attribute_type" ColumnName="attribute_type" />
+                <ScalarProperty Name="attribute_orderby" ColumnName="attribute_orderby" />
+                <ScalarProperty Name="attribute_public" ColumnName="attribute_public" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_downloadable_product_permissions">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_downloadable_product_permissions">
+              <MappingFragment StoreEntitySet="wp_woocommerce_downloadable_product_permissions">
+                <ScalarProperty Name="permission_id" ColumnName="permission_id" />
+                <ScalarProperty Name="download_id" ColumnName="download_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="order_key" ColumnName="order_key" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="downloads_remaining" ColumnName="downloads_remaining" />
+                <ScalarProperty Name="access_granted" ColumnName="access_granted" />
+                <ScalarProperty Name="access_expires" ColumnName="access_expires" />
+                <ScalarProperty Name="download_count" ColumnName="download_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_log">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_log">
+              <MappingFragment StoreEntitySet="wp_woocommerce_log">
+                <ScalarProperty Name="log_id" ColumnName="log_id" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="context" ColumnName="context" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_order_itemmeta">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_order_itemmeta">
+              <MappingFragment StoreEntitySet="wp_woocommerce_order_itemmeta">
+                <ScalarProperty Name="meta_id" ColumnName="meta_id" />
+                <ScalarProperty Name="order_item_id" ColumnName="order_item_id" />
+                <ScalarProperty Name="meta_key" ColumnName="meta_key" />
+                <ScalarProperty Name="meta_value" ColumnName="meta_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_order_items">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_order_items">
+              <MappingFragment StoreEntitySet="wp_woocommerce_order_items">
+                <ScalarProperty Name="order_item_id" ColumnName="order_item_id" />
+                <ScalarProperty Name="order_item_name" ColumnName="order_item_name" />
+                <ScalarProperty Name="order_item_type" ColumnName="order_item_type" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_payment_tokenmeta">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_payment_tokenmeta">
+              <MappingFragment StoreEntitySet="wp_woocommerce_payment_tokenmeta">
+                <ScalarProperty Name="meta_id" ColumnName="meta_id" />
+                <ScalarProperty Name="payment_token_id" ColumnName="payment_token_id" />
+                <ScalarProperty Name="meta_key" ColumnName="meta_key" />
+                <ScalarProperty Name="meta_value" ColumnName="meta_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_payment_tokens">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_payment_tokens">
+              <MappingFragment StoreEntitySet="wp_woocommerce_payment_tokens">
+                <ScalarProperty Name="token_id" ColumnName="token_id" />
+                <ScalarProperty Name="gateway_id" ColumnName="gateway_id" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="is_default" ColumnName="is_default" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_sessions">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_sessions">
+              <MappingFragment StoreEntitySet="wp_woocommerce_sessions">
+                <ScalarProperty Name="session_id" ColumnName="session_id" />
+                <ScalarProperty Name="session_key" ColumnName="session_key" />
+                <ScalarProperty Name="session_value" ColumnName="session_value" />
+                <ScalarProperty Name="session_expiry" ColumnName="session_expiry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_shipping_zone_locations">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_shipping_zone_locations">
+              <MappingFragment StoreEntitySet="wp_woocommerce_shipping_zone_locations">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="zone_id" ColumnName="zone_id" />
+                <ScalarProperty Name="location_code" ColumnName="location_code" />
+                <ScalarProperty Name="location_type" ColumnName="location_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_shipping_zone_methods">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_shipping_zone_methods">
+              <MappingFragment StoreEntitySet="wp_woocommerce_shipping_zone_methods">
+                <ScalarProperty Name="zone_id" ColumnName="zone_id" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="method_id" ColumnName="method_id" />
+                <ScalarProperty Name="method_order" ColumnName="method_order" />
+                <ScalarProperty Name="is_enabled" ColumnName="is_enabled" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_shipping_zones">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_shipping_zones">
+              <MappingFragment StoreEntitySet="wp_woocommerce_shipping_zones">
+                <ScalarProperty Name="zone_id" ColumnName="zone_id" />
+                <ScalarProperty Name="zone_name" ColumnName="zone_name" />
+                <ScalarProperty Name="zone_order" ColumnName="zone_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_tax_rate_locations">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_tax_rate_locations">
+              <MappingFragment StoreEntitySet="wp_woocommerce_tax_rate_locations">
+                <ScalarProperty Name="location_id" ColumnName="location_id" />
+                <ScalarProperty Name="location_code" ColumnName="location_code" />
+                <ScalarProperty Name="tax_rate_id" ColumnName="tax_rate_id" />
+                <ScalarProperty Name="location_type" ColumnName="location_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wp_woocommerce_tax_rates">
+            <EntityTypeMapping TypeName="wordpressModel.wp_woocommerce_tax_rates">
+              <MappingFragment StoreEntitySet="wp_woocommerce_tax_rates">
+                <ScalarProperty Name="tax_rate_id" ColumnName="tax_rate_id" />
+                <ScalarProperty Name="tax_rate_country" ColumnName="tax_rate_country" />
+                <ScalarProperty Name="tax_rate_state" ColumnName="tax_rate_state" />
+                <ScalarProperty Name="tax_rate" ColumnName="tax_rate" />
+                <ScalarProperty Name="tax_rate_name" ColumnName="tax_rate_name" />
+                <ScalarProperty Name="tax_rate_priority" ColumnName="tax_rate_priority" />
+                <ScalarProperty Name="tax_rate_compound" ColumnName="tax_rate_compound" />
+                <ScalarProperty Name="tax_rate_shipping" ColumnName="tax_rate_shipping" />
+                <ScalarProperty Name="tax_rate_order" ColumnName="tax_rate_order" />
+                <ScalarProperty Name="tax_rate_class" ColumnName="tax_rate_class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

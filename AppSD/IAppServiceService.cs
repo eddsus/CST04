@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.ServiceModel.Web;
+using SharedDataTypesWordpress;
 
 namespace AppSD
 {
@@ -201,6 +202,15 @@ namespace AppSD
         UriTemplate = "InsertChocolate"),]
         bool InsertChocolate(Chocolate item);
 
+        #endregion
+
+        #region WP_QUERIES
+        [OperationContract]
+        List<WPPosts> QueryProducts();
+
+
+        [OperationContract]
+        int AddProduct();
         #endregion
     }
 }
