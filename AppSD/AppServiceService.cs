@@ -40,7 +40,7 @@ namespace AppSD
             return new AppLogic().QueryOrdersContentChocolate(orderId);
         }
 
-        public Customer QueryCustomerByCustomerId(Guid customerId)
+        public Customer QueryCustomerByCustomerId(string customerId)
         {
             return new AppLogic().QueryCustomerByCustomerId(customerId);
         }

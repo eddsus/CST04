@@ -117,7 +117,7 @@ namespace AppSD
         RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "QueryCustomerByCustomerId/{id}")]
-        Customer QueryCustomerByCustomerId(Guid id);
+        Customer QueryCustomerByCustomerId(string id);
 
 
         [OperationContract]

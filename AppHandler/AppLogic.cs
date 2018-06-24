@@ -85,7 +85,7 @@ namespace AppHandler
             return mainDh.QueryIngredientsByChocolateId(id);
         }
 
-        public Customer QueryCustomerByCustomerId(Guid id)
+        public Customer QueryCustomerByCustomerId(string id)
         {
             return mainDh.QueryCustomerByCustomerId(id);
         }
