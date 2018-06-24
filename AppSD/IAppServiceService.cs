@@ -103,6 +103,14 @@ namespace AppSD
         UriTemplate = "QueryIngredientsByChocolateId")]
         List<Ingredient> QueryIngredientsByChocolateId(Guid id);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryIngredientsByChocolateIdAsString/{id}")]
+        List<Ingredient> QueryIngredientsByChocolateIdAsString(string id);
+
 
         [OperationContract]
         [WebInvoke(Method = "GET",

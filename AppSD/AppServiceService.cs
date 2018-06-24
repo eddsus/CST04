@@ -68,6 +68,12 @@ namespace AppSD
         {
             return new AppLogic().QueryIngredientsByChocolateId(id);
         }
+
+        public List<Ingredient> QueryIngredientsByChocolateIdAsString(string id)
+        {
+            return new AppLogic().QueryIngredientsByChocolateId(new Guid(id));
+        }
+
         public List<Rating> QueryRatings()
         {
             return new AppLogic().QueryRatings();
