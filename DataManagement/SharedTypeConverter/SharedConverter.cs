@@ -345,7 +345,7 @@ namespace DataManagement.SharedTypeConverter
         {
             return new DataBases.Chocolate
             {
-                ID_Chocolate = Guid.NewGuid(),
+                ID_Chocolate = c.ChocolateId,
                 Name = c.Name,
                 Description = c.Description,
                 Available = c.Available,
@@ -361,7 +361,7 @@ namespace DataManagement.SharedTypeConverter
         {
             return new DataBases.Package
             {
-                ID_Package = Guid.NewGuid(),
+                ID_Package = p.PackageId,
                 Name = p.Name,
                 Descripton = p.Description,
                 WrappingID = p.Wrapping.WrappingId,
@@ -369,6 +369,7 @@ namespace DataManagement.SharedTypeConverter
                 Customer_ID = p.Customer.CustomerId,
                 Image = p.Image,
                 ModifyDate = DateTime.Now,
+                Wrapping=p.Wrapping.Name
             };
         }
         #endregion

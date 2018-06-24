@@ -132,6 +132,10 @@ namespace AppSD
             return new AppLogic().InsertChocolate(item);
         }
 
+        public bool InsertPackage(Package item)
+        {
+            return new AppLogic().InsertPackage(item);
+        }
 
         #endregion
 

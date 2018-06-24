@@ -193,6 +193,14 @@ namespace AppSD
         UriTemplate = "InsertChocolate"),]
         bool InsertChocolate(Chocolate item);
 
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "InsertPackage"),]
+        bool InsertPackage(Package item);
+
         #endregion
     }
 }

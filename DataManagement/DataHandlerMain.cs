@@ -199,6 +199,7 @@ namespace DataManagement
 
         public bool InsertChocolate(SharedDataTypes.Chocolate c)
         {
+            c.ChocolateId = Guid.NewGuid();
             mainDb.Chocolate.Add(converter.ConvertToDBChoco(c));
             int cnt = 1;
             foreach (var item in c.Ingredients)
@@ -211,7 +212,9 @@ namespace DataManagement
 
         public bool InsertPackage(SharedDataTypes.Package p)
         {
+            p.PackageId = Guid.NewGuid();
             mainDb.Package.Add(converter.ConvertToDBPackage(p));
+            mainDb.SaveChanges();
             int cnt = 1;
             foreach (var item in p.Chocolates)
             {

@@ -17,6 +17,11 @@ namespace AppHandler
             return mainDh.QueryOrders();
         }
 
+        public bool InsertPackage(SharedDataTypes.Package p)
+        {
+            return mainDh.InsertPackage(p);
+        }
+
         public bool InsertChocolate(SharedDataTypes.Chocolate c)
         {
             return mainDh.InsertChocolate(c);
