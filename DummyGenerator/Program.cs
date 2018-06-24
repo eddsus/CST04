@@ -2,7 +2,6 @@
 using AppHandler;
 using AppSD;
 using DataManagement;
-using Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,6 @@ namespace DummyGenerator
         static void Main(string[] args)
         {
             DataHandlerMain mainDh = new DataHandlerMain();
-            SyncMessageQueue<string> mq = new SyncMessageQueue<string>("testChannel");
 
             var temp = new AppServiceService().QueryOrders();
 
