@@ -27,6 +27,11 @@ namespace AppHandler
             return mainDh.InsertIngredient(i);
         }
 
+        public List<CustomStyle> QueryCustomStyles()
+        {
+            return mainDh.QueryCustomStyles();
+        }
+
         public List<SharedDataTypes.Customer> QueryCustomers()
         {
             return mainDh.QueryCustomers();

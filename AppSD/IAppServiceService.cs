@@ -98,6 +98,7 @@ namespace AppSD
         [OperationContract]
         [WebInvoke(Method = "POST",
         ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "QueryIngredientsByChocolateId")]
         List<Ingredient> QueryIngredientsByChocolateId(Guid id);
@@ -124,6 +125,13 @@ namespace AppSD
         BodyStyle = WebMessageBodyStyle.Bare,
         UriTemplate = "QueryCustomers")]
         List<Customer> QueryCustomers();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryCustomStyles")]
+        List<CustomStyle> QueryCustomStyles();
         #endregion
 
         #region UPDATE METHODS
