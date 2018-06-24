@@ -306,7 +306,7 @@ namespace DataManagement
 
         public bool UpdatePackage(SharedDataTypes.Package p)
         {
-            var temp = mainDb.Package.Where(q => q.ID_Package.Equals(q.ID_Package)).Select(q => q).First();
+            var temp = mainDb.Package.Where(q => q.ID_Package.Equals(p.PackageId)).Select(q => q).First();
 
             temp.Name = p.Name;
             temp.Descripton = p.Description;
