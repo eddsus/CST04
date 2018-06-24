@@ -6,6 +6,8 @@ using System.ServiceModel;
 using System.Text;
 using SharedDataTypes;
 using AppHandler;
+using SharedDataTypesWordpress;
+using WPDataRepo;
 
 namespace AppSD
 {
@@ -128,7 +130,23 @@ namespace AppSD
         }
 
 
+
+
         #endregion
 
+        #region WP_QUERIES
+
+        WPDataHandler dbh = new WPDataHandler();
+
+        public List<WPPosts> QueryProducts()
+        {
+            return dbh.QueryProducts();
+        }
+
+        public int AddProduct()
+        {
+            return dbh.AddProduct();
+        }
+        #endregion
     }
 }

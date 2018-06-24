@@ -25,7 +25,7 @@ namespace DataManagementWordPressDB
                         post_status = a.post_status,
                         post_title = a.post_title,
                         post_date = a.post_date
-                        //meta_value = b.
+                        
                     }).ToList();
         }
     }
