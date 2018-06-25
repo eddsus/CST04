@@ -32,12 +32,7 @@ namespace DataManagement
             }
             return tempSharedOrders;
         }
-
-        public void InsertOrder(SharedDataTypes.Order order)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public List<SharedDataTypes.OrderContentChocolate> QueryOrdersContentChocolate(string orderId)
         {
             var temp = mainDb.OrderContent.Where(o => o.Order_ID.Equals(orderId)).Select(oc => oc).ToList();
