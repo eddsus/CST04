@@ -208,8 +208,19 @@ namespace WPDataRepo
                         where y.taxonomy.Equals("pa_wrapping")
                         select new Wrapping()
                         {
-                            //WrappingId = Guid.Parse(x.term_id.ToString()),
                             Name = x.name
+                        };
+
+            return query.ToList();
+        }
+
+        public List<Rating> QueryRatingWP()
+        {
+            var query = from x in db.wp_comments
+                        select new Rating()
+                        {
+                            Comment=x.comment_content,
+                            Date=x.comment_date,
                         };
 
             return query.ToList();
@@ -274,20 +285,71 @@ namespace WPDataRepo
         #endregion
 
         #region SYNC
-        public void CheckForNewOrders(DateTime dt)
+        public List<WPOrder> CheckForNewOrders(DateTime dt)
         {
-            var queryOrder = from x in db.wp_posts
-                             where x.post_type.Contains("shop_order") && dt < x.post_modified
-                             select x;
+            //get all orders
+            return db.wp_posts.Where(x => x.post_type.Contains("shop_order") && x.post_modified > dt).Select(x => 
+                new WPOrder()
+                {
+                    ID = x.ID.ToString(),
+                    Firstname = GetFirstnameByPostid(x.ID),
+                    Lastname= GetLastnameByPostid(x.ID),
+                    OrderValue= GetOrderValueByPostid(x.ID),
+                    Telephone= GetTelephoneByPostid(x.ID),
+                    Modified=x.post_modified,
+                    Mail=GetMailByPostid(x.ID),
+                    OrderDate=x.post_date,
+                    CustomerNotes=x.post_excerpt,
+                    OrderStatus=x.post_status
+                }
+            ).ToList();
+        }
 
-            foreach (var item in queryOrder)
-            {
-                var queryDetails = from x in db.wp_postmeta
-                                   where x.post_id == item.ID
-                                   select x;
-            }
+        private string GetMailByPostid(decimal iD)
+        {
+            var query = (from x in db.wp_postmeta
+                         where x.post_id == iD && x.meta_key.Contains("_billing_email")
+                         select x).First();
+
+            return query.meta_value;
+        }
+
+        private string GetTelephoneByPostid(decimal iD)
+        {
+            var query = (from x in db.wp_postmeta
+                         where x.post_id == iD && x.meta_key.Contains("_billing_phone")
+                         select x).First();
+
+            return query.meta_value;
         }
         
+        private double GetOrderValueByPostid(decimal iD)
+        {
+            var query = (from x in db.wp_postmeta
+                         where x.post_id == iD && x.meta_key.Contains("_order_total")
+                         select x).First();
+
+            return double.Parse(query.meta_value);
+        }
+        
+        private string GetLastnameByPostid(decimal iD)
+        {
+            var query = (from x in db.wp_postmeta
+                         where x.post_id == iD && x.meta_key.Contains("_billing_last_name")
+                         select x).First();
+
+            return query.meta_value;
+        }
+
+        private string GetFirstnameByPostid(decimal iD)
+        {
+            var query = (from x in db.wp_postmeta
+                         where x.post_id == iD && x.meta_key.Contains("_billing_first_name")
+                         select x).First();
+
+            return query.meta_value;
+        }
+
         #endregion
     }
 }
