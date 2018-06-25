@@ -215,8 +215,7 @@ namespace AppSD
         #region WP_QUERIES
         [OperationContract]
         List<WPPosts> QueryProducts();
-
-
+        
         [OperationContract]
         int AddProduct();
         #endregion

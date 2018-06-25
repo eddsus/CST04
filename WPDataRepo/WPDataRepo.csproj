@@ -214,6 +214,10 @@
       <Project>{dc788400-3ad4-46af-8b44-ed0d660504f7}</Project>
       <Name>SharedDataTypesWordpress</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharedDataTypes\SharedDataTypes.csproj">
+      <Project>{FA03A1B3-B0FD-45DA-A08A-76ED7D25DB97}</Project>
+      <Name>SharedDataTypes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WPDataRepo;
 
 namespace AppHandler
 {
     public class AppLogic
     {
         DataHandlerMain mainDh = new DataHandlerMain();
+        WPDataHandler wpDh = new WPDataHandler();
         //add other dbHandlers here
         public List<Order> QueryOrders()
         {
@@ -117,8 +119,14 @@ namespace AppHandler
 
         public bool UpdateIngredient(Ingredient item)
         {
-            //::TODO:: Also update Frontend database
-            return mainDh.UpdateIngredient(item);
+            if (mainDh.UpdateIngredient(item))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

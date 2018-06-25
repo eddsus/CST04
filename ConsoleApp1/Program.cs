@@ -1,4 +1,5 @@
 ﻿
+using SharedDataTypes;
 using SharedDataTypesWordpress;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,16 @@ namespace ConsoleApp1
             int count = context.wp_posts.Count() + 1;
 
 
-            Console.WriteLine(dbh.AddProduct());
+            //Console.WriteLine(dbh.AddProduct());
+
+            //Ingredient i = new Ingredient() {
+
+            //    Name = "Pistazie",
+
+            //};
+
+            //Console.WriteLine(dbh.AddIngredientWP(i));
+            
 
             Console.ReadLine();
 

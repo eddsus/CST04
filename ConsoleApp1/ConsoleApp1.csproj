@@ -76,6 +76,10 @@
       <Project>{dc788400-3ad4-46af-8b44-ed0d660504f7}</Project>
       <Name>SharedDataTypesWordpress</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharedDataTypes\SharedDataTypes.csproj">
+      <Project>{FA03A1B3-B0FD-45DA-A08A-76ED7D25DB97}</Project>
+      <Name>SharedDataTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WPDataRepo\WPDataRepo.csproj">
       <Project>{1CBF47DA-3A35-4E6F-8FBF-053C8BA97017}</Project>
       <Name>WPDataRepo</Name>
