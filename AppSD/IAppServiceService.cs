@@ -111,6 +111,14 @@ namespace AppSD
         UriTemplate = "QueryIngredientsByChocolateIdAsString/{id}")]
         List<Ingredient> QueryIngredientsByChocolateIdAsString(string id);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+        ResponseFormat = WebMessageFormat.Json,
+        RequestFormat = WebMessageFormat.Json,
+        BodyStyle = WebMessageBodyStyle.Bare,
+        UriTemplate = "QueryCustomerByCustomerId/{id}")]
+        Customer QueryCustomerByCustomerId(string id);
+
 
         [OperationContract]
         [WebInvoke(Method = "GET",

@@ -100,7 +100,7 @@ namespace DataManagement
             return converter.ConvertToSharedCustomer(mainDb.Package.Where(p => p.ID_Package == packageId).Select(p => p.Customer).First());
         }
 
-        public SharedDataTypes.Customer QueryCustomerByCustomerId(Guid customerId)
+        public SharedDataTypes.Customer QueryCustomerByCustomerId(string customerId)
         {
             return converter.ConvertToSharedCustomer(mainDb.Customer.Where(p => p.ID_Customer.Equals(customerId)).Select(p => p).First());
         }
@@ -309,7 +309,7 @@ namespace DataManagement
 
         public bool UpdatePackage(SharedDataTypes.Package p)
         {
-            var temp = mainDb.Package.Where(q => q.ID_Package.Equals(q.ID_Package)).Select(q => q).First();
+            var temp = mainDb.Package.Where(q => q.ID_Package.Equals(p.PackageId)).Select(q => q).First();
 
             temp.Name = p.Name;
             temp.Descripton = p.Description;
