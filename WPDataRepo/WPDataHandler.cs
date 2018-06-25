@@ -14,7 +14,7 @@ namespace WPDataRepo
         wordpressEntities db = new wordpressEntities();
 
         #region ADD
-        public int AddProduct()
+        public int AddProduct(Chocolate newChoco)
         {
             decimal count = db.wp_posts.AsEnumerable().Last().ID + 1;
             decimal mId = db.wp_postmeta.AsEnumerable().Last().meta_id + 1;
@@ -92,6 +92,11 @@ namespace WPDataRepo
             return db.SaveChanges();
         }
 
+        public int AddPackage(Package p)
+        {
+            throw new NotImplementedException();
+        }
+
         public int AddIngredientWP(Ingredient i)
         {
             db.wp_terms.Add(new wp_terms()
@@ -123,6 +128,31 @@ namespace WPDataRepo
             });
 
             return db.SaveChanges();
+        }
+
+        public bool DeleteOrderContentByContentId(string ocId, string type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateIngredient(Ingredient i)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateChocolate(Chocolate c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdatePackage(Package p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateOrder(Order o)
+        {
+            throw new NotImplementedException();
         }
 
         public int AddWrappingWP(Ingredient i)
