@@ -199,7 +199,6 @@ namespace DataManagement
 
         #endregion
 
-
         #region INSERT METHODS
 
         public bool InsertChocolate(SharedDataTypes.Chocolate c)
@@ -247,6 +246,45 @@ namespace DataManagement
             //i.Modified = DateTime.Now();
             mainDb.Ingredients.Add(converter.ConvertToDBIngredient(i));
             return mainDb.SaveChanges() == 1;
+        }
+
+        public bool InsertOrder(SharedDataTypes.Order o)
+        {
+            o.Customer =  GaranteeCustomerExists(o.Customer);
+            mainDb.Order.Add(converter.ConvertToDBOrder(o));
+            return mainDb.SaveChanges() > 0;
+        }
+
+        private void GaranteeDataConsistency(SharedDataTypes.Order o)
+        {
+           
+        }
+
+        private SharedDataTypes.Customer GaranteeCustomerExists(SharedDataTypes.Customer customer)
+        {
+            var tempMainCustomer = new DataBases.Customer();
+
+            var temp = mainDb.Customer.Where(
+                x =>
+                    x.FirstName.Equals(customer.FirstName) &&
+                    x.LastName.Equals(customer.LastName) &&
+                    x.Mail.Equals(customer.Mail) &&
+                    x.PhoneNumber.Equals(customer.PhoneNumber)
+                ).First();
+            //in case of new customer
+            if (temp == null)
+            {
+                tempMainCustomer.ID_Customer = customer.CustomerId;
+                tempMainCustomer.FirstName = customer.FirstName;
+                tempMainCustomer.LastName = customer.LastName;
+                tempMainCustomer.Mail = customer.Mail;
+                tempMainCustomer.PhoneNumber = customer.PhoneNumber;
+                mainDb.Customer.Add(tempMainCustomer);
+            } else //in case of existing customers make sure the order has the right Guid
+            {
+                customer.CustomerId = temp.ID_Customer;
+            }
+            return customer;
         }
 
         #endregion
@@ -340,8 +378,6 @@ namespace DataManagement
 
 
         #endregion
-
-
 
         #region DELETE METHODS
 
