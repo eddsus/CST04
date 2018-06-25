@@ -130,31 +130,6 @@ namespace WPDataRepo
             return db.SaveChanges();
         }
 
-        public bool DeleteOrderContentByContentId(string ocId, string type)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateIngredient(Ingredient i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int UpdateChocolate(Chocolate c)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdatePackage(Package p)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int UpdateOrder(Order o)
-        {
-            throw new NotImplementedException();
-        }
-
         public int AddWrappingWP(Ingredient i)
         {
             db.wp_terms.Add(new wp_terms()
@@ -257,6 +232,25 @@ namespace WPDataRepo
 
             return db.SaveChanges();
         }
+        public bool UpdateIngredient(Ingredient i)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateChocolate(Chocolate c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdatePackage(Package p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int UpdateOrder(Order o)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region DELETE
@@ -300,6 +294,10 @@ namespace WPDataRepo
             db.wp_term_relationships.Remove(query3);
 
             return db.SaveChanges();
+        }
+        public bool DeleteOrderContentByContentId(string ocId, string type)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
