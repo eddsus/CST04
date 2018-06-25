@@ -254,7 +254,6 @@ namespace DataManagement.SharedTypeConverter
             return tempRatings;
         }
 
-
         public SharedDataTypes.Shape ConvertToSharedShape(DataBases.Shape s)
         {
             return new SharedDataTypes.Shape
@@ -279,10 +278,6 @@ namespace DataManagement.SharedTypeConverter
         }
 
         #endregion
-
-
-
-
 
         #region ToDBObject
         internal Package_has_Chocolate ConvertToDBPackageHasChoco(Guid chocoId, Guid packageId)
@@ -370,6 +365,20 @@ namespace DataManagement.SharedTypeConverter
                 Image = p.Image,
                 ModifyDate = DateTime.Now,
                 Wrapping=p.Wrapping.Name
+            };
+        }
+
+        internal DataBases.Order ConvertToDBOrder(SharedDataTypes.Order o)
+        {
+            return new DataBases.Order
+            {
+                ID_Order = o.OrderId,
+                Customer_ID = o.Customer.CustomerId,
+                Status_ID = o.Status.OrderStatusId,
+                DateOfOrder = o.DateOfOrder,
+                DateOfDelivery = o.DateOfDelivery,
+                Note = o.Note,
+                ModifyDate = DateTime.Now
             };
         }
         #endregion
